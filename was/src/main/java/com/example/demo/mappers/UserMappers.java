@@ -1,4 +1,4 @@
-package com.example.demo.dao;
+package com.example.demo.mappers;
 
 import java.util.List;
 
@@ -7,10 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.dto.User;
 
-@Repository
 @Mapper
-public interface UserMapper {
-
+public interface UserMappers {
 	List<User> getUserList();
-
 }

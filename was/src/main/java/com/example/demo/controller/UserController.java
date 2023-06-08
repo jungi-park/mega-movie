@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,11 +14,11 @@ import com.example.demo.service.UserService;
 @RestController
 public class UserController {
 	@Autowired
-	private  UserService userService;
+	private  UserService UserService;
 	
 	@GetMapping("/user")
     public List<User> user() {
-        return userService.getUserList();
+        return UserService.getUserList();
     }
 
 	@GetMapping("/hello")

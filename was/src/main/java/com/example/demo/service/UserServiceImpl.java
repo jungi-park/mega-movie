@@ -5,17 +5,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.dao.UserMapper;
 import com.example.demo.dto.User;
+import com.example.demo.mappers.UserMappers;
 
 @Service
 public class UserServiceImpl implements UserService {
+	
 	@Autowired
-	private UserMapper userMapper;
+	private  UserMappers UserMapper;
 	
 	@Override
     public List<User> getUserList() {
-        return userMapper.getUserList();
+        return UserMapper.getUserList();
     }
 
 }
