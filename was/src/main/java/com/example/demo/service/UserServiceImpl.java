@@ -21,8 +21,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserEntity signUp() {
-		UserEntity user = new UserEntity(5, "기현");
+	public UserEntity signUp(UserEntity user) {
 		return userRepository.save(user);
 	}
 

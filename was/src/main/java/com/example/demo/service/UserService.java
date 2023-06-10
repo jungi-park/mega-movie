@@ -7,7 +7,7 @@ import com.example.demo.entity.UserEntity;
 public interface UserService {
 	public List<UserEntity> findAllUser();
 	
-	public UserEntity signUp();
+	public UserEntity signUp(UserEntity user);
 	
 	public UserEntity selectUserById(int id);
 	

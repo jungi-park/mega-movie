@@ -37,8 +37,8 @@ public class UserController {
 	 * @return
 	 */
 	@PostMapping("user")
-	public UserEntity signUp() {
-		return userService.signUp();
+	public UserEntity signUp(@RequestBody UserEntity user) {
+		return userService.signUp(user);
 	}
 
 	/**
