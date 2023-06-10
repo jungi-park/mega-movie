@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
 		Optional<UserEntity> user = userRepository.findById(id);
 
 		UserEntity result = user.orElseGet(() -> {
-			return new UserEntity(0, "없는유저");
+			return null;
 		});
 
 		return result;
@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
 
 		if (user.isPresent()) {
 			userRepository.delete(user.get());
-			return user.get().getUserName() + "님의 계정이 삭제 되었습니다.";
+			return user.get().getName() + "님의 계정이 삭제 되었습니다.";
 		} else {
 			return "유저가 존재하지 않습니다.";
 		}
@@ -51,11 +51,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserEntity updateUserById(UserEntity user) {
-		Optional<UserEntity> userExeist = userRepository.findById(user.getUserId());
+		Optional<UserEntity> userExeist = userRepository.findById(user.getId());
 		if (userExeist.isPresent()) {
 			userRepository.save(user);
 		}else {
-			return new UserEntity(0, "없는유저");
+			return null;
 		}
 
 		return user;
