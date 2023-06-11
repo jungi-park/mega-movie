@@ -14,6 +14,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
@@ -23,7 +24,7 @@ import jakarta.persistence.TemporalType;
 public class UserEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(updatable = false, nullable = false)
+	@Column(updatable = false, nullable = false, columnDefinition = "INT UNSIGNED")
 	private int id;
 
 	@Column(nullable = false, columnDefinition = "TINYINT(1) DEFAULT 1")
@@ -33,8 +34,12 @@ public class UserEntity {
 	private String birthDate;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(updatable = false,columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+	@Column(updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	private Date createdAt;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(nullable = true, columnDefinition = "TIMESTAMP DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP")
+	private Date updatedAt;
 
 	@Column(nullable = false, length = 100)
 	private String email;
@@ -42,29 +47,36 @@ public class UserEntity {
 	@Column(nullable = false, length = 50)
 	private String name;
 
+	@ColumnDefault(value = "1")
+	@Column(nullable = false, length = 1, columnDefinition = "CHAR(1)")
+	private String type;
+
 	@Column(nullable = false, length = 150)
 	private String password;
 
 	@Column(nullable = false, length = 20)
 	private String phoneNumber;
-	
+
 	@ColumnDefault(value = "1")
-	@Column(nullable = false,length = 1, columnDefinition = "CHAR(1)")
+	@Column(nullable = false, length = 1, columnDefinition = "CHAR(1)")
 	private String sex;
 
 	public UserEntity() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public UserEntity(int id, boolean active, String birthDate, Date createdAt, String email, String name,
-			String password, String phoneNumber, String sex) {
+	public UserEntity(int id, boolean active, String birthDate, Date createdAt, Date updatedAt, String email,
+			String name, String type, String password, String phoneNumber, String sex) {
 		super();
 		this.id = id;
 		this.active = active;
 		this.birthDate = birthDate;
 		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
 		this.email = email;
 		this.name = name;
+		this.type = type;
 		this.password = password;
 		this.phoneNumber = phoneNumber;
 		this.sex = sex;
@@ -73,6 +85,11 @@ public class UserEntity {
 	@PrePersist
 	protected void onCreate() {
 		createdAt = Timestamp.valueOf(LocalDateTime.now());
+	}
+
+	@PreUpdate
+	protected void onUpdate() {
+		updatedAt = Timestamp.valueOf(LocalDateTime.now());
 	}
 
 	public int getId() {
@@ -107,6 +124,14 @@ public class UserEntity {
 		this.createdAt = createdAt;
 	}
 
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -121,6 +146,14 @@ public class UserEntity {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public String getPassword() {
@@ -150,8 +183,8 @@ public class UserEntity {
 	@Override
 	public String toString() {
 		return "UserEntity [id=" + id + ", active=" + active + ", birthDate=" + birthDate + ", createdAt=" + createdAt
-				+ ", email=" + email + ", name=" + name + ", password=" + password + ", phoneNumber=" + phoneNumber
-				+ ", sex=" + sex + "]";
+				+ ", updatedAt=" + updatedAt + ", email=" + email + ", name=" + name + ", type=" + type + ", password="
+				+ password + ", phoneNumber=" + phoneNumber + ", sex=" + sex + "]";
 	}
 
 }
