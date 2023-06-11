@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,7 +14,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
+@DynamicInsert
+@DynamicUpdate
 @Entity(name = "users")
 public class UserEntity {
 	@Id
@@ -20,13 +26,14 @@ public class UserEntity {
 	@Column(updatable = false, nullable = false)
 	private int id;
 
-	@Column(nullable = false)
+	@Column(nullable = false, columnDefinition = "TINYINT(1) DEFAULT 1")
 	private boolean active;
 
 	@Column(nullable = false, length = 6)
 	private String birthDate;
 
-	@Column(updatable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(updatable = false,columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
 	private Date createdAt;
 
 	@Column(nullable = false, length = 100)
@@ -40,9 +47,9 @@ public class UserEntity {
 
 	@Column(nullable = false, length = 20)
 	private String phoneNumber;
-
+	
 	@ColumnDefault(value = "1")
-	@Column(nullable = false, length = 1)
+	@Column(nullable = false,length = 1, columnDefinition = "CHAR(1)")
 	private String sex;
 
 	public UserEntity() {
