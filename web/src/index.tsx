@@ -2,9 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import Counter from './components/Counter';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import rootReducer from './reducers/rootReducer';
+import rootReducer from './modules/rootReducer';
 import { createStore } from 'redux';
 
 const root = ReactDOM.createRoot(
@@ -15,7 +16,7 @@ const store = createStore(rootReducer);
 root.render(
   <BrowserRouter>
     <Provider store={store}>
-      <App />
+      <Counter />
     </Provider>
   </BrowserRouter>
 );
