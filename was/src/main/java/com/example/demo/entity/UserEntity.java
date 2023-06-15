@@ -18,8 +18,8 @@ import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
-@DynamicInsert
 @DynamicUpdate
+@DynamicInsert
 @Entity(name = "users")
 public class UserEntity {
 	@Id
@@ -48,7 +48,7 @@ public class UserEntity {
 	private String name;
 
 	@ColumnDefault(value = "1")
-	@Column(nullable = false, length = 1, columnDefinition = "CHAR(1)")
+	@Column(length = 1, columnDefinition = "CHAR(1)")
 	private String type;
 
 	@Column(nullable = false, length = 150)
@@ -58,7 +58,7 @@ public class UserEntity {
 	private String phoneNumber;
 
 	@ColumnDefault(value = "1")
-	@Column(nullable = false, length = 1, columnDefinition = "CHAR(1)")
+	@Column(length = 1, columnDefinition = "CHAR(1)")
 	private String sex;
 
 	public UserEntity() {
