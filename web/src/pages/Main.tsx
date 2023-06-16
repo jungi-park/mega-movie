@@ -5,68 +5,60 @@ import { useDispatch } from 'react-redux';
 ;
 
 const url ='http://localhost:8080'
-// let userInfo ={}
 
-
-
-const singUp =async() =>{
-  const userData = {
-    name:"준기test",
-  password:"1234",
-  email:"qmqqqqm@gmail.com",
-  birthDate:"940818",
-  phoneNumber:"01014686004"
-  }
-  const response = await axios.post(`${url}/v1/user`,{...userData}
-  //   , {
-    //     params: {
-      //         ID: 12345
-      //     }
-      // }
-      ).then((Response)=>{console.log(Response.data)})
-      .catch((Error)=>{console.log(Error)});
-    }
     
     const Main = () => {
 
-    let email= ""
+    const [name, setName] = React.useState("");
+    const [password, setPassword] = React.useState("");
+    const [email, setEmail] = React.useState("");
+    const [phone, setPhone] = React.useState("");
+    const [birth, setBirth] = React.useState("");
+    const [sex, setSex] = React.useState("");  
+  
     const onEmailHandler = (event:any) =>{
-      email = event.currentTarget.value
+      setEmail(event.currentTarget.value)
     }
 
-    let name= ""
+  
     const onNameHandler = (event:any) =>{
-      name = event.currentTarget.value
+      setName(event.currentTarget.value)
     }
 
-  let birth =""
+ 
   const onBirthHandler = (event:any) =>{
-    birth = event.currentTarget.value
+    setBirth(event.currentTarget.value)
   }
 
-  let password =""
+  
   const onPasswordHandler = (event:any) =>{
-    password = event.currentTarget.value
+    setPassword(event.currentTarget.value)
   }
 
-  let phone =""
+  
   const onPhoneHandler = (event:any) =>{
-    phone = event.currentTarget.value
+    setPhone(event.currentTarget.value)
   }
 
-  let sex =""
+  
   const onSexHandler = (event:any) =>{
-    sex = event.currentTarget.value
+    setSex(event.currentTarget.value)
   }
 
-  // userInfo ={
-  // name:name,
-  // password:password,
-  // email:email,
-  // birthDate:birth,
-  // phoneNumber:phone,
-  // sex:sex
-  // }
+  const singUp =async() =>{
+    const userData = {
+      name:name,
+      password:password,
+      email:email,
+      birthDate:birth,
+      phoneNumber:phone,
+      sex:sex
+    }
+    const response = await axios.post(`${url}/v1/user`,{...userData}
+        ).then((Response)=>{console.log(Response.data)})
+        .catch((Error)=>{console.log(Error)});
+      }
+  
 
   return (
     <div id="form">
