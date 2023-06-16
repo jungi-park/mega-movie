@@ -39,7 +39,7 @@ const url ='http://localhost:8080'
       setError("이메일을 입력해주세요")
       return false
     }
-    if(form.password.length<=0){
+    if(form.password.length<8){
       setError("비밀번호을 입력해주세요")
       return false
     }
