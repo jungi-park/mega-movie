@@ -7,7 +7,7 @@ const url ='http://localhost:8080'
 
     
     const Main = () => {
-
+    const [error, setError] = useState("")
     const [form, setForm] = useState({
       name:"",
       password:"",
@@ -19,12 +19,41 @@ const url ='http://localhost:8080'
   
 
   const singUp =async() =>{
-   
+    if(!validate()) return
 
     const response = await axios.post(`${url}/v1/user`,{...form}
         ).then((Response)=>{console.log(Response.data)})
         .catch((Error)=>{console.log(Error)});
       }
+
+  const validate = ()=>{
+    if(form.name.length<=0){
+      setError("이름을 입력해주세요")
+      return false
+    }
+    if(form.birthDate.length<=0 || form.birthDate.length>6){
+      setError("생일은 6자리로 입력해주세요")
+      return false
+    }
+    if(form.email.length<=0){
+      setError("이메일을 입력해주세요")
+      return false
+    }
+    if(form.password.length<=0){
+      setError("비밀번호을 입력해주세요")
+      return false
+    }
+    if(form.phoneNumber.length<=0){
+       setError("핸드폰번호를 입력해주세요")
+       return false
+    }
+    if(form.sex.length<=0){
+      setError("성별을 선택해주세요")
+      return false
+    }
+    setError("")  
+    return true
+  }
   
 
   return (
@@ -40,6 +69,11 @@ const url ='http://localhost:8080'
         <option value="2">여자</option>
       </select>
       <button onClick={singUp}>회원가입</button>
+      {error.length > 0 &&
+        <h2>
+          {error}
+        </h2>
+      }
     </div>
   );
 };
