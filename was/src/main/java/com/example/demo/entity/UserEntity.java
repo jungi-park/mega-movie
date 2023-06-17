@@ -28,7 +28,7 @@ public class UserEntity {
 	private int id;
 
 	@Column(nullable = false, columnDefinition = "TINYINT(1) DEFAULT 1")
-	private boolean active;
+	private boolean active = true;
 
 	@Column(nullable = false, length = 6)
 	private String birthDate;
