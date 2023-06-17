@@ -1,4 +1,4 @@
-import './SignUp.css';
+import './SignUp.scss';
 import axios from 'axios'
 import React, { useState } from 'react';
 
@@ -31,16 +31,16 @@ const url ='http://localhost:8080'
       setError("이름을 입력해주세요")
       return false
     }
-    if(form.birthDate.length<=0 || form.birthDate.length>6){
-      setError("생일은 6자리로 입력해주세요")
-      return false
-    }
     if(form.email.length<=0){
       setError("이메일을 입력해주세요")
       return false
     }
     if(form.password.length<8){
       setError("비밀번호는 8자리 이상으로 만들어주세요")
+      return false
+    }
+    if(form.birthDate.length<=0 || form.birthDate.length>6){
+      setError("생일은 6자리로 입력해주세요")
       return false
     }
     if(form.phoneNumber.length<=0){
@@ -57,24 +57,28 @@ const url ='http://localhost:8080'
   
 
   return (
-    <div id="form">
-      <input placeholder="이름" type="text" value={form.name} onChange={event=>setForm({...form,name:event.currentTarget.value})}></input>
-      <input placeholder="생일" type="text"  value={form.birthDate} onChange={event=>setForm({...form,birthDate:event.currentTarget.value})}></input>
-      <input placeholder="이메일" type="text" value={form.email} onChange={event=>setForm({...form,email:event.currentTarget.value})}></input>
-      <input placeholder="비밀번호" type="text"  value={form.password} onChange={event=>setForm({...form,password:event.currentTarget.value})}></input>
-      <input placeholder="핸드폰번호" type="text" value={form.phoneNumber} onChange={event=>setForm({...form,phoneNumber:event.currentTarget.value})}></input>
-      <select value={form.sex} onChange={event=>setForm({...form,sex:event.currentTarget.value})}>
+
+    <div className="form-structor">
+  <div className="signup">
+    <h2 className="form-title" id="signup"><span>or</span>
+    {error.length > 0 ?
+           error: "Sign up"
+       }</h2>
+    <div className="form-holder">
+      <input type="text" className="input" placeholder="Name" value={form.name} onChange={event => setForm({...form,name:event.target.value})}/>
+      <input type="email" className="input" placeholder="Email" value={form.email} onChange={event => setForm({...form,email:event.target.value})}/>
+      <input type="password" className="input" placeholder="Password" value={form.password} onChange={event => setForm({...form,password:event.target.value})}/>
+      <input type="text" className="input" placeholder="Birth" value={form.birthDate} onChange={event => setForm({...form,birthDate:event.target.value})}/>
+      <input type="text" className="input" placeholder="PhoneNumber" value={form.phoneNumber} onChange={event => setForm({...form,phoneNumber:event.target.value})}/>
+      <select className="input" value={form.sex} onChange={event => setForm({...form,sex:event.target.value})}>
         <option value="">성별선택</option>
         <option value="1">남자</option>
         <option value="2">여자</option>
       </select>
-      <button onClick={sendSignUp}>회원가입</button>
-      {error.length > 0 &&
-        <h2>
-          {error}
-        </h2>
-      }
     </div>
+    <button className="submit-btn" onClick={sendSignUp}>Sign up</button>
+  </div>
+</div>
   );
 };
 
