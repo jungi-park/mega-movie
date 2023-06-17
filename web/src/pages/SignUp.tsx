@@ -1,4 +1,4 @@
-import './Main.css';
+import './SignUp.css';
 import axios from 'axios'
 import React, { useState } from 'react';
 
@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 const url ='http://localhost:8080'
 
     
-    const Main = () => {
+    const SignUp = () => {
     const [error, setError] = useState("")
     const [form, setForm] = useState({
       name:"",
@@ -18,7 +18,7 @@ const url ='http://localhost:8080'
     })
   
 
-  const singUp =async() =>{
+  const sendSignUp =async() =>{
     if(!validate()) return
 
     const response = await axios.post(`${url}/v1/user`,{...form}
@@ -40,7 +40,7 @@ const url ='http://localhost:8080'
       return false
     }
     if(form.password.length<8){
-      setError("비밀번호을 입력해주세요")
+      setError("비밀번호는 8자리 이상으로 만들어주세요")
       return false
     }
     if(form.phoneNumber.length<=0){
@@ -68,7 +68,7 @@ const url ='http://localhost:8080'
         <option value="1">남자</option>
         <option value="2">여자</option>
       </select>
-      <button onClick={singUp}>회원가입</button>
+      <button onClick={sendSignUp}>회원가입</button>
       {error.length > 0 &&
         <h2>
           {error}
@@ -78,4 +78,4 @@ const url ='http://localhost:8080'
   );
 };
 
-export default Main;
+export default SignUp;

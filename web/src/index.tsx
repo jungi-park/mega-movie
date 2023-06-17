@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import rootReducer from './modules/rootReducer';
 import { createStore } from 'redux';
-import Main from './pages/Main';
+import SignUp from './pages/SignUp';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -14,7 +14,7 @@ const store = createStore(rootReducer);
 root.render(
   <BrowserRouter>
     <Provider store={store}>
-      <Main />
+      <SignUp />
     </Provider>
   </BrowserRouter>
 );
