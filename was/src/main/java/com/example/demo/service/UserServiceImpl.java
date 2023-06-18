@@ -61,4 +61,9 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
+	@Override
+	public boolean login(UserEntity user) {
+		return userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword()).isPresent();
+	}
+
 }

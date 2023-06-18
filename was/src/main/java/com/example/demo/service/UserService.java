@@ -14,4 +14,6 @@ public interface UserService {
 	public String deleteUserById(int id);
 
 	public UserEntity updateUserById(UserEntity user);
+	
+	public boolean login(UserEntity user);
 }

@@ -73,4 +73,14 @@ public class UserController {
 		return userService.deleteUserById(id);
 	}
 
+	/**
+	 * 로그인
+	 * 
+	 * @return
+	 */
+	@PostMapping("/login")
+	public boolean loginId(@RequestBody UserEntity user) {
+		return userService.login(user);
+	}
+
 }
