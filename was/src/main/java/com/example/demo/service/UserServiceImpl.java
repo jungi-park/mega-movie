@@ -14,6 +14,8 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private JwtService jwtService;
 
 	@Override
 	public List<UserEntity> findAllUser() {
@@ -54,7 +56,7 @@ public class UserServiceImpl implements UserService {
 		Optional<UserEntity> userExeist = userRepository.findById(user.getId());
 		if (userExeist.isPresent()) {
 			userRepository.save(user);
-		}else {
+		} else {
 			return null;
 		}
 
@@ -62,8 +64,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean login(UserEntity user) {
-		return userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword()).isPresent();
+	public String login(UserEntity user) {
+		if (userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword()).isPresent()) {
+			return jwtService.createToken(user.getEmail());
+		} else {
+			return null;
+		}
 	}
 
 }

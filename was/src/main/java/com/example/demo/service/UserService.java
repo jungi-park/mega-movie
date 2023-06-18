@@ -15,5 +15,5 @@ public interface UserService {
 
 	public UserEntity updateUserById(UserEntity user);
 	
-	public boolean login(UserEntity user);
+	public String login(UserEntity user);
 }

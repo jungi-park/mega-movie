@@ -79,7 +79,7 @@ public class UserController {
 	 * @return
 	 */
 	@PostMapping("/login")
-	public boolean loginId(@RequestBody UserEntity user) {
+	public String loginId(@RequestBody UserEntity user) {
 		return userService.login(user);
 	}
 
