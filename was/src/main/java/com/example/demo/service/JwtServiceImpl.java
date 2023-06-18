@@ -13,8 +13,8 @@ import io.jsonwebtoken.SignatureAlgorithm;
 public class JwtServiceImpl implements JwtService {
 
 	final String secretKey = "jungiMovieTest_120090";
-	// 현재시간
-	long curTime = System.currentTimeMillis();
+	 // 만료시간 : 1시간
+    private final long exp = 1000L * 60 * 60;
 
 	@Override
 	// jwt 토큰 생성
@@ -32,13 +32,14 @@ public class JwtServiceImpl implements JwtService {
 		payloads.put("email", email);
 		// 실제적인 jwt의 데이터를 담당하는 부분이다.
 
+		Date now = new Date();
 		// 토큰 Builder
 		String jwt = Jwts.builder().setHeader(headers) // Headers 설정
 				.setClaims(payloads) // Claims 설정
 				 //[3] 만료 시간
-				 .setExpiration(new Date(curTime + 3600000))
+				 .setExpiration(new Date(now.getTime() + exp))
 				 //[4] 발급 시간 
-				 .setIssuedAt(new Date(curTime))
+				 .setIssuedAt(now)
 				.signWith(SignatureAlgorithm.HS256, secretKey.getBytes()) // HS256과 Key로 Sign
 				.compact(); // 토큰 생성
 
