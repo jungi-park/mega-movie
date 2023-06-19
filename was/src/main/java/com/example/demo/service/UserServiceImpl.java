@@ -64,12 +64,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public String login(UserEntity user) {
-		if (userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword()).isPresent()) {
-			return jwtService.createToken(user.getEmail());
-		} else {
-			return null;
-		}
+	public Optional<UserEntity> login(UserEntity user) {
+		return userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
 	}
 
 }

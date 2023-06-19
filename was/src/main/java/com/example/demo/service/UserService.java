@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.example.demo.entity.UserEntity;
 
@@ -15,5 +16,5 @@ public interface UserService {
 
 	public UserEntity updateUserById(UserEntity user);
 	
-	public String login(UserEntity user);
+	public Optional<UserEntity> login(UserEntity user);
 }

@@ -13,13 +13,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.UserEntity;
+import com.example.demo.service.JwtService;
 import com.example.demo.service.UserService;
+
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/v1")
 public class UserController {
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private JwtService jwtService;
 
 	/**
 	 * 멤버 전체 조회
@@ -79,8 +85,21 @@ public class UserController {
 	 * @return
 	 */
 	@PostMapping("/login")
-	public String loginId(@RequestBody UserEntity user) {
-		return userService.login(user);
+	public UserEntity loginId(@RequestBody UserEntity user,HttpServletResponse response) {
+		
+		if(userService.login(user).isPresent()) {			
+			String token = jwtService.createToken(user.getEmail());
+			
+			Cookie cookie = new Cookie("access_token", token);
+//			cookie.setPath("/");
+			cookie.setMaxAge(1000*60*60);
+//			cookie.setHttpOnly(true);
+//			cookie.setSecure(true);
+			response.addCookie(cookie);
+			return userService.login(user).orElseGet(()->{return new UserEntity();});
+		};
+		
+		return new UserEntity();
 	}
 
 }

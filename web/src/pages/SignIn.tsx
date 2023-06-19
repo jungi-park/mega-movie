@@ -1,9 +1,15 @@
 import { useState } from 'react';
 import './SignIn.scss';
 import axios from 'axios';
+import { loginUser } from '../modules/user';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../modules/rootReducer';
 
 const SingIn =() =>{
+    const user = useSelector((state: RootState) => state.userReducer);
     const url ='http://localhost:8080'
+    const dispatch = useDispatch(); // 디스패치 함수를 가져옵니다
+
 
     const [form, setForm] = useState({
         password:"",
@@ -11,7 +17,10 @@ const SingIn =() =>{
       })
     const sendSingIn = async() =>{
         const response = await axios.post(`${url}/v1/login`,{...form}
-        ).then((Response)=>{console.log(Response.data)})
+        ).then((Response)=>{if(Response.data.email){
+            dispatch(loginUser({email:Response.data.email,name:Response.data.name}))
+            console.log("user",user)
+        }})
         .catch((Error)=>{console.log(Error)});
       }
 
