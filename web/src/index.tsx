@@ -1,10 +1,11 @@
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import rootReducer from './modules/rootReducer';
 import { createStore } from 'redux';
 import SignUp from './pages/SignUp';
+import SignIn from './pages/SignIn';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -14,7 +15,10 @@ const store = createStore(rootReducer);
 root.render(
   <BrowserRouter>
     <Provider store={store}>
-      <SignUp />
+      <Routes>
+        <Route path='/signup' element={<SignUp></SignUp>}></Route>
+        <Route path='/signin' element={<SignIn></SignIn>}></Route>
+      </Routes>
     </Provider>
   </BrowserRouter>
 );
