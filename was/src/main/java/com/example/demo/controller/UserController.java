@@ -17,6 +17,7 @@ import com.example.demo.service.JwtService;
 import com.example.demo.service.UserService;
 
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
@@ -26,6 +27,8 @@ public class UserController {
 	private UserService userService;
 	@Autowired
 	private JwtService jwtService;
+
+	private final String tokenKey = "access_token";
 
 	/**
 	 * 멤버 전체 조회
@@ -85,21 +88,42 @@ public class UserController {
 	 * @return
 	 */
 	@PostMapping("/login")
-	public UserEntity loginId(@RequestBody UserEntity user,HttpServletResponse response) {
-		
-		if(userService.login(user).isPresent()) {			
+	public UserEntity logIn(@RequestBody UserEntity user, HttpServletResponse response) {
+
+		if (userService.login(user).isPresent()) {
 			String token = jwtService.createToken(user.getEmail());
-			
-			Cookie cookie = new Cookie("access_token", token);
+
+			Cookie cookie = new Cookie(tokenKey, token);
 			cookie.setPath("/");
-			cookie.setMaxAge(1000*60*60);
+			cookie.setMaxAge(1000 * 60 * 60);
 			cookie.setHttpOnly(true);
 			cookie.setSecure(true);
 			response.addCookie(cookie);
-			return userService.login(user).orElseGet(()->{return new UserEntity();});
-		};
-		
+			return userService.login(user).orElseGet(() -> {
+				return new UserEntity();
+			});
+		}
+		;
+
 		return new UserEntity();
+	}
+
+	/**
+	 * 로그인
+	 * 
+	 * @return
+	 */
+	@PostMapping("/logout")
+	public boolean loginOut(@RequestBody UserEntity user, HttpServletRequest request, HttpServletResponse response) {
+		for (Cookie cookie : request.getCookies()) {
+			if (tokenKey.equals(cookie.getName())) {
+				cookie.setPath("/");
+				cookie.setMaxAge(0);
+				response.addCookie(cookie);
+				return true;
+			}
+		}
+		return false;
 	}
 
 }
