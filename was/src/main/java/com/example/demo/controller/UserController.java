@@ -91,10 +91,10 @@ public class UserController {
 			String token = jwtService.createToken(user.getEmail());
 			
 			Cookie cookie = new Cookie("access_token", token);
-//			cookie.setPath("/");
+			cookie.setPath("/");
 			cookie.setMaxAge(1000*60*60);
-//			cookie.setHttpOnly(true);
-//			cookie.setSecure(true);
+			cookie.setHttpOnly(true);
+			cookie.setSecure(true);
 			response.addCookie(cookie);
 			return userService.login(user).orElseGet(()->{return new UserEntity();});
 		};

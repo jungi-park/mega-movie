@@ -16,7 +16,7 @@ const SingIn =() =>{
         email:"",
       })
     const sendSingIn = async() =>{
-        const response = await axios.post(`${url}/v1/login`,{...form}
+        const response = await axios.post(`${url}/v1/login`,{...form},{ withCredentials: true }
         ).then((Response)=>{if(Response.data.email){
             dispatch(loginUser({email:Response.data.email,name:Response.data.name}))
             console.log("user",user)
