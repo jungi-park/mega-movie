@@ -91,7 +91,7 @@ public class UserController {
 	public UserEntity logIn(@RequestBody UserEntity user, HttpServletResponse response) {
 
 		if (userService.login(user).isPresent()) {
-			String token = jwtService.createToken(user.getEmail());
+			String token = jwtService.createToken(userService.login(user).orElseGet(null));
 
 			Cookie cookie = new Cookie(tokenKey, token);
 			cookie.setPath("/");
