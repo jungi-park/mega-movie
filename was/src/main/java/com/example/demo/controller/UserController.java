@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.config.TokenProvider;
 import com.example.demo.entity.UserEntity;
-import com.example.demo.service.JwtService;
 import com.example.demo.service.UserService;
 
 import jakarta.servlet.http.Cookie;
@@ -26,7 +26,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	@Autowired
-	private JwtService jwtService;
+	private TokenProvider tokenProvider;
 
 	private final String tokenKey = "access_token";
 
@@ -91,7 +91,7 @@ public class UserController {
 	public UserEntity logIn(@RequestBody UserEntity user, HttpServletResponse response) {
 
 		if (userService.login(user).isPresent()) {
-			String token = jwtService.createToken(userService.login(user).orElseGet(null));
+			String token = tokenProvider.createToken(userService.login(user).orElseGet(null));
 
 			Cookie cookie = new Cookie(tokenKey, token);
 			cookie.setPath("/");

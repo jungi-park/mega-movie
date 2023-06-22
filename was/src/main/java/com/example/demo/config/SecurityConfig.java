@@ -1,17 +1,18 @@
 package com.example.demo.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.example.demo.service.JwtService;
 
 @EnableWebSecurity
 public class SecurityConfig {
 	
-	private JwtService jwtService;
+	@Autowired
+	private TokenProvider tokenProvider;
 
 	@Bean
 	    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -22,7 +23,7 @@ public class SecurityConfig {
 	                .requestMatchers("/v1/admin/**").hasAnyRole("hasRole('ROLE_ADMIN')")
 	                .anyRequest().permitAll();
 	        
-	        http.addFilterBefore(new JwtAuthenticationFilter(jwtService), UsernamePasswordAuthenticationFilter.class);
+	        http.addFilterBefore(new JwtAuthenticationFilter(tokenProvider), UsernamePasswordAuthenticationFilter.class);
 	          
 
 	        return http.build();

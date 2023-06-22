@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.config;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
@@ -27,13 +27,12 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
 
 @Service
-public abstract class JwtServiceImpl implements JwtService {
+public class TokenProvider  {
 
 	final String secretKey = "jungiMovieTest_120090";
 	// 만료시간 : 1시간
 	private final long exp = 1000L * 60 * 60;
 
-	@Override
 	// jwt 토큰 생성
 	public String createToken(UserEntity user) {// payload에 넣을 파라미터
 		// 자신이 넣고자 하는 파라미터의 수에 따라 payload의 값은 변경된다.
@@ -77,7 +76,6 @@ public abstract class JwtServiceImpl implements JwtService {
 		return jwt;
 	}
 
-	@Override
 	// jwt 토큰 검증
 	public Map<String, Object> verifyJWT(String jwt) throws UnsupportedEncodingException {
 		Map<String, Object> claimMap = null;

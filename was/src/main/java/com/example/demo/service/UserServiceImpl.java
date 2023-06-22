@@ -14,9 +14,7 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepository userRepository;
-	@Autowired
-	private JwtService jwtService;
-
+	
 	@Override
 	public List<UserEntity> findAllUser() {
 		return userRepository.findAll();

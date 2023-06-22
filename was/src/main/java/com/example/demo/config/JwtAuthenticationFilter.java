@@ -8,7 +8,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.GenericFilterBean;
 
-import com.example.demo.service.JwtService;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -19,9 +18,9 @@ import jakarta.servlet.http.HttpServletRequest;
 public class JwtAuthenticationFilter extends GenericFilterBean {
  
 	@Autowired
-    private JwtService jwtService;
+    private TokenProvider tokenProvider;
  
-    public JwtAuthenticationFilter(JwtService jwtService2) {
+    public JwtAuthenticationFilter(TokenProvider tokenProvider) {
 	}
 
 	@Override
@@ -31,9 +30,9 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
         String token = resolveToken((HttpServletRequest) request);
  
         // 2. validateToken 으로 토큰 유효성 검사
-        if (token != null && !jwtService.verifyJWT(token).isEmpty()) {
+        if (token != null && !tokenProvider.verifyJWT(token).isEmpty()) {
             // 토큰이 유효할 경우 토큰에서 Authentication 객체를 가지고 와서 SecurityContext 에 저장
-            Authentication authentication = jwtService.getAuthentication(token);
+            Authentication authentication = tokenProvider.getAuthentication(token);
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
         chain.doFilter(request, response);
