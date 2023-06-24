@@ -24,11 +24,12 @@ public class SecurityConfig {
 	    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 	        http.csrf().disable()
 	        .httpBasic().disable()
-	        .cors(cors -> cors.disable());
+	        .cors().configurationSource(corsConfigurationSource());
 	        http.authorizeHttpRequests()
-	                .requestMatchers("/v1/user/**").authenticated()
-	                .requestMatchers("/v1/admin/**").hasAnyRole("hasRole('ROLE_ADMIN')")
-	                .anyRequest().permitAll();
+	        .requestMatchers("/v1/signin", "/**").permitAll();
+//	                .requestMatchers("/v1/user/**").authenticated()
+//	                .requestMatchers("/v1/admin/**").hasAnyRole("hasRole('ROLE_ADMIN')")
+//	                .anyRequest().permitAll();
 	        
 	        
 	        http.addFilterBefore(new JwtAuthenticationFilter(tokenProvider), UsernamePasswordAuthenticationFilter.class);
@@ -40,10 +41,10 @@ public class SecurityConfig {
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 	    CorsConfiguration configuration = new CorsConfiguration();
-	    configuration.setAllowedOrigins(Arrays.asList("<http://localhost:3000>", "..."));
+	    configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
 	    configuration.setAllowedMethods(Arrays.asList("HEAD", "GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
 	    configuration.setAllowCredentials(true);
-	    configuration.setAllowedHeaders(Arrays.asList("Authorization", "Authorization-refresh", "Cache-Control", "Content-Type"));
+	    configuration.setAllowedHeaders(Arrays.asList("*"));
 	    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 	    source.registerCorsConfiguration("/**", configuration);
 	    return source;
