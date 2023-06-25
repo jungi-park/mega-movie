@@ -2,10 +2,8 @@ package com.example.demo.config;
 
 import java.io.IOException;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.util.StringUtils;
 import org.springframework.web.filter.GenericFilterBean;
 
 
@@ -17,10 +15,10 @@ import jakarta.servlet.http.HttpServletRequest;
 
 public class JwtAuthenticationFilter extends GenericFilterBean {
  
-	@Autowired
     private TokenProvider tokenProvider;
  
     public JwtAuthenticationFilter(TokenProvider tokenProvider) {
+    	this.tokenProvider =tokenProvider;
 	}
 
 	@Override
@@ -43,9 +41,6 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
     // Request Header 에서 토큰 정보 추출
     private String resolveToken(HttpServletRequest request) {
         String bearerToken = request.getHeader("Authorization");
-        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer")) {
-            return bearerToken.substring(7);
-        }
-        return null;
+        return bearerToken;
     }
 }
