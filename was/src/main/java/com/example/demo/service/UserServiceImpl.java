@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.config.CustomDetails;
@@ -18,6 +19,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private PasswordEncoder getPasswordEncoder;
 
 	@Override
 	public List<UserEntity> findAllUser() {
@@ -77,9 +80,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		if (user == null) {
 			throw new UsernameNotFoundException(email);
 		}
+		user.setPassword(getPasswordEncoder.encode(user.getPassword()));
 		return new CustomDetails(user);
 	}
-	
-	
 
 }
