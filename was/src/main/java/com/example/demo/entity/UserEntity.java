@@ -2,11 +2,16 @@ package com.example.demo.entity;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,7 +26,7 @@ import jakarta.persistence.TemporalType;
 @DynamicUpdate
 @DynamicInsert
 @Entity(name = "users")
-public class UserEntity {
+public class UserEntity implements UserDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(updatable = false, nullable = false, columnDefinition = "INT UNSIGNED")
@@ -65,7 +70,8 @@ public class UserEntity {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	
 	public UserEntity(int id, boolean active, String birthDate, Date createdAt, Date updatedAt, String email,
 			String name, String type, String password, String phoneNumber, String sex) {
 		super();
@@ -185,6 +191,54 @@ public class UserEntity {
 		return "UserEntity [id=" + id + ", active=" + active + ", birthDate=" + birthDate + ", createdAt=" + createdAt
 				+ ", updatedAt=" + updatedAt + ", email=" + email + ", name=" + name + ", type=" + type + ", password="
 				+ password + ", phoneNumber=" + phoneNumber + ", sex=" + sex + "]";
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		ArrayList<GrantedAuthority> auth = new ArrayList<GrantedAuthority>();
+		switch (this.type) {
+		case "1": {
+			auth.add(new SimpleGrantedAuthority("ROLE_USER"));
+			break;
+		}
+		case "2": {
+			auth.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+			break;
+		}
+		default:
+
+		}
+	        return auth;
+	}
+
+	@Override
+	public String getUsername() {
+
+		return this.email;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 }
