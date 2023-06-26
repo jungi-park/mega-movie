@@ -11,4 +11,7 @@ import com.example.demo.entity.UserEntity;
 public interface UserRepository extends JpaRepository<UserEntity, Integer> {
 	
 	Optional<UserEntity>findByEmailAndPassword(String email, String password);
+	
+	Optional<UserEntity>findByEmail(String email);
+	
 }

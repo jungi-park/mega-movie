@@ -3,7 +3,9 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,12 +25,13 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/v1")
-@CrossOrigin(origins = "http://127.0.0.1:8080")
 public class UserController {
 	@Autowired
 	private UserService userService;
 	@Autowired
 	private TokenProvider tokenProvider;
+	@Autowired
+	private AuthenticationManagerBuilder authenticationManagerBuilder;
 
 	private final String tokenKey = "access_token";
 
@@ -91,8 +94,12 @@ public class UserController {
 	 */
 	@PostMapping("/login")
 	public UserEntity logIn(@RequestBody UserEntity user, HttpServletResponse response) {
+		
+		
 
 		if (userService.login(user).isPresent()) {
+			 UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());
+			 Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
 			String token = tokenProvider.createToken(userService.login(user).orElseGet(null));
 
 			Cookie cookie = new Cookie(tokenKey, token);

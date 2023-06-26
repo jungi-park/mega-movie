@@ -4,17 +4,21 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.config.CustomDetails;
 import com.example.demo.entity.UserEntity;
 import com.example.demo.repository.UserRepository;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, UserDetailsService {
 
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Override
 	public List<UserEntity> findAllUser() {
 		return userRepository.findAll();
@@ -65,5 +69,17 @@ public class UserServiceImpl implements UserService {
 	public Optional<UserEntity> login(UserEntity user) {
 		return userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
 	}
+
+	@Override
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		System.out.println(email);
+		UserEntity user = userRepository.findByEmail(email).orElseGet(null);
+		if (user == null) {
+			throw new UsernameNotFoundException(email);
+		}
+		return new CustomDetails(user);
+	}
+	
+	
 
 }
