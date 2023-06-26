@@ -28,11 +28,15 @@ public class SecurityConfig {
 	        
 	        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	        
+	        http.formLogin().disable();
+	        
 	        http.authorizeHttpRequests()
 //	        .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
 	                .requestMatchers("/v1/user/**").authenticated()
 	                .requestMatchers("/v1/admin/**").hasAnyRole("hasRole('ROLE_ADMIN')")
-	                .requestMatchers("/v1/**").permitAll();
+	                .requestMatchers("/v1/login").permitAll();
+	        
+//	        http.formLogin().loginProcessingUrl("/v1/login").usernameParameter("email").passwordParameter("password"); 
 	        
 	        
 	        http.addFilterBefore(new JwtAuthenticationFilter(tokenProvider), UsernamePasswordAuthenticationFilter.class);
