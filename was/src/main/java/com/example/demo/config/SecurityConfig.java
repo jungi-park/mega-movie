@@ -32,7 +32,7 @@ public class SecurityConfig {
 		http.authorizeHttpRequests()
 //	        .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
 				.requestMatchers("/v1/user/**").authenticated().requestMatchers("/v1/admin/**")
-				.hasAnyRole("hasRole('ROLE_ADMIN')").requestMatchers("/v1/login").permitAll()
+				.hasAnyRole("ADMIN").requestMatchers("/v1/login").permitAll()
 				.requestMatchers("/v1/logout").permitAll();
 
 //	        http.formLogin().loginProcessingUrl("/v1/login").usernameParameter("email").passwordParameter("password"); 
