@@ -28,6 +28,7 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
 		if(req.getMethod().equals("OPTIONS")) {return;}
         // 1. Request Header 에서 JWT 토큰 추출
         String token = resolveToken((HttpServletRequest) request);
+       
  
         // 2. validateToken 으로 토큰 유효성 검사
         if (token != null && !tokenProvider.verifyJWT(token).isEmpty()) {
@@ -35,7 +36,7 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
             Authentication authentication = tokenProvider.getAuthentication(token);
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
-        chain.doFilter(request, response);
+        chain.doFilter(request, response); 
     }
  
     // Request Header 에서 토큰 정보 추출

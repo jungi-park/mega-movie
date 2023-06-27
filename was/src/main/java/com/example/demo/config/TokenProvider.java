@@ -84,6 +84,7 @@ public class TokenProvider {
 					.getBody();
 
 			claimMap = claims;
+			
 
 		} catch (ExpiredJwtException e) { // 토큰이 만료되었을 경우
 			System.out.println(e);
@@ -98,6 +99,7 @@ public class TokenProvider {
 	public Authentication getAuthentication(String accessToken) {
 		// 토큰 복호화
 		Claims claims = getClaims(accessToken).getBody();
+		
 
 		if (claims.get("auth") == null) {
 			throw new RuntimeException("권한 정보가 없는 토큰입니다.");
@@ -107,8 +109,9 @@ public class TokenProvider {
 		Collection<? extends GrantedAuthority> authorities = Arrays.stream(claims.get("auth").toString().split(","))
 				.map(SimpleGrantedAuthority::new).collect(Collectors.toList());
 
+	
 		// UserDetails 객체를 만들어서 Authentication 리턴
-		UserDetails principal = new User(claims.getSubject(), "", authorities);
+		UserDetails principal = new User(claims.get("email").toString(), "", authorities);
 		return new UsernamePasswordAuthenticationToken(principal, "", authorities);
 	}
 
