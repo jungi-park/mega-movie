@@ -34,6 +34,7 @@ public class SecurityConfig {
 				.requestMatchers("/v1/user/**").authenticated().requestMatchers("/v1/admin/**")
 				.hasAnyRole("ADMIN").requestMatchers("/v1/login").permitAll()
 				.requestMatchers("/v1/logout").permitAll();
+		
 
 //	        http.formLogin().loginProcessingUrl("/v1/login").usernameParameter("email").passwordParameter("password"); 
 
