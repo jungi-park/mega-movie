@@ -33,16 +33,8 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
 		// 1. Request Header 에서 JWT 토큰 추출
 //		String token = resolveToken((HttpServletRequest) request);
 
-		Cookie[] cookies = req.getCookies();
-		String token = null; 	
-		if (cookies != null) {
-			for (Cookie index : cookies) {
-				String cookieName = index.getName();
-				if (cookieName.equals("access_token")) {
-					token =index.getValue();
-				}
-			}
-		}
+		String token = resolveCookieToken(req); 	
+		
 
 		// 2. validateToken 으로 토큰 유효성 검사
 		if (token != null && !tokenProvider.verifyJWT(token).isEmpty()) {
@@ -57,5 +49,18 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
 	private String resolveToken(HttpServletRequest request) {
 		String bearerToken = request.getHeader("Authorization");
 		return bearerToken;
+	}
+	
+	private String resolveCookieToken(HttpServletRequest req) {
+		Cookie[] cookies = req.getCookies();
+		if (cookies != null) {
+			for (Cookie index : cookies) {
+				String cookieName = index.getName();
+				if (cookieName.equals("access_token")) {
+					return index.getValue();
+				}
+			}
+		}
+		return null;
 	}
 }
