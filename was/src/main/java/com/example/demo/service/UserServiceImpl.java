@@ -4,15 +4,25 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.config.CustomDetails;
+import com.example.demo.config.TokenProvider;
 import com.example.demo.entity.UserEntity;
 import com.example.demo.repository.UserRepository;
+
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Service
 public class UserServiceImpl implements UserService, UserDetailsService {
@@ -21,6 +31,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	private UserRepository userRepository;
 	@Autowired
 	private PasswordEncoder getPasswordEncoder;
+	@Autowired
+	private TokenProvider tokenProvider;
+	@Autowired
+	private AuthenticationManagerBuilder authenticationManagerBuilder;
+
+	private final String tokenKey = "access_token";
 
 	@Override
 	public List<UserEntity> findAllUser() {
@@ -69,8 +85,25 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	}
 
 	@Override
-	public Optional<UserEntity> login(UserEntity user) {
-		return userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
+	public Optional<UserEntity> login(UserEntity userInfo, HttpServletResponse response) {
+
+		Optional<UserEntity> user = userRepository.findByEmailAndPassword(userInfo.getEmail(), userInfo.getPassword());
+		if (user.isPresent()) {
+			UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
+					userInfo.getEmail(), userInfo.getPassword());
+			Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+			String token = tokenProvider.createToken(user.orElseGet(null));
+
+			Cookie cookie = new Cookie(tokenKey, token);
+			cookie.setPath("/");
+			cookie.setMaxAge(1000 * 60 * 60);
+			cookie.setHttpOnly(true);
+			cookie.setSecure(true);
+			response.addCookie(cookie);
+			return user;
+		}
+		;
+		return Optional.of(null);
 	}
 
 	@Override
@@ -82,6 +115,23 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		}
 		user.setPassword(getPasswordEncoder.encode(user.getPassword()));
 		return new CustomDetails(user);
+	}
+
+	@Override
+	public boolean logOut(UserEntity user, HttpServletRequest request, HttpServletResponse response) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth != null) {
+			new SecurityContextLogoutHandler().logout(request, response, auth);
+			for (Cookie cookie : request.getCookies()) {
+				if (tokenKey.equals(cookie.getName())) {
+					cookie.setPath("/");
+					cookie.setMaxAge(0);
+					response.addCookie(cookie);
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 }

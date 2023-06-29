@@ -5,6 +5,9 @@ import java.util.Optional;
 
 import com.example.demo.entity.UserEntity;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
 public interface UserService {
 	public List<UserEntity> findAllUser();
 	
@@ -16,5 +19,7 @@ public interface UserService {
 
 	public UserEntity updateUserById(UserEntity user);
 	
-	public Optional<UserEntity> login(UserEntity user);
+	public Optional<UserEntity> login(UserEntity userInfo, HttpServletResponse response);
+	
+	public boolean logOut( UserEntity user, HttpServletRequest request, HttpServletResponse response);
 }

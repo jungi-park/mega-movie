@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -35,7 +36,7 @@ public class UserController {
 	@Autowired
 	private AuthenticationManagerBuilder authenticationManagerBuilder;
 
-	private final String tokenKey = "access_token";
+//	private final String tokenKey = "access_token";
 
 	/**
 	 * 멤버 전체 조회
@@ -96,27 +97,8 @@ public class UserController {
 	 */
 	@PostMapping("/login")
 	public UserEntity logIn(@RequestBody UserEntity user, HttpServletResponse response) {
-		
-		
-
-		if (userService.login(user).isPresent()) {
-			 UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());
-			 Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
-			String token = tokenProvider.createToken(userService.login(user).orElseGet(null));
-
-			Cookie cookie = new Cookie(tokenKey, token);
-			cookie.setPath("/");
-			cookie.setMaxAge(1000 * 60 * 60);
-			cookie.setHttpOnly(true);
-			cookie.setSecure(true);
-			response.addCookie(cookie);
-			return userService.login(user).orElseGet(() -> {
-				return new UserEntity();
-			});
-		}
-		;
-
-		return new UserEntity();
+		Optional<UserEntity> userEntity = userService.login(user,response);
+		return userEntity.orElseGet(null);
 	}
 
 	/**
@@ -125,20 +107,8 @@ public class UserController {
 	 * @return
 	 */
 	@PostMapping("/logout")
-	public boolean loginOut(@RequestBody UserEntity user, HttpServletRequest request, HttpServletResponse response) {
-		for (Cookie cookie : request.getCookies()) {
-			if (tokenKey.equals(cookie.getName())) {
-				cookie.setPath("/");
-				cookie.setMaxAge(0);
-				 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-				   if (auth != null) {
-			            new SecurityContextLogoutHandler().logout(request, response, auth);
-			        }
-				response.addCookie(cookie);
-				return true;
-			}
-		}
-		return false;
+	public boolean logOut(@RequestBody UserEntity user, HttpServletRequest request, HttpServletResponse response) {
+		return userService.logOut(user,request,response);
 	}
 
 }
