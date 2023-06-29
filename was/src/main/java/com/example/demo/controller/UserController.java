@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -128,6 +130,10 @@ public class UserController {
 			if (tokenKey.equals(cookie.getName())) {
 				cookie.setPath("/");
 				cookie.setMaxAge(0);
+				 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+				   if (auth != null) {
+			            new SecurityContextLogoutHandler().logout(request, response, auth);
+			        }
 				response.addCookie(cookie);
 				return true;
 			}

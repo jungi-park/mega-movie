@@ -36,7 +36,6 @@ public class SecurityConfig {
 				.requestMatchers("/v1/logout").permitAll();
 		
 
-//	        http.formLogin().loginProcessingUrl("/v1/login").usernameParameter("email").passwordParameter("password"); 
 
 		http.addFilterBefore(new JwtAuthenticationFilter(tokenProvider), UsernamePasswordAuthenticationFilter.class);
 
