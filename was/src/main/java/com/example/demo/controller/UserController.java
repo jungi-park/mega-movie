@@ -98,7 +98,7 @@ public class UserController {
 	@PostMapping("/login")
 	public UserEntity logIn(@RequestBody UserEntity user, HttpServletResponse response) {
 		Optional<UserEntity> userEntity = userService.login(user,response);
-		return userEntity.orElseGet(null);
+		return userEntity.orElseGet(()->{return new UserEntity();});
 	}
 
 	/**
