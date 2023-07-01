@@ -1,5 +1,6 @@
-import axios from "axios";
 import React from "react";
+import axios from "axios";
+import Header from '../components/Header'
 
 
 function Main(){
@@ -13,6 +14,9 @@ function Main(){
       }
 
       return(<>
+       <div>
+      <Header></Header>
+  </div>
       <button onClick={sendTestAdmin}>testAdmin</button>
       </>)
 }
