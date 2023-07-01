@@ -26,6 +26,7 @@ export const loginUser = (userInfo:any) => {
     switch (action.type) {
       case LOGIN_USER:
         return {
+          ...state,
             isLogin:true,
             name:action.payload.name,
             email:action.payload.email
@@ -33,6 +34,7 @@ export const loginUser = (userInfo:any) => {
   
       case LOGOUT_USER:
         return {
+          ...state,
             isLogin:false,
             name:"",
             email:""

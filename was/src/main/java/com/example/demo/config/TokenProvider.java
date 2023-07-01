@@ -6,7 +6,6 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -27,7 +26,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
 
 @Service
-public class TokenProvider  {
+public class TokenProvider {
 
 	final String secretKey = "jungiMovieTest_120090";
 	// 만료시간 : 1시간
@@ -80,11 +79,12 @@ public class TokenProvider  {
 	public Map<String, Object> verifyJWT(String jwt) throws UnsupportedEncodingException {
 		Map<String, Object> claimMap = null;
 		try {
-			Claims claims = Jwts.parser().setSigningKey(secretKey.getBytes("UTF-8")) // 키 설정
+			Claims claims = Jwts.parser().setSigningKey(secretKey.getBytes()) // 키 설정
 					.parseClaimsJws(jwt) // jwt의 정보를 파싱해서 시그니처 값을 검증한다.
 					.getBody();
 
 			claimMap = claims;
+			
 
 		} catch (ExpiredJwtException e) { // 토큰이 만료되었을 경우
 			System.out.println(e);
@@ -99,6 +99,7 @@ public class TokenProvider  {
 	public Authentication getAuthentication(String accessToken) {
 		// 토큰 복호화
 		Claims claims = getClaims(accessToken).getBody();
+		
 
 		if (claims.get("auth") == null) {
 			throw new RuntimeException("권한 정보가 없는 토큰입니다.");
@@ -108,8 +109,9 @@ public class TokenProvider  {
 		Collection<? extends GrantedAuthority> authorities = Arrays.stream(claims.get("auth").toString().split(","))
 				.map(SimpleGrantedAuthority::new).collect(Collectors.toList());
 
+	
 		// UserDetails 객체를 만들어서 Authentication 리턴
-		UserDetails principal = new User(claims.getSubject(), "", authorities);
+		UserDetails principal = new User(claims.get("email").toString(), "", authorities);
 		return new UsernamePasswordAuthenticationToken(principal, "", authorities);
 	}
 
@@ -117,7 +119,7 @@ public class TokenProvider  {
 		try {
 			// 암호화 키로 복호화한다.
 			// 즉 암호화 키가 다르면 에러가 발생한다.
-			return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(jwt);
+			return Jwts.parser().setSigningKey(secretKey.getBytes()).parseClaimsJws(jwt);
 		} catch (SignatureException e) {
 			return null;
 		}

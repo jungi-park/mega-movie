@@ -1,9 +1,14 @@
 package com.example.demo.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,14 +28,15 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/v1")
-@CrossOrigin(origins = "http://127.0.0.1:8080")
 public class UserController {
 	@Autowired
 	private UserService userService;
 	@Autowired
 	private TokenProvider tokenProvider;
+	@Autowired
+	private AuthenticationManagerBuilder authenticationManagerBuilder;
 
-	private final String tokenKey = "access_token";
+//	private final String tokenKey = "access_token";
 
 	/**
 	 * 멤버 전체 조회
@@ -91,23 +97,8 @@ public class UserController {
 	 */
 	@PostMapping("/login")
 	public UserEntity logIn(@RequestBody UserEntity user, HttpServletResponse response) {
-
-		if (userService.login(user).isPresent()) {
-			String token = tokenProvider.createToken(userService.login(user).orElseGet(null));
-
-			Cookie cookie = new Cookie(tokenKey, token);
-			cookie.setPath("/");
-			cookie.setMaxAge(1000 * 60 * 60);
-			cookie.setHttpOnly(true);
-			cookie.setSecure(true);
-			response.addCookie(cookie);
-			return userService.login(user).orElseGet(() -> {
-				return new UserEntity();
-			});
-		}
-		;
-
-		return new UserEntity();
+		Optional<UserEntity> userEntity = userService.login(user,response);
+		return userEntity.orElseGet(()->{return new UserEntity();});
 	}
 
 	/**
@@ -116,16 +107,8 @@ public class UserController {
 	 * @return
 	 */
 	@PostMapping("/logout")
-	public boolean loginOut(@RequestBody UserEntity user, HttpServletRequest request, HttpServletResponse response) {
-		for (Cookie cookie : request.getCookies()) {
-			if (tokenKey.equals(cookie.getName())) {
-				cookie.setPath("/");
-				cookie.setMaxAge(0);
-				response.addCookie(cookie);
-				return true;
-			}
-		}
-		return false;
+	public boolean logOut(@RequestBody UserEntity user, HttpServletRequest request, HttpServletResponse response) {
+		return userService.logOut(user,request,response);
 	}
 
 }
