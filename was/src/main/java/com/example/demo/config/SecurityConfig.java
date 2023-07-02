@@ -20,6 +20,8 @@ public class SecurityConfig {
 
 	@Autowired
 	private TokenProvider tokenProvider;
+	@Autowired
+	private JwtExceptionFilter jwtExceptionFilter;
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -31,14 +33,11 @@ public class SecurityConfig {
 
 		http.authorizeHttpRequests()
 //	        .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
-				.requestMatchers("/v1/user/**").authenticated().requestMatchers("/v1/admin/**")
-				.hasAnyRole("ADMIN").requestMatchers("/v1/login").permitAll()
-				.requestMatchers("/v1/logout").permitAll();
-		
-
+				.requestMatchers("/v1/user/**").authenticated().requestMatchers("/v1/admin/**").hasAnyRole("ADMIN")
+				.requestMatchers("/v1/login").permitAll().requestMatchers("/v1/logout").permitAll();
 
 		http.addFilterBefore(new JwtAuthenticationFilter(tokenProvider), UsernamePasswordAuthenticationFilter.class);
-
+		http.addFilterBefore(jwtExceptionFilter, JwtAuthenticationFilter.class);
 		return http.build();
 	}
 
