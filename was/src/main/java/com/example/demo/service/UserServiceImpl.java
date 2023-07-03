@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
@@ -35,8 +36,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	private TokenProvider tokenProvider;
 	@Autowired
 	private AuthenticationManagerBuilder authenticationManagerBuilder;
-
-	private final String tokenKey = "access_token";
+	@Value("${jwt.tokenKey}")
+	private String tokenKey;
 
 	@Override
 	public List<UserEntity> findAllUser() {

@@ -31,10 +31,6 @@ import jakarta.servlet.http.HttpServletResponse;
 public class UserController {
 	@Autowired
 	private UserService userService;
-	@Autowired
-	private TokenProvider tokenProvider;
-	@Autowired
-	private AuthenticationManagerBuilder authenticationManagerBuilder;
 
 //	private final String tokenKey = "access_token";
 

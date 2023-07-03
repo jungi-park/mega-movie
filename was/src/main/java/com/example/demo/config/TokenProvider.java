@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -31,8 +32,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @Service
 public class TokenProvider {
-
-	final String secretKey = "jungiMovieTest_120090";
+	@Value("${jwt.secretKey}")
+	private String secretKey;
 	// 만료시간 : 1시간
 	private final long exp = 1000L * 60 * 60;
 
@@ -80,7 +81,8 @@ public class TokenProvider {
 	}
 
 	// jwt 토큰 검증
-	public Map<String, Object> verifyJWT(String jwt,HttpServletRequest request,HttpServletResponse response) throws IOException {
+	public Map<String, Object> verifyJWT(String jwt, HttpServletRequest request, HttpServletResponse response)
+			throws IOException {
 		Map<String, Object> claimMap = null;
 		try {
 			Claims claims = Jwts.parser().setSigningKey(secretKey.getBytes()) // 키 설정
@@ -88,15 +90,14 @@ public class TokenProvider {
 					.getBody();
 
 			claimMap = claims;
-			
 
 		} catch (ExpiredJwtException e) { // 토큰이 만료되었을 경우
 			System.out.println(e);
-			this.setErrorResponse(request,response,e);
+			this.setErrorResponse(request, response, e);
 
 		} catch (Exception e) { // 나머지 에러의 경우
 			System.out.println(e);
-			this.setErrorResponse(request,response,e);
+			this.setErrorResponse(request, response, e);
 		}
 		return claimMap;
 	}
@@ -105,7 +106,6 @@ public class TokenProvider {
 	public Authentication getAuthentication(String accessToken) {
 		// 토큰 복호화
 		Claims claims = getClaims(accessToken).getBody();
-		
 
 		if (claims.get("auth") == null) {
 			throw new RuntimeException("권한 정보가 없는 토큰입니다.");
@@ -115,7 +115,6 @@ public class TokenProvider {
 		Collection<? extends GrantedAuthority> authorities = Arrays.stream(claims.get("auth").toString().split(","))
 				.map(SimpleGrantedAuthority::new).collect(Collectors.toList());
 
-	
 		// UserDetails 객체를 만들어서 Authentication 리턴
 		UserDetails principal = new User(claims.get("email").toString(), "", authorities);
 		return new UsernamePasswordAuthenticationToken(principal, "", authorities);
@@ -130,20 +129,20 @@ public class TokenProvider {
 			return null;
 		}
 	}
-	
-	 public void setErrorResponse(HttpServletRequest req, HttpServletResponse res, Throwable ex) throws IOException {
-	        
-	        res.setContentType(MediaType.APPLICATION_JSON_VALUE);
-	        
-	        final Map<String, Object> body = new HashMap<>();
-	        body.put("status", HttpServletResponse.SC_UNAUTHORIZED);
-	        body.put("error", "Unauthorized");
-	        // ex.getMessage() 에는 jwtException을 발생시키면서 입력한 메세지가 들어있다.
-	        body.put("message", ex.getMessage());
-	        body.put("path", req.getServletPath());
-	        final ObjectMapper mapper = new ObjectMapper();
-	        mapper.writeValue(res.getOutputStream(), body);
-	        res.setStatus(HttpServletResponse.SC_OK);
-	    }
+
+	public void setErrorResponse(HttpServletRequest req, HttpServletResponse res, Throwable ex) throws IOException {
+
+		res.setContentType(MediaType.APPLICATION_JSON_VALUE);
+
+		final Map<String, Object> body = new HashMap<>();
+		body.put("status", HttpServletResponse.SC_UNAUTHORIZED);
+		body.put("error", "Unauthorized");
+		// ex.getMessage() 에는 jwtException을 발생시키면서 입력한 메세지가 들어있다.
+		body.put("message", ex.getMessage());
+		body.put("path", req.getServletPath());
+		final ObjectMapper mapper = new ObjectMapper();
+		mapper.writeValue(res.getOutputStream(), body);
+		res.setStatus(HttpServletResponse.SC_OK);
+	}
 
 }
