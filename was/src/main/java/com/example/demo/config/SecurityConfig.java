@@ -20,8 +20,6 @@ public class SecurityConfig {
 
 	@Autowired
 	private TokenProvider tokenProvider;
-	@Autowired
-	private JwtExceptionFilter jwtExceptionFilter;
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -37,7 +35,6 @@ public class SecurityConfig {
 				.requestMatchers("/v1/login").permitAll().requestMatchers("/v1/logout").permitAll();
 
 		http.addFilterBefore(new JwtAuthenticationFilter(tokenProvider), UsernamePasswordAuthenticationFilter.class);
-		http.addFilterBefore(jwtExceptionFilter, JwtAuthenticationFilter.class);
 		return http.build();
 	}
 
