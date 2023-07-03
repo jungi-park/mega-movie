@@ -96,7 +96,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 			Cookie cookie = new Cookie(tokenKey, token);
 			cookie.setPath("/");
-			cookie.setMaxAge(1000 * 60 * 60);
+			cookie.setMaxAge(60 * 60);
 			cookie.setHttpOnly(true);
 			cookie.setSecure(true);
 			response.addCookie(cookie);
@@ -118,7 +118,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	}
 
 	@Override
-	public boolean logOut(UserEntity user, HttpServletRequest request, HttpServletResponse response) {
+	public boolean logOut(HttpServletRequest request, HttpServletResponse response) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (auth != null) {
 			new SecurityContextLogoutHandler().logout(request, response, auth);
