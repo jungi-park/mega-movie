@@ -21,5 +21,5 @@ public interface UserService {
 	
 	public Optional<UserEntity> login(UserEntity userInfo, HttpServletResponse response);
 	
-	public boolean logOut( UserEntity user, HttpServletRequest request, HttpServletResponse response);
+	public boolean logOut(  HttpServletRequest request, HttpServletResponse response);
 }

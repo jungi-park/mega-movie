@@ -108,7 +108,7 @@ public class UserController {
 	 */
 	@PostMapping("/logout")
 	public boolean logOut(@RequestBody UserEntity user, HttpServletRequest request, HttpServletResponse response) {
-		return userService.logOut(user,request,response);
+		return userService.logOut(request,response);
 	}
 
 }
