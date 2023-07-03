@@ -9,7 +9,7 @@ import { Link ,useNavigate} from 'react-router-dom';
 
 const SingIn =() =>{
     const user = useSelector((state: RootState) => state.userReducer);
-    let navigate = useNavigate();
+    const navigate = useNavigate();
     const url ='http://localhost:8080'
     const dispatch = useDispatch(); // 디스패치 함수를 가져옵니다
 
