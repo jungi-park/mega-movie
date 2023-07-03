@@ -1,6 +1,6 @@
 package com.example.demo.config;
 
-import java.io.UnsupportedEncodingException;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -17,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.UserEntity;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -24,6 +26,8 @@ import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Service
 public class TokenProvider {
@@ -76,7 +80,7 @@ public class TokenProvider {
 	}
 
 	// jwt 토큰 검증
-	public Map<String, Object> verifyJWT(String jwt) throws UnsupportedEncodingException {
+	public Map<String, Object> verifyJWT(String jwt,HttpServletRequest request,HttpServletResponse response) throws IOException {
 		Map<String, Object> claimMap = null;
 		try {
 			Claims claims = Jwts.parser().setSigningKey(secretKey.getBytes()) // 키 설정
@@ -88,9 +92,11 @@ public class TokenProvider {
 
 		} catch (ExpiredJwtException e) { // 토큰이 만료되었을 경우
 			System.out.println(e);
+			this.setErrorResponse(request,response,e);
 
 		} catch (Exception e) { // 나머지 에러의 경우
 			System.out.println(e);
+			this.setErrorResponse(request,response,e);
 		}
 		return claimMap;
 	}
@@ -124,5 +130,20 @@ public class TokenProvider {
 			return null;
 		}
 	}
+	
+	 public void setErrorResponse(HttpServletRequest req, HttpServletResponse res, Throwable ex) throws IOException {
+	        
+	        res.setContentType(MediaType.APPLICATION_JSON_VALUE);
+	        
+	        final Map<String, Object> body = new HashMap<>();
+	        body.put("status", HttpServletResponse.SC_UNAUTHORIZED);
+	        body.put("error", "Unauthorized");
+	        // ex.getMessage() 에는 jwtException을 발생시키면서 입력한 메세지가 들어있다.
+	        body.put("message", ex.getMessage());
+	        body.put("path", req.getServletPath());
+	        final ObjectMapper mapper = new ObjectMapper();
+	        mapper.writeValue(res.getOutputStream(), body);
+	        res.setStatus(HttpServletResponse.SC_OK);
+	    }
 
 }
