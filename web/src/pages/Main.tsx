@@ -2,6 +2,8 @@ import axios from "axios";
 import React from "react";
 import { RootState } from "../modules/rootReducer";
 import { useSelector } from "react-redux";
+import './Main.scss';
+import Header from "../components/Header";
 
 
 function Main(){
@@ -17,6 +19,7 @@ function Main(){
       
 
       return(<>
+      <Header></Header>
       <button onClick={()=>{
         console.log("user",user)
       }}>유저 정보</button>

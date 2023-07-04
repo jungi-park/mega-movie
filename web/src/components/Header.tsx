@@ -17,9 +17,9 @@ function Header(){
       
 
       return(<>
-      <div>
-      {!user.isLogin&&<button>로그인</button>}
-              {user.isLogin&&<button >로그아웃</button>}
+      <div className="header">
+        {!user.isLogin&&<button>로그인</button>}
+        {user.isLogin&&<button >로그아웃</button>}
       </div>
       </>)
 }
