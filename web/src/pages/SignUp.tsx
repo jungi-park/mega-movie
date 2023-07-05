@@ -1,6 +1,7 @@
 import './SignUp.scss';
 import axios from 'axios'
 import React, { useState } from 'react';
+import { sendSignUp } from '../utile/sign';
 
 
 const url ='http://localhost:8080'
@@ -18,11 +19,10 @@ const url ='http://localhost:8080'
     })
   
 
-  const sendSignUp =async() =>{
+  const SignUp =async() =>{
     if(!validate()) return
 
-    const response = await axios.post(`${url}/v1/user`,{...form}
-        ).then((Response)=>{console.log(Response.data)})
+    sendSignUp(form).then((Response)=>{console.log(Response.data)})
         .catch((Error)=>{console.log(Error)});
       }
 
@@ -76,7 +76,7 @@ const url ='http://localhost:8080'
         <option value="2">여자</option>
       </select>
     </div>
-    <button className="submit-btn" onClick={sendSignUp}>Sign up</button>
+    <button className="submit-btn" onClick={SignUp}>Sign up</button>
   </div>
 </div>
   );

@@ -5,7 +5,7 @@ import { loginUser, logoutUser } from '../modules/user';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../modules/rootReducer';
 import { Link ,useNavigate} from 'react-router-dom';
-import { sendSingIn, sendSingOut } from '../utile/sign';
+import { sendSignIn, sendSignOut, } from '../utile/sign';
 
 
 const SingIn =() =>{
@@ -23,7 +23,7 @@ const SingIn =() =>{
       
 
     const SingIn = async() =>{
-        sendSingIn(form).then((Response)=>{if(Response.data.email){
+        sendSignIn(form).then((Response)=>{if(Response.data.email){
             dispatch(loginUser({email:Response.data.email,name:Response.data.name}))
             navigate("/");
             console.log("로그인",user)
@@ -32,7 +32,7 @@ const SingIn =() =>{
       }
       
     const SingOut = async() =>{
-        sendSingOut(form).then((Response)=>{
+        sendSignOut(form).then((Response)=>{
             dispatch(logoutUser())
             console.log("로그아웃",user)
         })
