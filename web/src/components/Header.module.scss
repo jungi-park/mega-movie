@@ -1,0 +1,18 @@
+.mainHeader {
+  position: absolute;
+  top: 80px;
+  left: 0;
+  right: inherit;
+  width: 100%;
+  z-index: 100;
+}
+
+.ci a {
+  background-image: url(../assets/images/logo_white.png);
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  background: red;
+}

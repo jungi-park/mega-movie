@@ -1,20 +1,27 @@
 import React from "react";
 import axios from "axios";
-import Header from '../components/Header'
+import Header from "../components/Header";
 
+function Main() {
+  // const url ='http://localhost:8080'
+  // const sendTestAdmin = async() =>{
+  //     const response = await axios.get(`${url}/v1/admin`,{ withCredentials: true }
+  //     ).then((Response)=>{
+  //         console.log("Response",Response)
+  //     })
+  //     .catch((Error)=>{console.log(Error)});
+  //   }
 
-function Main(){
-    // const url ='http://localhost:8080'
-    // const sendTestAdmin = async() =>{
-    //     const response = await axios.get(`${url}/v1/admin`,{ withCredentials: true }
-    //     ).then((Response)=>{
-    //         console.log("Response",Response)
-    //     })
-    //     .catch((Error)=>{console.log(Error)});
-    //   }
+  return (
+    <>
+      <Header></Header>
+    </>
+  );
+}
 
-      return(<>
-			<div id="header">
+export default Main;
+
+/* <div id="header">
 				<div class="container">
 						
 				
@@ -199,9 +206,5 @@ function Main(){
 							Design: <a href="http://templated.co">TEMPLATED</a> Images: <a href="http://unsplash.com">Unsplash</a> (<a href="http://unsplash.com/cc0">CC0</a>)
 						</div>
 
-				</div>
-			</div>
-      </>)
-}
-
-export default Main
+				</div> 
+			</div> */
