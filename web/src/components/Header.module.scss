@@ -1,0 +1,54 @@
+@import "../styles/utils";
+
+.mainHeader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: inherit;
+  width: 100%;
+  z-index: 100;
+
+  background-color: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+  height: 90px;
+}
+
+.ci {
+  position: absolute;
+  left: 50%;
+  top: 23px;
+  width: 140px;
+  height: 90px;
+  margin: 0 0 0 -70px;
+  padding: 0;
+}
+
+.ci a {
+  display: block;
+  width: 140px;
+  height: 47px;
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+  line-height: 0;
+  background-image: url(../assets/images/logo_white.png);
+}
+
+.utilArea {
+  display: flex;
+  justify-content: space-between;
+  ul {
+    display: flex;
+  }
+}
+
+nav {
+  .gnbList {
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    width: 1100px;
+    margin: 90px auto 0 auto;
+  }
+}
