@@ -3,6 +3,7 @@ import React from "react";
 import { RootState } from "../modules/rootReducer";
 import { useSelector } from "react-redux";
 import styles from "./Header.module.scss";
+import { sendSignOut } from "../utile/sign";
 
 // function Header(){
 //     const user = useSelector((state: RootState) => state.userReducer);
@@ -38,6 +39,17 @@ type RightLink = {
 };
 
 function UtilArea() {
+  const user = useSelector((state: RootState) => state.userReducer);
+  // const SingOut = async () => {
+  //   sendSignOut(form)
+  //     .then((Response) => {
+  //       dispatch(logoutUser());
+  //       console.log("로그아웃", user);
+  //     })
+  //     .catch((Error) => {
+  //       console.log(Error);
+  //     });
+  // };
   const isLoggedIn = false;
 
   const leftLinks: LeftLink[] = [
@@ -47,9 +59,9 @@ function UtilArea() {
   ];
 
   const rightLinks: RightLink[] = [
-    { href: "/", title: "로그인", showWhenLoggedIn: false },
+    { href: "/signin", title: "로그인", showWhenLoggedIn: user.isLogin },
     { href: "/", title: "회원가입", showWhenLoggedIn: false },
-    { href: "/", title: "로그아웃", showWhenLoggedIn: true },
+    { href: "/", title: "로그아웃", showWhenLoggedIn: !user.isLogin },
     { href: "/", title: "알림", showWhenLoggedIn: true },
     { href: "/", title: "빠른예매", showWhenLoggedIn: true },
   ];
