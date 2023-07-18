@@ -1,9 +1,10 @@
 import axios from "axios";
 import React from "react";
 import { RootState } from "../modules/rootReducer";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./Header.module.scss";
 import { sendSignOut } from "../utile/sign";
+import { logoutUser } from "../modules/user";
 
 // function Header(){
 //     const user = useSelector((state: RootState) => state.userReducer);
@@ -36,10 +37,23 @@ type RightLink = {
   href: string;
   title: string;
   showWhenLoggedIn: boolean;
+  fuc?: () => void;
 };
 
 function UtilArea() {
   const user = useSelector((state: RootState) => state.userReducer);
+  const dispatch = useDispatch(); // 디스패치 함수를 가져옵니다
+
+  // const SingOut = async () => {
+  //   sendSignOut(form)
+  //     .then((Response) => {
+  //       dispatch(logoutUser());
+  //       console.log("로그아웃", user);
+  //     })
+  //     .catch((Error) => {
+  //       console.log(Error);
+  //     });
+  // };
   // const SingOut = async () => {
   //   sendSignOut(form)
   //     .then((Response) => {
@@ -59,9 +73,23 @@ function UtilArea() {
   ];
 
   const rightLinks: RightLink[] = [
-    { href: "/signin", title: "로그인", showWhenLoggedIn: user.isLogin },
+    { href: "/signin", title: "로그인", showWhenLoggedIn: !user.isLogin },
     { href: "/", title: "회원가입", showWhenLoggedIn: false },
-    { href: "/", title: "로그아웃", showWhenLoggedIn: !user.isLogin },
+    {
+      href: "#",
+      title: "로그아웃",
+      showWhenLoggedIn: user.isLogin,
+      fuc: () => {
+        sendSignOut({ email: user.email })
+          .then((Response) => {
+            dispatch(logoutUser());
+            console.log("로그아웃", user);
+          })
+          .catch((Error) => {
+            console.log(Error);
+          });
+      },
+    },
     { href: "/", title: "알림", showWhenLoggedIn: true },
     { href: "/", title: "빠른예매", showWhenLoggedIn: true },
   ];
@@ -85,7 +113,15 @@ function UtilArea() {
               display: isLoggedIn || link.showWhenLoggedIn ? "block" : "none",
             }}
           >
-            <a href={link.href} title={link.title}>
+            <a
+              href={link.href}
+              title={link.title}
+              onClick={(e) => {
+                if (link?.fuc) {
+                  link.fuc();
+                }
+              }}
+            >
               {link.title}
             </a>
           </li>
