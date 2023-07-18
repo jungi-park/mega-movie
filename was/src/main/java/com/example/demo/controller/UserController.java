@@ -98,7 +98,7 @@ public class UserController {
 	}
 
 	/**
-	 * 로그아
+	 * 로그아웃
 	 * 
 	 * @return
 	 */
