@@ -72,7 +72,7 @@ public class TokenProvider {
 				.setSubject(user.getEmail()) // 사용자
 				.setClaims(payloads) // Claims 설정
 				// [3] 만료 시간
-				.setExpiration(new Date(now.getTime() + exp))
+				.setExpiration(new Date(System.currentTimeMillis()  + exp))
 				// [4] 발급 시간
 				.setIssuedAt(now).signWith(SignatureAlgorithm.HS256, secretKey.getBytes()) // HS256과 Key로 Sign
 				.compact(); // 토큰 생성
