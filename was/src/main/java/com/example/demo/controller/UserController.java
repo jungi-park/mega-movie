@@ -93,8 +93,10 @@ public class UserController {
 	 */
 	@PostMapping("/login")
 	public UserEntity logIn(@RequestBody UserEntity user, HttpServletResponse response) {
-		Optional<UserEntity> userEntity = userService.login(user,response);
-		return userEntity.orElseGet(()->{return new UserEntity();});
+		Optional<UserEntity> userEntity = userService.login(user, response);
+		return userEntity.orElseGet(() -> {
+			return new UserEntity();
+		});
 	}
 
 	/**
@@ -104,7 +106,7 @@ public class UserController {
 	 */
 	@PostMapping("/logout")
 	public boolean logOut(@RequestBody UserEntity user, HttpServletRequest request, HttpServletResponse response) {
-		return userService.logOut(request,response);
+		return userService.logOut(request, response);
 	}
 
 }

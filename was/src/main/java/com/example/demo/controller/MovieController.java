@@ -13,5 +13,12 @@ import com.example.demo.service.MovieService;
 @RequestMapping("/v1")
 public class MovieController {
 
+	@Autowired
+	private MovieService movieService;
+
+	@PostMapping("admin/movie")
+	public MovieEntity registMovie(@RequestBody MovieEntity movieInfo) {
+		return movieService.registMovie(movieInfo);
+	}
 
 }
