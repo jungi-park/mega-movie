@@ -36,6 +36,7 @@ function Main() {
   return (
     <>
       <Header></Header>
+      <main className="mainContainer"></main>
     </>
   );
 }
