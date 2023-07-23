@@ -96,7 +96,7 @@ function UtilArea() {
 
   return (
     <div className={styles.utilArea}>
-      <ul className="leftarea">
+      <ul className={styles.leftArea}>
         {leftLinks.map((link) => (
           <li key={link.title}>
             <a href={link.href} title={link.title}>
@@ -105,7 +105,7 @@ function UtilArea() {
           </li>
         ))}
       </ul>
-      <ul className="rightarea">
+      <ul className={styles.rightArea}>
         {rightLinks.map((link) => (
           <li
             key={link.title}
@@ -175,16 +175,29 @@ function Nav() {
   return (
     <nav>
       <ul className={styles.gnbList}>
+        <li className={styles.leftGnb}>
+          <svg viewBox="0 0 54 54">
+            <path
+              d="M-4542-24v-3h48v3zm0-12v-3h48v3z"
+              transform="translate(4545 59)"
+            ></path>
+          </svg>
+          <div className={styles.gnbSearch}></div>
+        </li>
         {gnbData.map((gnb) => (
-          <li key={gnb.title}>
+          <li className={styles.gnbTitle} key={gnb.title}>
             <a href={gnb.href}>{gnb.title}</a>
-            <ul>
+            <ul className={styles.gnbBody}>
               {gnb.body.map((lnb, index) => (
                 <li key={index}>{lnb}</li>
               ))}
             </ul>
           </li>
         ))}
+        <li className={styles.rightGnb}>
+          <div className={styles.gnbCalendar}></div>
+          <div className={styles.gnbPerson}></div>
+        </li>
       </ul>
     </nav>
   );
