@@ -27,7 +27,6 @@ public class EventEntity {
 
 	public EventEntity() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public EventEntity(int eventId, String title, String content) {
