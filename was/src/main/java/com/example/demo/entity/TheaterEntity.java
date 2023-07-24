@@ -35,7 +35,6 @@ public class TheaterEntity {
 
 	public TheaterEntity() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public TheaterEntity(int theaterId, String name, String address) {
