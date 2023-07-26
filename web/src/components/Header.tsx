@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./Header.module.scss";
 import { sendSignOut } from "../utile/sign";
 import { logoutUser } from "../modules/user";
+import { LeftLink, RightLink } from "../type/Link";
 
 // function Header(){
 //     const user = useSelector((state: RootState) => state.userReducer);
@@ -28,17 +29,6 @@ import { logoutUser } from "../modules/user";
 // export default Header
 
 // UtilArea
-type LeftLink = {
-  href: string;
-  title: string;
-};
-
-type RightLink = {
-  href: string;
-  title: string;
-  showWhenLoggedIn: boolean;
-  fuc?: () => void;
-};
 
 function UtilArea() {
   const user = useSelector((state: RootState) => state.userReducer);
