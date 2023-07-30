@@ -9,3 +9,10 @@ export type RightLink = {
   showWhenLoggedIn: boolean;
   fuc?: () => void;
 };
+
+export type Link = {
+  href: string;
+  title: string;
+  showWhenLoggedIn: boolean;
+  fuc?: () => void;
+};

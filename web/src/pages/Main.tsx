@@ -36,7 +36,26 @@ function Main() {
   return (
     <>
       <Header></Header>
-      <main className="mainContainer"></main>
+      <main className="mainContainer">
+        <section className="HeroBanner">
+          <div className="bannerBg">
+            <img src={process.env.PUBLIC_URL + "/img_main_1.png"} alt="" />
+            <div className="bannerGrad"></div>
+          </div>
+          <div className="bannerCont">
+            <div className="title">
+              <img
+                className="titleLogo"
+                src={process.env.PUBLIC_URL + "/logo_main_1.png"}
+                alt=""
+              />
+              <h1 className="titleKor">더 퍼스트 슬램덩크</h1>
+              <h2 className="titleEng">The First Slam Dunk</h2>
+            </div>
+            <button className="ticketing">예매하기</button>
+          </div>
+        </section>
+      </main>
     </>
   );
 }
