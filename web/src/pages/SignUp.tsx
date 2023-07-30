@@ -64,7 +64,6 @@ const SignUp = () => {
     <div className="form-structor">
       <div className="signup">
         <h2 className="form-title" id="signup">
-          <span>or</span>
           {error.length > 0 ? error : "Sign up"}
         </h2>
         <div className="form-holder">
