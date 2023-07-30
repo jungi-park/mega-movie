@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,7 +24,7 @@ public class SecurityConfig {
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.csrf().disable().httpBasic().disable().cors().configurationSource(corsConfigurationSource());
+		http.csrf(AbstractHttpConfigurer::disable).httpBasic().disable().cors().configurationSource(corsConfigurationSource());
 
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
@@ -31,8 +32,9 @@ public class SecurityConfig {
 
 		http.authorizeHttpRequests()
 //	        .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
-				.requestMatchers("/v1/user/**").authenticated().requestMatchers("/v1/admin/**").hasAnyRole("ADMIN")
-				.requestMatchers("/v1/login").permitAll().requestMatchers("/v1/logout").permitAll();
+				.requestMatchers("/v1/admin/**").hasAnyRole("ADMIN")
+				.requestMatchers("/v1/login").permitAll().requestMatchers("/v1/logout").permitAll().requestMatchers("/v1/user").permitAll()
+				.requestMatchers("/v1/user/**").authenticated();
 
 		http.addFilterBefore(new JwtAuthenticationFilter(tokenProvider), UsernamePasswordAuthenticationFilter.class);
 		return http.build();
