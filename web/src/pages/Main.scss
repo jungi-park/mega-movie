@@ -13,8 +13,8 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  width: 94%;
-  max-width: 1800px;
+  width: 100%;
+  max-width: 1900px;
   height: 688px;
   color: #fff;
 }
@@ -53,7 +53,7 @@
   z-index: 1;
   width: 100%;
   height: 100%;
-  padding: 80px 40px;
+  padding: 80px;
   .title {
     display: flex;
     flex-direction: column;

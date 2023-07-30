@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./Header.module.scss";
 import { sendSignOut } from "../utile/sign";
 import { logoutUser } from "../modules/user";
-import { LeftLink, RightLink, Link } from "../type/linkType";
+import { Link } from "../type/linkType";
 
 // function Header(){
 //     const user = useSelector((state: RootState) => state.userReducer);
@@ -140,7 +140,7 @@ function Nav() {
     {
       href: "/",
       title: "혜택",
-      body: ["메가박스 멤버쉽", "제휴/할인"],
+      body: ["VIP LOUNGE", "메가박스 멤버쉽", "제휴/할인"],
     },
   ];
 
@@ -157,7 +157,7 @@ function Nav() {
             </ul>
           </li>
         ))}
-        <li className={styles.leftGnb}>
+        <li className={styles.gnbAll}>
           <svg viewBox="0 0 54 54">
             <path
               d="M-4542-24v-3h48v3zm0-12v-3h48v3z"

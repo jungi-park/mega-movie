@@ -9,7 +9,6 @@
   left: 0;
   width: 100vw;
   height: 128px;
-  // padding-top: 24px;
   z-index: 10000;
 }
 
@@ -24,7 +23,7 @@
 
 .leftCont {
   display: flex;
-  column-gap: 56px;
+  column-gap: 72px;
   align-items: center;
 }
 .rightCont {
@@ -69,7 +68,7 @@
 
 .gnbList {
   display: flex;
-  column-gap: 40px;
+  column-gap: 72px;
   position: relative;
   margin: auto;
 }
@@ -79,7 +78,6 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  width: 52px;
   link,
   svg {
     fill: #fff;
@@ -110,8 +108,7 @@
   }
 }
 
-.leftGnb,
-.rightGnb {
+.gnbAll {
   display: flex;
   svg,
   div {
@@ -140,8 +137,7 @@
 
 .gnbBody {
   display: none;
-  flex-direction: column;
-  row-gap: 8px;
+  column-gap: 24px;
   position: absolute;
   left: 0;
   bottom: 0;
