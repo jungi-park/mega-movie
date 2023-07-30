@@ -83,6 +83,7 @@ footer,
 header,
 hgroup,
 menu,
+main,
 nav,
 output,
 ruby,
@@ -98,6 +99,7 @@ video {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  box-sizing: border-box;
 }
 /* HTML5 display-role reset for older browsers */
 article,
@@ -164,7 +166,7 @@ html {
 body {
   width: 100%;
   height: 100%;
-  overflow: auto;
+  overflow-x: hidden;
   overflow-y: scroll;
   letter-spacing: 0;
   line-height: 1.5;
@@ -179,4 +181,11 @@ body {
   //   BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
   //   "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
   //   "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+}
+
+button {
+  font-family: "GmarketSans", -apple-system, BlinkMacSystemFont, system-ui,
+    Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR",
+    "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    sans-serif;
 }

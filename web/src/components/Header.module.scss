@@ -10,7 +10,7 @@
   width: 100vw;
   height: 128px;
   padding-top: 24px;
-  z-index: 100;
+  z-index: 10000;
 }
 
 .ci {
@@ -29,7 +29,7 @@
   padding: 0;
   font-size: 0;
   line-height: 0;
-  background: url(../assets/images/logo_white.png) center/contain no-repeat;
+  background: url(../../public/logo_white.png) center/contain no-repeat;
 }
 
 .utilArea {
@@ -115,17 +115,17 @@
 }
 
 .gnbSearch {
-  background: url(../assets/images/icon_search.svg) center/contain no-repeat;
+  background: url(../../public//icon_search.svg) center/contain no-repeat;
   background-size: 60%;
 }
 
 .gnbCalendar {
-  background: url(../assets/images/icon_calendar.svg) center/contain no-repeat;
+  background: url(../../public/icon_calendar.svg) center/contain no-repeat;
   background-size: 60%;
 }
 
 .gnbPerson {
-  background: url(../assets/images/icon_person.svg) center/contain no-repeat;
+  background: url(../../public/icon_person.svg) center/contain no-repeat;
   background-size: 60%;
 }
 
@@ -136,10 +136,18 @@
   position: absolute;
   left: 0;
   bottom: 0;
+  padding-top: 8px;
   width: 200%;
   transform: translateY(100%);
   li {
     color: #fff;
     font-size: 14px;
+    white-space: pre;
+    &:hover {
+      display: flex;
+    }
+  }
+  &:hover {
+    display: flex;
   }
 }
