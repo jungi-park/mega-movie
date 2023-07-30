@@ -56,7 +56,7 @@ function UtilArea() {
 
   const Links: Link[] = [
     { href: "/signin", title: "로그인", showWhenLoggedIn: !user.isLogin },
-    { href: "/", title: "회원가입", showWhenLoggedIn: !user.isLogin },
+    { href: "/signup", title: "회원가입", showWhenLoggedIn: !user.isLogin },
     {
       href: "#",
       title: "로그아웃",
