@@ -33,8 +33,8 @@ public class SecurityConfig {
 		http.authorizeHttpRequests()
 //	        .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
 				.requestMatchers("/v1/admin/**").hasAnyRole("ADMIN")
-				.requestMatchers("/v1/login").permitAll().requestMatchers("/v1/logout").permitAll().requestMatchers("/v1/user").permitAll()
-				.requestMatchers("/v1/user/**").authenticated();
+				.requestMatchers("/v1/login").permitAll().requestMatchers("/v1/logout").permitAll().requestMatchers("/v1/user").permitAll();
+//				.requestMatchers("/v1/user/**").authenticated();
 
 		http.addFilterBefore(new JwtAuthenticationFilter(tokenProvider), UsernamePasswordAuthenticationFilter.class);
 		return http.build();

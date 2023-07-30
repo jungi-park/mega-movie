@@ -46,6 +46,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 	@Override
 	public UserEntity signUp(UserEntity user) {
+		Optional.ofNullable(user.getType()).ifPresentOrElse(null, () -> {
+			user.setType("1");
+		});
 		return userRepository.save(user);
 	}
 
