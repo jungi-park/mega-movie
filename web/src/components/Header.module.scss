@@ -9,14 +9,31 @@
   left: 0;
   width: 100vw;
   height: 128px;
-  padding-top: 24px;
+  // padding-top: 24px;
   z-index: 10000;
 }
 
+.headerCont {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 94%;
+  max-width: 1800px;
+  height: 100%;
+}
+
+.leftCont {
+  display: flex;
+  column-gap: 56px;
+  align-items: center;
+}
+.rightCont {
+  display: flex;
+  column-gap: 24px;
+  align-items: center;
+}
+
 .ci {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
   width: 140px;
   padding-top: 8px;
 }
@@ -35,16 +52,13 @@
 .utilArea {
   display: flex;
   justify-content: space-between;
-  position: absolute;
   top: 16px;
-  width: 1200px;
   ul {
     display: flex;
   }
 }
 
-.leftArea,
-.rightArea {
+.areaLink {
   display: flex;
   column-gap: 24px;
   a {
@@ -55,9 +69,8 @@
 
 .gnbList {
   display: flex;
-  justify-content: space-between;
+  column-gap: 40px;
   position: relative;
-  width: 1200px;
   margin: auto;
 }
 
@@ -87,12 +100,6 @@
     background-color: #fff;
     transition: all 0.3s;
   }
-  &:nth-of-type(4) {
-    margin-right: 112px;
-  }
-  &:nth-of-type(5) {
-    margin-left: 112px;
-  }
   &:hover {
     a::after {
       width: 100%;
@@ -117,6 +124,8 @@
 .gnbSearch {
   background: url(../../public//icon_search.svg) center/contain no-repeat;
   background-size: 60%;
+  width: 52px;
+  height: 52px;
 }
 
 .gnbCalendar {

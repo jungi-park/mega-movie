@@ -13,18 +13,19 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  width: 1280px;
-  height: 88%;
+  width: 94%;
+  max-width: 1800px;
+  height: 688px;
   color: #fff;
 }
 
 .bannerBg {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   position: absolute;
   right: 0;
-  height: 100%;
+  height: 688px;
   opacity: 0.8;
   overflow: hidden;
   img {
@@ -50,9 +51,9 @@
   flex-direction: column;
   justify-content: space-between;
   z-index: 1;
-  width: 1200px;
+  width: 100%;
   height: 100%;
-  padding: 80px 0;
+  padding: 80px 40px;
   .title {
     display: flex;
     flex-direction: column;

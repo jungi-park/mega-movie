@@ -28,12 +28,7 @@ import { logoutUser } from "../modules/user";
 // export default Header
 
 // UtilArea
-type LeftLink = {
-  href: string;
-  title: string;
-};
-
-type RightLink = {
+type Link = {
   href: string;
   title: string;
   showWhenLoggedIn: boolean;
@@ -66,15 +61,9 @@ function UtilArea() {
   // };
   const isLoggedIn = false;
 
-  const leftLinks: LeftLink[] = [
-    { href: "/", title: "VIP LOUNGE" },
-    { href: "/", title: "멤버십" },
-    { href: "/", title: "고객센터" },
-  ];
-
-  const rightLinks: RightLink[] = [
+  const Links: Link[] = [
     { href: "/signin", title: "로그인", showWhenLoggedIn: !user.isLogin },
-    { href: "/", title: "회원가입", showWhenLoggedIn: false },
+    { href: "/", title: "회원가입", showWhenLoggedIn: !user.isLogin },
     {
       href: "#",
       title: "로그아웃",
@@ -90,23 +79,13 @@ function UtilArea() {
           });
       },
     },
-    { href: "/", title: "알림", showWhenLoggedIn: true },
-    { href: "/", title: "빠른예매", showWhenLoggedIn: true },
+    { href: "/", title: "고객센터", showWhenLoggedIn: true },
   ];
 
   return (
     <div className={styles.utilArea}>
-      <ul className={styles.leftArea}>
-        {leftLinks.map((link) => (
-          <li key={link.title}>
-            <a href={link.href} title={link.title}>
-              {link.title}
-            </a>
-          </li>
-        ))}
-      </ul>
-      <ul className={styles.rightArea}>
-        {rightLinks.map((link) => (
+      <ul className={styles.areaLink}>
+        {Links.map((link) => (
           <li
             key={link.title}
             style={{
@@ -175,15 +154,6 @@ function Nav() {
   return (
     <nav>
       <ul className={styles.gnbList}>
-        <li className={styles.leftGnb}>
-          <svg viewBox="0 0 54 54">
-            <path
-              d="M-4542-24v-3h48v3zm0-12v-3h48v3z"
-              transform="translate(4545 59)"
-            ></path>
-          </svg>
-          <div className={styles.gnbSearch}></div>
-        </li>
         {gnbData.map((gnb) => (
           <li className={styles.gnbTitle} key={gnb.title}>
             <a href={gnb.href}>{gnb.title}</a>
@@ -194,9 +164,13 @@ function Nav() {
             </ul>
           </li>
         ))}
-        <li className={styles.rightGnb}>
-          <div className={styles.gnbCalendar}></div>
-          <div className={styles.gnbPerson}></div>
+        <li className={styles.leftGnb}>
+          <svg viewBox="0 0 54 54">
+            <path
+              d="M-4542-24v-3h48v3zm0-12v-3h48v3z"
+              transform="translate(4545 59)"
+            ></path>
+          </svg>
         </li>
       </ul>
     </nav>
@@ -207,13 +181,26 @@ function Nav() {
 function Header() {
   return (
     <header className={styles.mainHeader}>
-      <h1 className={styles.ci}>
-        <a href="/" title="MEGABOX 메인으로 가기">
-          MEGABOX : Life Theater
-        </a>
-      </h1>
-      <UtilArea></UtilArea>
-      <Nav></Nav>
+      <div className={styles.headerCont}>
+        <div className={styles.leftCont}>
+          <h1 className={styles.ci}>
+            <a href="/" title="MEGABOX 메인으로 가기">
+              MEGABOX : Life Theater
+            </a>
+          </h1>
+          <Nav></Nav>
+        </div>
+        <div className={styles.rightCont}>
+          <UtilArea></UtilArea>
+          {/* <ul>
+            <li className={styles.rightGnb}>
+              <div className={styles.gnbCalendar}></div>
+              <div className={styles.gnbPerson}></div>
+            </li>
+          </ul> */}
+          <div className={styles.gnbSearch}></div>
+        </div>
+      </div>
     </header>
   );
 }
