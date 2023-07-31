@@ -16,7 +16,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.config.CustomDetails;
 import com.example.demo.config.TokenProvider;
 import com.example.demo.entity.UserEntity;
 import com.example.demo.repository.UserRepository;
@@ -128,7 +127,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 			throw new UsernameNotFoundException(email);
 		}
 		user.setPassword(getPasswordEncoder.encode(user.getPassword()));
-		return new CustomDetails(user);
+		return user;
 	}
 
 	@Override
