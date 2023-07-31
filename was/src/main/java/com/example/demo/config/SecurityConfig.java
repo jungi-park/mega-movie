@@ -34,17 +34,15 @@ public class SecurityConfig {
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.csrf(AbstractHttpConfigurer::disable).httpBasic().disable().cors()
-				.configurationSource(corsConfigurationSource());
+		http.csrf(csrfConfig->csrfConfig.disable()).httpBasic(httpBasicConfig->httpBasicConfig.disable()).cors(corsConfig -> corsConfig.configurationSource(corsConfigurationSource()));
+				
+		http.sessionManagement(sessionConfig -> sessionConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
-		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		http.formLogin(formConfig -> formConfig.disable());
 
-		http.formLogin().disable();
-
-		http.authorizeHttpRequests()
+		http.authorizeHttpRequests(requestConfig -> requestConfig.requestMatchers("/v1/admin/**").hasAnyRole("ADMIN").requestMatchers("/v1/login").permitAll()
+				.requestMatchers("/v1/logout").permitAll().requestMatchers("/v1/user").permitAll());
 //	        .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
-				.requestMatchers("/v1/admin/**").hasAnyRole("ADMIN").requestMatchers("/v1/login").permitAll()
-				.requestMatchers("/v1/logout").permitAll().requestMatchers("/v1/user").permitAll();
 //				.requestMatchers("/v1/user/**").authenticated();
 
 		http.addFilterBefore(new JwtAuthenticationFilter(tokenProvider), UsernamePasswordAuthenticationFilter.class);
