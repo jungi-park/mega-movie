@@ -28,16 +28,26 @@ import jakarta.servlet.http.HttpServletResponse;
 @Service
 public class UserServiceImpl implements UserService, UserDetailsService {
 
-	@Autowired
 	private UserRepository userRepository;
-	@Autowired
 	private PasswordEncoder getPasswordEncoder;
-	@Autowired
 	private TokenProvider tokenProvider;
-	@Autowired
 	private AuthenticationManagerBuilder authenticationManagerBuilder;
 	@Value("${jwt.tokenKey}")
 	private String tokenKey;
+
+	public UserServiceImpl() {
+		super();
+	}
+
+	@Autowired
+	public UserServiceImpl(UserRepository userRepository, PasswordEncoder getPasswordEncoder,
+			TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder) {
+		super();
+		this.userRepository = userRepository;
+		this.getPasswordEncoder = getPasswordEncoder;
+		this.tokenProvider = tokenProvider;
+		this.authenticationManagerBuilder = authenticationManagerBuilder;
+	}
 
 	@Override
 	public List<UserEntity> findAllUser() {
