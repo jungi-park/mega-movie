@@ -101,7 +101,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	public Optional<UserEntity> login(UserEntity userInfo, HttpServletResponse response) {
 
 		Optional<UserEntity> user = userRepository.findByEmailAndPassword(userInfo.getEmail(), userInfo.getPassword());
-		if (user.isPresent()) {
+//		if (user.isPresent()) {
 			UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
 					userInfo.getEmail(), userInfo.getPassword());
 			Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
@@ -114,9 +114,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 			cookie.setSecure(true);
 			response.addCookie(cookie);
 			return user;
-		}
-		;
-		return Optional.of(null);
+//		}
+//		;
+//		return Optional.of(null);
 	}
 
 	@Override
