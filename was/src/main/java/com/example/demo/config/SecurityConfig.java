@@ -19,13 +19,23 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableWebSecurity
 public class SecurityConfig {
 
-	@Autowired
 	private TokenProvider tokenProvider;
-	
+
+	public SecurityConfig() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	@Autowired
+	public SecurityConfig(TokenProvider tokenProvider) {
+		super();
+		this.tokenProvider = tokenProvider;
+	}
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.csrf(AbstractHttpConfigurer::disable).httpBasic().disable().cors().configurationSource(corsConfigurationSource());
+		http.csrf(AbstractHttpConfigurer::disable).httpBasic().disable().cors()
+				.configurationSource(corsConfigurationSource());
 
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
@@ -33,8 +43,8 @@ public class SecurityConfig {
 
 		http.authorizeHttpRequests()
 //	        .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
-				.requestMatchers("/v1/admin/**").hasAnyRole("ADMIN")
-				.requestMatchers("/v1/login").permitAll().requestMatchers("/v1/logout").permitAll().requestMatchers("/v1/user").permitAll();
+				.requestMatchers("/v1/admin/**").hasAnyRole("ADMIN").requestMatchers("/v1/login").permitAll()
+				.requestMatchers("/v1/logout").permitAll().requestMatchers("/v1/user").permitAll();
 //				.requestMatchers("/v1/user/**").authenticated();
 
 		http.addFilterBefore(new JwtAuthenticationFilter(tokenProvider), UsernamePasswordAuthenticationFilter.class);

@@ -3,6 +3,7 @@ package com.example.demo.config;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,6 +14,7 @@ public class CustomDetails implements UserDetails {
 
 	private UserEntity userEntity;
 
+	@Autowired
 	public CustomDetails(UserEntity userEntity) {
 		this.userEntity = userEntity;
 	}
