@@ -11,6 +11,10 @@ export const sendSignIn = async (form: any) => {
   );
 };
 
+export const sendSignInGoogle = async () => {
+  return await axios.get(`${url}/v1/google/login`, { withCredentials: true });
+};
+
 export const sendSignOut = async (form: any) => {
   return await axios.post(
     `${url}/v1/logout`,

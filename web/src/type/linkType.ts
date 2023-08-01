@@ -11,8 +11,8 @@ export type RightLink = {
 };
 
 export type Link = {
-  href: string;
-  title: string;
   showWhenLoggedIn: boolean;
+  href?: string;
+  title?: string;
   fuc?: () => void;
 };
