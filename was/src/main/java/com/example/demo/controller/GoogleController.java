@@ -26,7 +26,7 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 
 
 @Controller
-@RequestMapping(value = "/v1")
+@RequestMapping(value = "/v1/google")
 public class GoogleController {
 
     private final ConfigUtils configUtils;
@@ -35,7 +35,7 @@ public class GoogleController {
         this.configUtils = configUtils;
     }
 
-    @GetMapping(value = "/google/login")
+    @GetMapping(value = "/login")
     public ResponseEntity<Object> moveGoogleInitUrl() {
         String authUrl = configUtils.googleInitUrl();
         URI redirectUri = null;
