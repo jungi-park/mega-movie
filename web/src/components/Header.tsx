@@ -64,8 +64,7 @@ function UtilArea() {
       fuc: () => {
         sendSignInGoogle()
           .then((Response) => {
-            console.log(" Response.data", Response.data);
-            window.open(Response.data);
+            window.location.href = Response.data;
           })
           .catch((Error) => {
             console.log(Error);

@@ -24,6 +24,9 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
 
 @Controller
 @RequestMapping(value = "/v1/google")
@@ -52,7 +55,7 @@ public class GoogleController {
 
     @GetMapping(value = "/login/redirect")
     public ResponseEntity<GoogleLoginDto> redirectGoogleLogin(
-            @RequestParam(value = "code") String authCode
+            @RequestParam(value = "code") String authCode,HttpServletRequest request, HttpServletResponse response
     ) {
         // HTTP 통신을 위해 RestTemplate 활용
         RestTemplate restTemplate = new RestTemplate();
@@ -87,7 +90,7 @@ public class GoogleController {
 
             if(resultJson != null) {
                 GoogleLoginDto userInfoDto = objectMapper.readValue(resultJson, new TypeReference<GoogleLoginDto>() {});
-
+                response.sendRedirect("http://localhost:3000/");
                 return ResponseEntity.ok().body(userInfoDto);
             }
             else {
