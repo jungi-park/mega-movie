@@ -53,7 +53,7 @@ const SingIn = () => {
           MEGABOX : Life Theater
         </a>
       </h1>
-      <div className="loginCont">
+      <div className="loginCont array-topcenter">
         <div className="inputCont array-topcenter">
           <input
             className="idLine"
@@ -73,9 +73,19 @@ const SingIn = () => {
               setForm({ ...form, password: event.target.value })
             }
           ></input>
-        </div>{" "}
-        {!user.isLogin && <button onClick={SingIn}>로그인</button>}
-        {user.isLogin && <button onClick={SingOut}>로그아웃</button>}
+        </div>
+        {!user.isLogin && (
+          <button
+            className="primaryBtn long"
+            data-text="로그인"
+            onClick={SingIn}
+          ></button>
+        )}
+        {user.isLogin && (
+          <button className="primaryBtn long" onClick={SingOut}>
+            로그아웃
+          </button>
+        )}
       </div>
     </main>
   );

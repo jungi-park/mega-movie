@@ -55,8 +55,7 @@ function Main() {
               </div>
               <button
                 className="ticketing primaryBtn"
-                data-back="빠른예매"
-                data-front="예매하기"
+                data-text="예매하기"
               ></button>
             </div>
           </div>

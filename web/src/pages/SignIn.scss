@@ -1,22 +1,35 @@
+@import "../styles/utils";
+
+.login {
+  text-align: center;
+}
+
 .ci {
   width: 140px;
+  height: 160px;
+  padding-bottom: 40px;
   margin: auto;
+  position: relative;
 }
 
 .ci a {
   display: block;
+  position: absolute;
   width: 140px;
   height: 46px;
-  margin: 0;
   padding: 0;
+  margin-top: 82px;
   font-size: 0;
   line-height: 0;
   background: url(../../public/logo_default.png) center/contain no-repeat;
 }
 
 .loginCont {
-  width: 460px;
+  width: 464px;
+  row-gap: 40px;
   margin: auto;
+  padding: 32px;
+  border: solid 1px var(--color-text-light);
 }
 
 .idLine,
