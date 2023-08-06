@@ -1,3 +1,5 @@
+@import "../styles/utils";
+
 .mainContainer {
   width: 100vw;
 }
@@ -75,15 +77,7 @@
   margin-bottom: 24px;
 }
 .ticketing {
-  width: 180px;
-  height: 48px;
   margin-top: 40px;
-  border-radius: 8px;
-  border: #fff solid 1px;
-  font-size: 16px;
-  font-size: bold;
-  color: #fff;
-  background: transparent;
 }
 
 // movieSection
