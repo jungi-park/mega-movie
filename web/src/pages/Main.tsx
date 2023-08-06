@@ -35,7 +35,7 @@ function Main() {
   //       </>)
   return (
     <>
-      <Header></Header>
+      <Header className="white"></Header>
       <main className="mainContainer">
         <div className="bannerSection">
           <div className="HeroBanner">

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../modules/rootReducer";
 import { Link, useNavigate } from "react-router-dom";
 import { sendSignIn, sendSignOut } from "../utile/sign";
+import Header from "../components/Header";
 
 const SingIn = () => {
   const user = useSelector((state: RootState) => state.userReducer);
@@ -47,6 +48,7 @@ const SingIn = () => {
 
   return (
     <div>
+      <Header className=""></Header>
       <div>로그인</div>
       <input
         type="text"

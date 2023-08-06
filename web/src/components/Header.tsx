@@ -198,10 +198,14 @@ function Nav() {
   );
 }
 
+type HeaderClass = {
+  className: string; // className 속성 추가
+};
+
 // Header
-function Header() {
+function Header(color: HeaderClass) {
   return (
-    <header className={styles.mainHeader}>
+    <header className={`${styles[color.className]} ${styles.mainHeader}`}>
       <div className={styles.headerCont}>
         <div className={styles.leftCont}>
           <h1 className={styles.ci}>
