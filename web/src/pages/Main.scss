@@ -1,31 +1,47 @@
 .mainContainer {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
   width: 100vw;
-  height: 100vh;
-  padding-top: 152px;
-  background: #000;
 }
 
-.HeroBanner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+// 기본 section
+.bannerSection,
+.eventSection,
+.curationSection,
+.curationSection {
   position: relative;
   width: 100%;
-  max-width: 1900px;
-  height: 688px;
-  color: #fff;
+  height: 776px;
 }
 
+// 기본 section div
+.HeroBanner,
+.boxOffice,
+.benefit,
+.curation,
+.guide {
+  width: 100%;
+  max-width: 1900px;
+  padding-left: 80px;
+  padding-right: 80px;
+  margin: auto;
+}
+.title {
+  margin-bottom: 16px;
+}
+
+// bannerSection
+.bannerSection {
+  padding-top: 136px; // header 값
+  background: #000;
+}
+.HeroBanner {
+  position: relative;
+  height: 100%;
+  color: #fff;
+}
 .bannerBg {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
   position: absolute;
   right: 0;
-  height: 688px;
+  height: 100%;
   opacity: 0.8;
   overflow: hidden;
   img {
@@ -45,41 +61,148 @@
     rgba(0, 0, 0, 0) 100%
   );
 }
-
 .bannerCont {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  z-index: 1;
-  width: 100%;
+  justify-content: center;
+  position: relative;
+  width: 40%;
   height: 100%;
-  padding: 80px;
-  .title {
-    display: flex;
-    flex-direction: column;
-  }
+  z-index: 1;
 }
-
 .titleLogo {
-  width: fit-content;
   height: 240px;
   margin-bottom: 24px;
 }
-.titleKor {
-  font-size: 56px;
-  font-weight: bold;
-}
-.titleEng {
-  font-size: 24px;
-}
-
 .ticketing {
   width: 180px;
   height: 48px;
+  margin-top: 40px;
   border-radius: 8px;
-  font-size: bold;
   border: #fff solid 1px;
-  background: transparent;
-  color: #fff;
   font-size: 16px;
+  font-size: bold;
+  color: #fff;
+  background: transparent;
+}
+
+// movieSection
+.movieSection {
+  width: 100%;
+  padding: 32px 0;
+  background: #000;
+}
+.movieSlide {
+  width: 100%;
+  height: 366px;
+  overflow: hidden;
+  position: relative;
+}
+.movieList {
+  display: flex;
+  column-gap: 16px;
+  position: absolute;
+  height: 366px;
+}
+.movie {
+  width: 256px;
+  height: 366px;
+  background: #150e2c;
+}
+
+.benefit,
+.curation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+.eventContent,
+.curationContent {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 104px;
+  width: 100%;
+  height: 512px;
+}
+.eventInfo,
+.curationInfo {
+  display: flex;
+  flex-direction: column;
+  row-gap: 32px;
+  width: 32%;
+  height: 100%;
+}
+.eventTitle,
+.curationTitle {
+  width: 100%;
+  height: 80px;
+  background: gainsboro;
+}
+.eventDate,
+.curationDate {
+  width: 100%;
+  height: 40px;
+  background: gainsboro;
+}
+.eventList {
+  width: 64%;
+  height: 512px;
+  background: gainsboro;
+}
+.eventScreen {
+  width: 720px;
+  height: 100%;
+  background: gray;
+}
+.eventBg {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 360px;
+  background: #642ec2;
+  z-index: -1;
+}
+
+.curationSection {
+  background: #150e2c;
+}
+.curationtSlide {
+  position: relative;
+  width: 64%;
+  height: 512px;
+}
+.curationtList {
+  display: flex;
+  column-gap: 16px;
+  position: absolute;
+  height: 100%;
+}
+.curationCard {
+  width: 528px;
+  height: 100%;
+  background: #642ec2;
+}
+
+.guideSection {
+  display: flex;
+  width: 100%;
+  height: 528px;
+  padding: 32px 0;
+}
+.guideList {
+  display: flex;
+  column-gap: 16px;
+  justify-content: center;
+  width: 100%;
+}
+.guideCard {
+  width: 208px;
+  height: 298px;
+  background: #642ec2;
+}
+
+footer {
+  height: 200px;
+  background: #999999;
 }

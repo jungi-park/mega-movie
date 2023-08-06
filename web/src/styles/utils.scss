@@ -6,6 +6,25 @@
     format("woff");
 }
 
+:root {
+  --color-primary: #642ec2;
+  --color-primary-variant: #150e2c;
+  --color-secondary: #00e0f6;
+  --color-secondary-variant: #00b9cc;
+
+  --color-surface-dim: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-bright: #ffffff;
+
+  --color-text-light: #999999;
+  --color-text: #4e4e4e;
+  --color-text-dark: #000000;
+
+  --color-success: #178ff6;
+  --color-error: #ef4a52;
+  --color-warning: #da9500;
+}
+
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -141,20 +160,6 @@ table {
   border-spacing: 0;
 }
 
-:root {
-  --color-primary: #4d84f4;
-  --color-secondary: #f5414f;
-
-  --color-text: #2e2e31;
-  --color-border: #d1d0d2;
-
-  --color-success: #88c459;
-  --color-error: #f5414f;
-  --color-warning: #ffd137;
-}
-
-//
-
 body,
 html {
   width: 100%;
@@ -188,4 +193,13 @@ button {
     Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR",
     "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
     sans-serif;
+}
+
+h1 {
+  font-size: 56px;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 24px;
 }
