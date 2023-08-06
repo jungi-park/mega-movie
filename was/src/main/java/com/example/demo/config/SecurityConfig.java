@@ -48,7 +48,7 @@ public class SecurityConfig {
 //				.requestMatchers("/v1/user/**").authenticated();
 
 		
-		http.oauth2Login()
+		http.oauth2Login().defaultSuccessUrl("/")
         .userInfoEndpoint()
         .userService(principalOAuth2DetailsService); 
 		
