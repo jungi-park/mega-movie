@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -32,13 +33,19 @@ import jakarta.servlet.http.HttpServletResponse;
 @RequestMapping(value = "/v1/google")
 public class GoogleController {
 
-    private final ConfigUtils configUtils;
+    private ConfigUtils configUtils;
 
-    GoogleController(ConfigUtils configUtils) {
+    @Autowired
+   public GoogleController(ConfigUtils configUtils) {
         this.configUtils = configUtils;
     }
 
-    @GetMapping(value = "/login")
+    public GoogleController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	@GetMapping(value = "/login")
     public ResponseEntity<Object> moveGoogleInitUrl() {
         String authUrl = configUtils.googleInitUrl();
         URI redirectUri = null;

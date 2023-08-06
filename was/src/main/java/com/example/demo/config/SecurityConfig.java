@@ -17,7 +17,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import com.example.demo.service.PrincipalOAuth2DetailsService;
 
 @Configuration
-@EnableWebSecurity(debug=true)
+@EnableWebSecurity
 public class SecurityConfig {
 
 	private TokenProvider tokenProvider;
@@ -48,7 +48,7 @@ public class SecurityConfig {
 //				.requestMatchers("/v1/user/**").authenticated();
 
 		
-		http.oauth2Login()
+		http.oauth2Login().defaultSuccessUrl("/v1/google/login/redirect")
         .userInfoEndpoint()
         .userService(principalOAuth2DetailsService); 
 		
