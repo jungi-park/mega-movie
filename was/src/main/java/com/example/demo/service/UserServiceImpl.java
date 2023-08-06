@@ -16,7 +16,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.config.CustomDetails;
 import com.example.demo.config.TokenProvider;
 import com.example.demo.entity.UserEntity;
 import com.example.demo.repository.UserRepository;
@@ -28,16 +27,26 @@ import jakarta.servlet.http.HttpServletResponse;
 @Service
 public class UserServiceImpl implements UserService, UserDetailsService {
 
-	@Autowired
 	private UserRepository userRepository;
-	@Autowired
 	private PasswordEncoder getPasswordEncoder;
-	@Autowired
 	private TokenProvider tokenProvider;
-	@Autowired
 	private AuthenticationManagerBuilder authenticationManagerBuilder;
 	@Value("${jwt.tokenKey}")
 	private String tokenKey;
+
+	public UserServiceImpl() {
+		super();
+	}
+
+	@Autowired
+	public UserServiceImpl(UserRepository userRepository, PasswordEncoder getPasswordEncoder,
+			TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder) {
+		super();
+		this.userRepository = userRepository;
+		this.getPasswordEncoder = getPasswordEncoder;
+		this.tokenProvider = tokenProvider;
+		this.authenticationManagerBuilder = authenticationManagerBuilder;
+	}
 
 	@Override
 	public List<UserEntity> findAllUser() {
@@ -46,6 +55,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 	@Override
 	public UserEntity signUp(UserEntity user) {
+		Optional.ofNullable(user.getType()).ifPresentOrElse(null, () -> {
+			user.setType("1");
+		});
 		return userRepository.save(user);
 	}
 
@@ -89,7 +101,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	public Optional<UserEntity> login(UserEntity userInfo, HttpServletResponse response) {
 
 		Optional<UserEntity> user = userRepository.findByEmailAndPassword(userInfo.getEmail(), userInfo.getPassword());
-		if (user.isPresent()) {
+//		if (user.isPresent()) {
 			UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
 					userInfo.getEmail(), userInfo.getPassword());
 			Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
@@ -102,9 +114,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 			cookie.setSecure(true);
 			response.addCookie(cookie);
 			return user;
-		}
-		;
-		return Optional.of(null);
+//		}
+//		;
+//		return Optional.of(null);
 	}
 
 	@Override
@@ -115,7 +127,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 			throw new UsernameNotFoundException(email);
 		}
 		user.setPassword(getPasswordEncoder.encode(user.getPassword()));
-		return new CustomDetails(user);
+		return user;
 	}
 
 	@Override

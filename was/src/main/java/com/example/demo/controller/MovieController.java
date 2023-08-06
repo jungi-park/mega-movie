@@ -13,8 +13,18 @@ import com.example.demo.service.MovieService;
 @RequestMapping("/v1")
 public class MovieController {
 
-	@Autowired
 	private MovieService movieService;
+
+	public MovieController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	@Autowired
+	public MovieController(MovieService movieService) {
+		super();
+		this.movieService = movieService;
+	}
 
 	@PostMapping("admin/movie")
 	public MovieEntity registMovie(@RequestBody MovieEntity movieInfo) {

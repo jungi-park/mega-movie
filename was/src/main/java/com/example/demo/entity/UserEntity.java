@@ -70,8 +70,7 @@ public class UserEntity implements UserDetails {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
+
 	public UserEntity(int id, boolean active, String birthDate, Date createdAt, Date updatedAt, String email,
 			String name, String type, String password, String phoneNumber, String sex) {
 		super();
@@ -208,12 +207,11 @@ public class UserEntity implements UserDetails {
 		default:
 
 		}
-	        return auth;
+		return auth;
 	}
 
 	@Override
 	public String getUsername() {
-
 		return this.email;
 	}
 

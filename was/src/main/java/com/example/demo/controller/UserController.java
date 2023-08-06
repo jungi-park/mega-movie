@@ -29,10 +29,17 @@ import jakarta.servlet.http.HttpServletResponse;
 @RestController
 @RequestMapping("/v1")
 public class UserController {
-	@Autowired
+
 	private UserService userService;
 
-//	private final String tokenKey = "access_token";
+	public UserController() {
+		super();
+	}
+
+	@Autowired
+	public UserController(UserService userService) {
+		this.userService = userService;
+	}
 
 	/**
 	 * 멤버 전체 조회

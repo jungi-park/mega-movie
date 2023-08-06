@@ -6,6 +6,8 @@ import styles from "./Header.module.scss";
 import { sendSignOut } from "../utile/sign";
 import { logoutUser } from "../modules/user";
 import { Link } from "../type/linkType";
+import { sendSignInGoogle } from "../utile/sign";
+import { useNavigate } from "react-router-dom";
 
 // function Header(){
 //     const user = useSelector((state: RootState) => state.userReducer);
@@ -29,6 +31,7 @@ import { Link } from "../type/linkType";
 // export default Header
 
 function UtilArea() {
+  const navigate = useNavigate();
   const user = useSelector((state: RootState) => state.userReducer);
   const dispatch = useDispatch(); // 디스패치 함수를 가져옵니다
 
@@ -55,8 +58,21 @@ function UtilArea() {
   const isLoggedIn = false;
 
   const Links: Link[] = [
+    {
+      title: "구글로그인",
+      showWhenLoggedIn: !user.isLogin,
+      fuc: () => {
+        sendSignInGoogle()
+          .then((Response) => {
+            window.location.href = Response.data;
+          })
+          .catch((Error) => {
+            console.log(Error);
+          });
+      },
+    },
     { href: "/signin", title: "로그인", showWhenLoggedIn: !user.isLogin },
-    { href: "/", title: "회원가입", showWhenLoggedIn: !user.isLogin },
+    { href: "/signup", title: "회원가입", showWhenLoggedIn: !user.isLogin },
     {
       href: "#",
       title: "로그아웃",
@@ -85,17 +101,29 @@ function UtilArea() {
               display: isLoggedIn || link.showWhenLoggedIn ? "block" : "none",
             }}
           >
-            <a
-              href={link.href}
-              title={link.title}
-              onClick={(e) => {
-                if (link?.fuc) {
-                  link.fuc();
-                }
-              }}
-            >
-              {link.title}
-            </a>
+            {link.href ? (
+              <a
+                href={link.href}
+                title={link.title}
+                onClick={(e) => {
+                  if (link?.fuc) {
+                    link.fuc();
+                  }
+                }}
+              >
+                {link.title}
+              </a>
+            ) : (
+              <button
+                onClick={(e) => {
+                  if (link?.fuc) {
+                    link.fuc();
+                  }
+                }}
+              >
+                {link.title}
+              </button>
+            )}
           </li>
         ))}
       </ul>

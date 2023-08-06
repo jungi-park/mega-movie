@@ -8,15 +8,23 @@ import com.example.demo.repository.MovieRepository;
 
 @Service
 public class MovieServiceImpl implements MovieService {
-	
-	@Autowired
+
 	private MovieRepository movieRepo;
+
+	public MovieServiceImpl() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	@Autowired
+	public MovieServiceImpl(MovieRepository movieRepo) {
+		super();
+		this.movieRepo = movieRepo;
+	}
 
 	@Override
 	public MovieEntity registMovie(MovieEntity movieInfo) {
 		return movieRepo.save(movieInfo);
 	}
-	
-	
 
 }

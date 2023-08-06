@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,21 +19,30 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableWebSecurity
 public class SecurityConfig {
 
-	@Autowired
 	private TokenProvider tokenProvider;
+
+	public SecurityConfig() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	@Autowired
+	public SecurityConfig(TokenProvider tokenProvider) {
+		super();
+		this.tokenProvider = tokenProvider;
+	}
 
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.csrf().disable().httpBasic().disable().cors().configurationSource(corsConfigurationSource());
+		http.csrf(csrfConfig->csrfConfig.disable()).httpBasic(httpBasicConfig->httpBasicConfig.disable()).cors(corsConfig -> corsConfig.configurationSource(corsConfigurationSource()));
+		http.sessionManagement(sessionConfig -> sessionConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
-		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+		http.formLogin(formConfig -> formConfig.disable());
 
-		http.formLogin().disable();
-
-		http.authorizeHttpRequests()
+		http.authorizeHttpRequests(requestConfig -> requestConfig.requestMatchers("/v1/admin/**").hasAnyRole("ADMIN").requestMatchers("/v1/login").permitAll()
+				.requestMatchers("/v1/logout").permitAll().requestMatchers("/v1/user").permitAll().requestMatchers("/v1/google/**").permitAll());
 //	        .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
-				.requestMatchers("/v1/user/**").authenticated().requestMatchers("/v1/admin/**").hasAnyRole("ADMIN")
-				.requestMatchers("/v1/login").permitAll().requestMatchers("/v1/logout").permitAll();
+//				.requestMatchers("/v1/user/**").authenticated();
 
 		http.addFilterBefore(new JwtAuthenticationFilter(tokenProvider), UsernamePasswordAuthenticationFilter.class);
 		return http.build();
