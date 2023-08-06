@@ -36,9 +36,9 @@ function Main() {
   return (
     <>
       <Header className="white"></Header>
-      <main className="mainContainer">
-        <div className="bannerSection">
-          <div className="HeroBanner">
+      <main className="mainCont">
+        <div className="HeroBanner">
+          <div className="layout">
             <div className="bannerBg">
               <img src={process.env.PUBLIC_URL + "/img_main_1.png"} alt="" />
               <div className="bannerGrad"></div>
@@ -53,13 +53,17 @@ function Main() {
                 <h1 className="titleKor">더 퍼스트 슬램덩크</h1>
                 <h2 className="titleEng">The First Slam Dunk</h2>
               </div>
-              <button className="ticketing primaryBtn">예매하기</button>
+              <button
+                className="ticketing primaryBtn"
+                data-back="빠른예매"
+                data-front="예매하기"
+              ></button>
             </div>
           </div>
         </div>
 
         <div className="movieSection">
-          <div className="boxOffice">
+          <div className="layout">
             <h2 className="title">
               박스 오피스<span>08.15 18:30 기준</span>
             </h2>
@@ -79,11 +83,11 @@ function Main() {
         </div>
 
         <div className="eventSection">
-          <div className="benefit">
+          <div className="layout">
             <h2 className="title">
               혜택<span>08.15 18:30 기준</span>
             </h2>
-            <div className="eventContent">
+            <div className="eventCont">
               <div className="eventInfo">
                 <div className="eventTitle"></div>
                 <div className="eventDate"></div>
@@ -98,11 +102,11 @@ function Main() {
         </div>
 
         <div className="curationSection">
-          <div className="curation">
+          <div className="layout">
             <h2 className="title">
               큐레이션<span>08.15 18:30 기준</span>
             </h2>
-            <div className="curationContent">
+            <div className="curationCont">
               <div className="curationInfo">
                 <div className="curationTitle"></div>
                 <div className="curationDate"></div>
@@ -121,7 +125,7 @@ function Main() {
         </div>
 
         <div className="guideSection">
-          <div className="guide">
+          <div className="layout">
             <h2 className="title">안내</h2>
             <div className="guideList">
               <div className="guideCard"></div>

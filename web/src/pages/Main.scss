@@ -1,11 +1,6 @@
 @import "../styles/utils";
 
-.mainContainer {
-  width: 100vw;
-}
-
 // 기본 section
-.bannerSection,
 .eventSection,
 .curationSection,
 .curationSection {
@@ -15,30 +10,21 @@
 }
 
 // 기본 section div
-.HeroBanner,
-.boxOffice,
-.benefit,
-.curation,
-.guide {
-  width: 100%;
-  max-width: 1900px;
-  padding-left: 80px;
-  padding-right: 80px;
-  margin: auto;
-}
 .title {
   margin-bottom: 16px;
 }
 
 // bannerSection
-.bannerSection {
-  padding-top: 136px; // header 값
-  background: #000;
-}
 .HeroBanner {
   position: relative;
-  height: 100%;
-  color: #fff;
+  width: 100%;
+  height: 648px;
+  background: #000000;
+  .layout {
+    position: relative;
+    height: 100%;
+    color: #fff;
+  }
 }
 .bannerBg {
   position: absolute;
@@ -104,15 +90,15 @@
   background: #150e2c;
 }
 
-.benefit,
-.curation {
+.eventSection .layout,
+.curationSection .layout {
   display: flex;
   flex-direction: column;
   justify-content: center;
   height: 100%;
 }
-.eventContent,
-.curationContent {
+.eventCont,
+.curationCont {
   display: flex;
   justify-content: space-between;
   column-gap: 104px;

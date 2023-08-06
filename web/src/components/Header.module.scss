@@ -1,10 +1,7 @@
 @import "../styles/utils";
 
 .mainHeader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   width: 100vw;
@@ -12,12 +9,7 @@
   z-index: 10000;
 }
 
-.headerCont {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 94%;
-  max-width: 1800px;
+.layout {
   height: 100%;
 }
 
@@ -159,6 +151,7 @@
 }
 
 .mainHeader.white {
+  background: #000000;
   .ci a {
     background: url(../../public/logo_white.png) center/contain no-repeat;
   }

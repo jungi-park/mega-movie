@@ -27,6 +27,43 @@
   --color-warning: #da9500;
 }
 
+// flex
+@mixin flex(
+  $direction: row,
+  $wrap: nowrap,
+  $justifyContent: flex-start,
+  $alignItems: center
+) {
+  display: flex;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+  justify-content: $justifyContent;
+  align-items: $alignItems;
+}
+.array {
+  &-rowcenter {
+    @include flex(row, wrap, center, center);
+  }
+  &-columncenter {
+    @include flex(column, wrap, center, center);
+  }
+  &-rowbetween {
+    @include flex(row, wrap, space-between, center);
+  }
+  &-columnbetween {
+    @include flex(column, wrap, space-between, center);
+  }
+  &-leftcenter {
+    @include flex(row, wrap, flex-start, center);
+  }
+  &-rightcenter {
+    @include flex(row, wrap, flex-end, center);
+  }
+  &-topcenter {
+    @include flex(column, wrap, flex-start, center);
+  }
+}
+
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -197,6 +234,7 @@ button {
     sans-serif;
 }
 
+// font
 h1 {
   font-size: 56px;
   font-weight: bold;
@@ -206,20 +244,26 @@ h2 {
   font-size: 24px;
 }
 
+main {
+  width: 100vw;
+}
+
+.layout {
+  width: 92%;
+  max-width: 1800px;
+  margin: auto;
+}
+
 // button
-$speed: 0.5s;
+$btnSpeed: 0.5s;
 .primaryBtn {
   position: relative;
   display: inline-block;
   width: 192px;
   height: 48px;
-  border-radius: 8px;
-  border: var(--color-primary-variant) solid 1px;
-  font-size: 16px;
-  font-weight: bold;
-  text-align: center;
-  color: #fff;
-  background: var(--color-primary);
+  padding: 0;
+  border: 0;
+  background: transparent;
   opacity: 1;
   &:hover {
     &:after {
@@ -231,32 +275,31 @@ $speed: 0.5s;
       transform: translateY(50%) rotateX(90deg);
     }
   }
-  &:after {
-    top: 0;
-    left: 0;
-    opacity: 0;
-    width: 100%;
-    color: #323237;
-    display: block;
-    transition: $speed;
-    position: absolute;
-    background: #adadaf;
-    content: attr(data-back);
-    transform: translateY(-50%) rotateX(90deg);
-  }
-
+  &:after,
   &:before {
+    @extend .array-rowcenter;
     top: 0;
     left: 0;
-    opacity: 1;
-    color: #adadaf;
-    display: block;
-    padding: 0 30px;
-    line-height: 40px;
-    transition: $speed;
-    position: relative;
-    background: #323237;
+    width: 100%;
+    height: 100%;
+    border: solid 1px var(--color-primary);
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--color-text-white);
+    transition: $btnSpeed;
+  }
+  &:after {
+    content: attr(data-back);
+    position: absolute;
+    background: var(--color-primary);
+    transform: translateY(-50%) rotateX(90deg);
+    opacity: 0;
+  }
+  &:before {
     content: attr(data-front);
+    position: relative;
+    background: var(--color-primary-variant);
     transform: translateY(0) rotateX(0);
+    opacity: 1;
   }
 }

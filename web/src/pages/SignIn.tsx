@@ -47,24 +47,37 @@ const SingIn = () => {
   };
 
   return (
-    <div>
-      <Header className=""></Header>
-      <div>로그인</div>
-      <input
-        type="text"
-        placeholder="이메일"
-        value={form.email}
-        onChange={(event) => setForm({ ...form, email: event.target.value })}
-      ></input>
-      <input
-        type="password"
-        placeholder="비밀번호"
-        value={form.password}
-        onChange={(event) => setForm({ ...form, password: event.target.value })}
-      ></input>
-      {!user.isLogin && <button onClick={SingIn}>로그인</button>}
-      {user.isLogin && <button onClick={SingOut}>로그아웃</button>}
-    </div>
+    <main className="login">
+      <h1 className="ci">
+        <a href="/" title="MEGABOX 메인으로 가기">
+          MEGABOX : Life Theater
+        </a>
+      </h1>
+      <div className="loginCont">
+        <div className="inputCont array-topcenter">
+          <input
+            className="idLine"
+            type="text"
+            placeholder="이메일"
+            value={form.email}
+            onChange={(event) =>
+              setForm({ ...form, email: event.target.value })
+            }
+          ></input>
+          <input
+            className="pwLine"
+            type="password"
+            placeholder="비밀번호"
+            value={form.password}
+            onChange={(event) =>
+              setForm({ ...form, password: event.target.value })
+            }
+          ></input>
+        </div>{" "}
+        {!user.isLogin && <button onClick={SingIn}>로그인</button>}
+        {user.isLogin && <button onClick={SingOut}>로그아웃</button>}
+      </div>
+    </main>
   );
 };
 

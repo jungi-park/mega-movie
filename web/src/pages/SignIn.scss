@@ -1,0 +1,28 @@
+.ci {
+  width: 140px;
+  margin: auto;
+}
+
+.ci a {
+  display: block;
+  width: 140px;
+  height: 46px;
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+  line-height: 0;
+  background: url(../../public/logo_default.png) center/contain no-repeat;
+}
+
+.loginCont {
+  width: 460px;
+  margin: auto;
+}
+
+.idLine,
+.pwLine {
+  width: 400px;
+  height: 48px;
+  border: solid 1px var(--color-text-light);
+  box-sizing: border-box;
+}
