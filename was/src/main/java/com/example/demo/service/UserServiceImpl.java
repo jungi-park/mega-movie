@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.auth.User;
 import com.example.demo.config.TokenProvider;
 import com.example.demo.entity.UserEntity;
 import com.example.demo.repository.UserRepository;
@@ -147,4 +148,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		return false;
 	}
 
+	@Override
+	public void createUser(User user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 }
