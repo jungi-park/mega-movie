@@ -35,7 +35,7 @@ public class UserEntity implements UserDetails {
 	@Column(nullable = false, columnDefinition = "TINYINT(1) DEFAULT 1")
 	private boolean active = true;
 
-	@Column(nullable = false, length = 6)
+	@Column(length = 6)
 	private String birthDate;
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -59,7 +59,7 @@ public class UserEntity implements UserDetails {
 	@Column(nullable = false, length = 150)
 	private String password;
 
-	@Column(nullable = false, length = 20)
+	@Column(length = 20)
 	private String phoneNumber;
 
 	@ColumnDefault(value = "1")
