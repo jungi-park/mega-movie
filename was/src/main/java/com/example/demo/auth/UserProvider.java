@@ -19,6 +19,9 @@ public class UserProvider {
     }
 
     public int checkEmail(String email) {
+    	if(userRepo.findByEmail(email).isPresent()) {
+    		return 1;
+    	}
     	return 0;
     }
     

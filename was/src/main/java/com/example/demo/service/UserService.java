@@ -24,5 +24,5 @@ public interface UserService {
 
 	public boolean logOut(HttpServletRequest request, HttpServletResponse response);
 
-	public void createUser(User user);
+	public UserEntity createUser(User user);
 }

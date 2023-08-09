@@ -49,10 +49,11 @@ public class PrincipalOAuth2DetailsService extends DefaultOAuth2UserService {
 		try {
 			if (userProvider.checkEmail(email) == 0) {
 //	                log.info("구글 로그인이 최초입니다. 회원가입을 진행합니다.");
-//	                user = new UserEntity(username, nickname, email, password, role, provider, provider_id);
+	                user = new User(username, nickname, email, password, role, provider, provider_id);
 				userService.createUser(user);
 			} else {
 //	                log.info("구글 로그인 기록이 있습니다.");
+				// retrieveByEmail 구현 필요!!
 				user = userProvider.retrieveByEmail(email);
 			}
 		} catch (Exception e) {

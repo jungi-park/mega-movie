@@ -17,6 +17,7 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Service;
 
 import com.example.demo.auth.User;
+import com.example.demo.auth.UserProvider;
 import com.example.demo.config.TokenProvider;
 import com.example.demo.entity.UserEntity;
 import com.example.demo.repository.UserRepository;
@@ -32,6 +33,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	private PasswordEncoder getPasswordEncoder;
 	private TokenProvider tokenProvider;
 	private AuthenticationManagerBuilder authenticationManagerBuilder;
+	private UserProvider userProvider;
 	@Value("${jwt.tokenKey}")
 	private String tokenKey;
 
@@ -41,12 +43,14 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 	@Autowired
 	public UserServiceImpl(UserRepository userRepository, PasswordEncoder getPasswordEncoder,
-			TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder) {
+			TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder,
+			UserProvider userProvider) {
 		super();
 		this.userRepository = userRepository;
 		this.getPasswordEncoder = getPasswordEncoder;
 		this.tokenProvider = tokenProvider;
 		this.authenticationManagerBuilder = authenticationManagerBuilder;
+		this.userProvider = userProvider;
 	}
 
 	@Override
@@ -103,18 +107,18 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 		Optional<UserEntity> user = userRepository.findByEmailAndPassword(userInfo.getEmail(), userInfo.getPassword());
 //		if (user.isPresent()) {
-			UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-					userInfo.getEmail(), userInfo.getPassword());
-			Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
-			String token = tokenProvider.createToken(user.orElseGet(null));
+		UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
+				userInfo.getEmail(), userInfo.getPassword());
+		Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+		String token = tokenProvider.createToken(user.orElseGet(null));
 
-			Cookie cookie = new Cookie(tokenKey, token);
-			cookie.setPath("/");
-			cookie.setMaxAge(60 * 60);
-			cookie.setHttpOnly(true);
-			cookie.setSecure(true);
-			response.addCookie(cookie);
-			return user;
+		Cookie cookie = new Cookie(tokenKey, token);
+		cookie.setPath("/");
+		cookie.setMaxAge(60 * 60);
+		cookie.setHttpOnly(true);
+		cookie.setSecure(true);
+		response.addCookie(cookie);
+		return user;
 //		}
 //		;
 //		return Optional.of(null);
@@ -149,10 +153,21 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	}
 
 	@Override
-	public void createUser(User user) {
-		// TODO Auto-generated method stub
-		
+	public UserEntity createUser(User user) {
+		if (userProvider.checkEmail(user.getEmail()) == 1) {
+			return null;
+		}
+			try {
+				//이름(name),이메일(email),패스워드(password),생년월일,폰번호,성
+				UserEntity userData = new UserEntity();
+				userData.setName(user.getName());
+				userData.setEmail(user.getEmail());
+				userData.setPassword(user.getPassword());
+				return userRepository.save(userData);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		return null;
 	}
 
-	
 }
