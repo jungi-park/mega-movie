@@ -24,13 +24,13 @@ public class PrincipalOAuth2DetailsService extends DefaultOAuth2UserService {
 		super();
 	}
 
-//	@Autowired
-//	public PrincipalOAuth2DetailsService(PasswordEncoder passwordEncoder, UserProvider userProvider,
-//			UserService userService) {
-//		this.passwordEncoder = passwordEncoder;
-//		this.userProvider = userProvider;
-//		this.userService = userService;
-//	}
+	@Autowired
+	public PrincipalOAuth2DetailsService(PasswordEncoder passwordEncoder, UserProvider userProvider,
+			UserService userService) {
+		this.passwordEncoder = passwordEncoder;
+		this.userProvider = userProvider;
+		this.userService = userService;
+	}
 
 	@Override
 	public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
@@ -39,7 +39,7 @@ public class PrincipalOAuth2DetailsService extends DefaultOAuth2UserService {
 		String username = oAuth2User.getAttributes().get("name").toString();
 		String nickname = oAuth2User.getAttributes().get("name").toString();
 		String email = oAuth2User.getAttributes().get("email").toString();
-//		String password = passwordEncoder.encode(email);
+		String password = passwordEncoder.encode(email);
 		String role = "ROLE_USER";
 		String provider = userRequest.getClientRegistration().getRegistrationId();
 		String provider_id = oAuth2User.getAttributes().get("sub").toString();

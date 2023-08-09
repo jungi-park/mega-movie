@@ -48,10 +48,8 @@ public class SecurityConfig {
 //				.requestMatchers("/v1/user/**").authenticated();
 
 		
-		http.oauth2Login()
-        .userInfoEndpoint()
-        .userService(principalOAuth2DetailsService); 
-		
+		http.oauth2Login(oauthConfig -> oauthConfig.userInfoEndpoint(infoConfig -> infoConfig.userService(principalOAuth2DetailsService)));
+  
 		http.addFilterBefore(new JwtAuthenticationFilter(tokenProvider), UsernamePasswordAuthenticationFilter.class);
 		return http.build();
 	}
@@ -70,9 +68,9 @@ public class SecurityConfig {
 		return source;
 	}
 
-	@Bean
-	public PasswordEncoder getPasswordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+//	@Bean
+//	public PasswordEncoder getPasswordEncoder() {
+//		return new BCryptPasswordEncoder();
+//	}
 
 }
