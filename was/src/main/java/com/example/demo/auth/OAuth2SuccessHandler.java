@@ -36,11 +36,12 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 		userData.setName(user.getName());
 		userData.setEmail(user.getEmail());
 		userData.setPassword(user.getPassword());
+		userData.setType("1");
 		String accessToken = tokenProvider.createToken(userData);
 
 //		authService.registerRefreshToken(oAuth2User.getUser().getId(), refreshToken);
 
-		targetUrl = UriComponentsBuilder.fromUriString("/auth/oauth2/success").queryParam("accessToken", accessToken).toUriString();
+		targetUrl = UriComponentsBuilder.fromUriString("http://localhost:3000").queryParam("accessToken", accessToken).toUriString();
 		getRedirectStrategy().sendRedirect(request, response, targetUrl);
 	}
 
