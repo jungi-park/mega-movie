@@ -6,14 +6,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import com.example.demo.auth.OAuth2SuccessHandler;
 import com.example.demo.auth.PrincipalOAuth2DetailsService;
 
 @Configuration
@@ -22,6 +21,7 @@ public class SecurityConfig {
 
 	private TokenProvider tokenProvider;
 	private PrincipalOAuth2DetailsService principalOAuth2DetailsService;
+	OAuth2SuccessHandler oAuth2SuccessHandler;
 
 	public SecurityConfig() {
 		super();
@@ -29,10 +29,11 @@ public class SecurityConfig {
 	}
 
 	@Autowired
-	public SecurityConfig(TokenProvider tokenProvider,PrincipalOAuth2DetailsService principalOAuth2DetailsService) {
+	public SecurityConfig(TokenProvider tokenProvider,PrincipalOAuth2DetailsService principalOAuth2DetailsService,OAuth2SuccessHandler oAuth2SuccessHandler) {
 		super();
 		this.tokenProvider = tokenProvider;
 		this.principalOAuth2DetailsService = principalOAuth2DetailsService;
+		this.oAuth2SuccessHandler = oAuth2SuccessHandler;
 	}
 
 	@Bean
@@ -48,7 +49,7 @@ public class SecurityConfig {
 //				.requestMatchers("/v1/user/**").authenticated();
 
 		
-		http.oauth2Login(oauthConfig -> oauthConfig.userInfoEndpoint(infoConfig -> infoConfig.userService(principalOAuth2DetailsService)));
+		http.oauth2Login(oauthConfig -> oauthConfig.userInfoEndpoint(infoConfig -> infoConfig.userService(principalOAuth2DetailsService)).successHandler(oAuth2SuccessHandler));
   
 		http.addFilterBefore(new JwtAuthenticationFilter(tokenProvider), UsernamePasswordAuthenticationFilter.class);
 		return http.build();
