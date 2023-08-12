@@ -3,6 +3,7 @@ package com.example.demo.auth;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
@@ -12,6 +13,7 @@ import com.example.demo.config.TokenProvider;
 import com.example.demo.entity.UserEntity;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -19,6 +21,8 @@ import jakarta.servlet.http.HttpServletResponse;
 public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
 	private TokenProvider tokenProvider;
+	@Value("${jwt.tokenKey}")
+	private String tokenKey;
 
 	@Autowired
 	public OAuth2SuccessHandler(TokenProvider tokenProvider) {
@@ -39,7 +43,12 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 		userData.setType("1");
 		String accessToken = tokenProvider.createToken(userData);
 
-//		authService.registerRefreshToken(oAuth2User.getUser().getId(), refreshToken);
+		Cookie cookie = new Cookie(tokenKey, accessToken);
+		cookie.setPath("/");
+		cookie.setMaxAge(60 * 60);
+		cookie.setHttpOnly(true);
+		cookie.setSecure(true);
+		response.addCookie(cookie);
 
 		targetUrl = UriComponentsBuilder.fromUriString("http://localhost:3000").queryParam("accessToken", accessToken).toUriString();
 		getRedirectStrategy().sendRedirect(request, response, targetUrl);
