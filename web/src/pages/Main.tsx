@@ -53,10 +53,7 @@ function Main() {
                 <h1 className="titleKor">더 퍼스트 슬램덩크</h1>
                 <h2 className="titleEng">The First Slam Dunk</h2>
               </div>
-              <button
-                className="ticketing primaryBtn"
-                data-text="예매하기"
-              ></button>
+              <button className="ticketing primaryBtn default">예매하기</button>
             </div>
           </div>
         </div>

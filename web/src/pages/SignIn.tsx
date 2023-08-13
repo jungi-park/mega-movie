@@ -91,19 +91,17 @@ const SingIn = () => {
               <label htmlFor="">아이디 저장</label>
             </div>
           </div>
-          <div className="btnBox">
+          <div className="btnLogin">
             {!user.isLogin && (
-              <button
-                className="primaryBtn long"
-                data-text="로그인"
-                onClick={SingIn}
-              ></button>
+              <button className="long" onClick={SingIn}>
+                로그인
+              </button>
             )}
-            {user.isLogin && (
+            {/* {user.isLogin && (
               <button className="primaryBtn long" onClick={SingOut}>
                 로그아웃
               </button>
-            )}
+            )} */}
           </div>
           <ul className="loginNav">
             <li>아이디 찾기</li>
@@ -118,12 +116,18 @@ const SingIn = () => {
             </div>
             <button className="long">비회원 예매확인</button>
           </div>
+          <div className="btngoogle">
+            <div className="icon-box">
+              <span className="icon"></span>
+            </div>
+            <button className="long">구글 로그인</button>
+          </div>
           <div className="btnkakao">
             <div className="icon-box">
               <span className="icon"></span>
             </div>
             <button className="long">카카오 로그인</button>
-          </div>
+          </div>{" "}
           <div className="btnnaver ">
             <div className="icon-box">
               <span className="icon"></span>

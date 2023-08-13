@@ -121,6 +121,12 @@
   }
 }
 
+.btnLogin {
+  button {
+    color: var(--color-text-white);
+    background-color: var(--color-primary-variant);
+  }
+}
 .loginNav {
   display: flex;
   justify-content: center;
@@ -170,6 +176,13 @@
     position: relative;
     button {
       background: #797979;
+      color: var(--color-text-white);
+    }
+  }
+  .btngoogle {
+    position: relative;
+    button {
+      background: #e04a32;
       color: var(--color-text-white);
     }
   }

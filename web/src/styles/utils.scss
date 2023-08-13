@@ -212,7 +212,7 @@ body {
   height: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
-  line-height: 0;
+  line-height: 1;
   font-weight: medium;
 }
 body,
@@ -279,6 +279,8 @@ button {
     padding: 0;
     border: 0;
     background: transparent;
+    color: var(--color-text-white);
+    padding-top: 0.32em;
     opacity: 1;
     &:hover {
       &:after {
@@ -297,11 +299,12 @@ button {
       left: 0;
       width: 100%;
       height: 100%;
-      border: solid 1px var(--color-primary);
       font-size: 16px;
       font-weight: bold;
       color: var(--color-text-white);
       transition: $btnSpeed;
+      border: solid 1px var(--color-primary);
+      z-index: -1;
     }
     &:after {
       content: attr(data-text);
@@ -312,8 +315,8 @@ button {
     }
     &:before {
       content: attr(data-text);
-      position: relative;
-      background: var(--color-primary-variant);
+      position: absolute;
+
       transform: translateY(0) rotateX(0);
       opacity: 1;
     }
