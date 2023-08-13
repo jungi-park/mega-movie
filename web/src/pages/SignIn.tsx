@@ -48,44 +48,93 @@ const SingIn = () => {
 
   return (
     <main className="login">
-      <h1 className="ci">
-        <a href="/" title="MEGABOX 메인으로 가기">
-          MEGABOX : Life Theater
-        </a>
-      </h1>
-      <div className="loginCont array-topcenter">
-        <div className="inputCont array-topcenter">
-          <input
-            className="idLine"
-            type="text"
-            placeholder="이메일"
-            value={form.email}
-            onChange={(event) =>
-              setForm({ ...form, email: event.target.value })
-            }
-          ></input>
-          <input
-            className="pwLine"
-            type="password"
-            placeholder="비밀번호"
-            value={form.password}
-            onChange={(event) =>
-              setForm({ ...form, password: event.target.value })
-            }
-          ></input>
+      <div className="content">
+        <h1 className="ci">
+          <a href="/" title="MEGABOX 메인으로 가기">
+            MEGABOX : Life Theater
+          </a>
+        </h1>
+        <div className="loginCont">
+          <div className="inputCont">
+            <div className="inputBox">
+              <div className="idBox">
+                <div className="icon-box">
+                  <span className="icon"></span>
+                </div>
+                <input
+                  className="idLine"
+                  type="text"
+                  placeholder="이메일"
+                  value={form.email}
+                  onChange={(event) =>
+                    setForm({ ...form, email: event.target.value })
+                  }
+                ></input>
+              </div>
+              <div className="pwBox">
+                <div className="icon-box">
+                  <span className="icon"></span>
+                </div>
+                <input
+                  className="pwLine"
+                  type="password"
+                  placeholder="비밀번호"
+                  value={form.password}
+                  onChange={(event) =>
+                    setForm({ ...form, password: event.target.value })
+                  }
+                ></input>
+              </div>
+            </div>
+            <div className="idSave">
+              <input type="checkbox" name="" id="" />
+              <label htmlFor="">아이디 저장</label>
+            </div>
+          </div>
+          <div className="btnLogin">
+            {!user.isLogin && (
+              <button className="long" onClick={SingIn}>
+                로그인
+              </button>
+            )}
+            {/* {user.isLogin && (
+              <button className="primaryBtn long" onClick={SingOut}>
+                로그아웃
+              </button>
+            )} */}
+          </div>
+          <ul className="loginNav">
+            <li>아이디 찾기</li>
+            <li>비밀번호 찾기</li>
+            <li>회원가입</li>
+          </ul>
         </div>
-        {!user.isLogin && (
-          <button
-            className="primaryBtn long"
-            data-text="로그인"
-            onClick={SingIn}
-          ></button>
-        )}
-        {user.isLogin && (
-          <button className="primaryBtn long" onClick={SingOut}>
-            로그아웃
-          </button>
-        )}
+        <div className="btnEtc">
+          <div className="btnNologin">
+            <div className="icon-box">
+              <span className="icon"></span>
+            </div>
+            <button className="long">비회원 예매확인</button>
+          </div>
+          <div className="btngoogle">
+            <div className="icon-box">
+              <span className="icon"></span>
+            </div>
+            <button className="long">구글 로그인</button>
+          </div>
+          <div className="btnkakao">
+            <div className="icon-box">
+              <span className="icon"></span>
+            </div>
+            <button className="long">카카오 로그인</button>
+          </div>{" "}
+          <div className="btnnaver ">
+            <div className="icon-box">
+              <span className="icon"></span>
+            </div>
+            <button className="long">네이버 로그인</button>
+          </div>
+        </div>
       </div>
     </main>
   );
