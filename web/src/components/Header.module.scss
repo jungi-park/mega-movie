@@ -1,10 +1,7 @@
 @import "../styles/utils";
 
 .mainHeader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   width: 100vw;
@@ -12,12 +9,7 @@
   z-index: 10000;
 }
 
-.headerCont {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 94%;
-  max-width: 1800px;
+.layout {
   height: 100%;
 }
 
@@ -45,7 +37,7 @@
   padding: 0;
   font-size: 0;
   line-height: 0;
-  background: url(../../public/logo_white.png) center/contain no-repeat;
+  background: url(../../public/logo_default.png) center/contain no-repeat;
 }
 
 .utilArea {
@@ -62,7 +54,7 @@
   column-gap: 24px;
   a {
     font-size: 14px;
-    color: #888;
+    color: var(--color-text-light);
   }
 }
 
@@ -80,11 +72,11 @@
   position: relative;
   link,
   svg {
-    fill: #fff;
+    fill: var(--color-text);
   }
   a {
     font-size: 18px;
-    color: #fff;
+    color: var(--color-text);
   }
   a::after {
     content: "";
@@ -95,7 +87,7 @@
     margin: 0 auto;
     width: 0;
     height: 1px;
-    background-color: #fff;
+    background-color: var(--color-text);
     transition: all 0.3s;
   }
   &:hover {
@@ -114,7 +106,7 @@
   div {
     width: 52px;
     height: 52px;
-    fill: #fff;
+    fill: var(--color-text);
   }
 }
 
@@ -145,14 +137,38 @@
   width: 200%;
   transform: translateY(100%);
   li {
-    color: #fff;
+    color: var(--color-text);
     font-size: 14px;
     white-space: pre;
+    color: var(--color-text-light);
     &:hover {
       display: flex;
     }
   }
   &:hover {
     display: flex;
+  }
+}
+
+.mainHeader.white {
+  background: #000000;
+  .ci a {
+    background: url(../../public/logo_white.png) center/contain no-repeat;
+  }
+  .gnbTitle {
+    link,
+    svg,
+    a {
+      color: var(--color-text-white);
+    }
+    a::after {
+      background-color: var(--color-text-white);
+    }
+  }
+  .gnbAll {
+    svg,
+    div {
+      fill: var(--color-text-white);
+    }
   }
 }
