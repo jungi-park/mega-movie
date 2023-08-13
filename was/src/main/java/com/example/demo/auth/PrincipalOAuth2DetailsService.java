@@ -54,7 +54,8 @@ public class PrincipalOAuth2DetailsService extends DefaultOAuth2UserService {
 			} else {
 //	                log.info("구글 로그인 기록이 있습니다.");
 				// retrieveByEmail 구현 필요!!
-				user = userProvider.retrieveByEmail(email);
+				UserEntity userData = userProvider.retrieveByEmail(email).orElseGet(null);
+				 user = new User(userData.getName(), userData.getName(), userData.getEmail(), userData.getPassword(), role, provider, provider_id);
 			}
 		} catch (Exception e) {
 			throw new RuntimeException(e);
