@@ -19,6 +19,10 @@ const SingIn = () => {
     email: "",
   });
 
+  const googleSingIn = () => {
+    window.location.href = "http://localhost:8080/oauth2/authorization/google";
+  };
+
   const SingIn = async () => {
     sendSignIn(form)
       .then((Response) => {
@@ -120,7 +124,14 @@ const SingIn = () => {
             <div className="icon-box">
               <span className="icon"></span>
             </div>
-            <button className="long">구글 로그인</button>
+            <button
+              className="long"
+              onClick={() => {
+                googleSingIn();
+              }}
+            >
+              구글 로그인
+            </button>
           </div>
           <div className="btnkakao">
             <div className="icon-box">

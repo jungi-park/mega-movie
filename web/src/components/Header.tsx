@@ -58,21 +58,21 @@ function UtilArea() {
   const isLoggedIn = false;
 
   const Links: Link[] = [
-    {
-      title: "구글로그인",
-      showWhenLoggedIn: !user.isLogin,
-      fuc: () => {
-        window.location.href =
-          "http://localhost:8080/oauth2/authorization/google";
-        // sendSignInGoogle()
-        //   .then((Response) => {
-        //     window.location.href = Response.data;
-        //   })
-        //   .catch((Error) => {
-        //     console.log(Error);
-        //   });
-      },
-    },
+    // {
+    //   title: "구글로그인",
+    //   showWhenLoggedIn: !user.isLogin,
+    //   fuc: () => {
+    //     window.location.href =
+    //       "http://localhost:8080/oauth2/authorization/google";
+    //     // sendSignInGoogle()
+    //     //   .then((Response) => {
+    //     //     window.location.href = Response.data;
+    //     //   })
+    //     //   .catch((Error) => {
+    //     //     console.log(Error);
+    //     //   });
+    //   },
+    // },
     { href: "/signin", title: "로그인", showWhenLoggedIn: !user.isLogin },
     { href: "/signup", title: "회원가입", showWhenLoggedIn: !user.isLogin },
     {
