@@ -16,7 +16,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.auth.User;
 import com.example.demo.auth.UserProvider;
 import com.example.demo.config.TokenProvider;
 import com.example.demo.entity.UserEntity;
@@ -150,24 +149,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 			}
 		}
 		return false;
-	}
-
-	@Override
-	public UserEntity createUser(User user) {
-		if (userProvider.checkEmail(user.getEmail()) == 1) {
-			return null;
-		}
-			try {
-				//이름(name),이메일(email),패스워드(password),생년월일,폰번호,성
-				UserEntity userData = new UserEntity();
-				userData.setName(user.getName());
-				userData.setEmail(user.getEmail());
-				userData.setPassword(user.getPassword());
-				return userRepository.save(userData);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		return null;
 	}
 
 }

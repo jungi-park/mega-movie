@@ -35,13 +35,12 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 			Authentication authentication) throws IOException, ServletException {
 		PrincipalDetails oAuth2User = (PrincipalDetails) authentication.getPrincipal();
 		String targetUrl;
-		User user= oAuth2User.getUser();
-		UserEntity userData = new UserEntity();
-		userData.setName(user.getName());
-		userData.setEmail(user.getEmail());
-		userData.setPassword(user.getPassword());
-		userData.setType("1");
-		String accessToken = tokenProvider.createToken(userData);
+		UserEntity user= oAuth2User.getUser();
+		user.setName(user.getName());
+		user.setEmail(user.getEmail());
+		user.setPassword(user.getPassword());
+		user.setType("1");
+		String accessToken = tokenProvider.createToken(user);
 
 		Cookie cookie = new Cookie(tokenKey, accessToken);
 		cookie.setPath("/");

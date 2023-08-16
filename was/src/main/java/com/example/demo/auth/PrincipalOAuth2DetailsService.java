@@ -9,16 +9,15 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.UserEntity;
+import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
 
 @Service
 public class PrincipalOAuth2DetailsService extends DefaultOAuth2UserService {
 
-	private  PasswordEncoder passwordEncoder;
-	private  UserProvider userProvider;
-	private  UserService userService;
-	
-	
+	private PasswordEncoder passwordEncoder;
+	private UserProvider userProvider;
+	private UserService userService;
 
 	public PrincipalOAuth2DetailsService() {
 		super();
@@ -44,18 +43,22 @@ public class PrincipalOAuth2DetailsService extends DefaultOAuth2UserService {
 		String provider = userRequest.getClientRegistration().getRegistrationId();
 		String provider_id = oAuth2User.getAttributes().get("sub").toString();
 
-		User user = null;
+		UserEntity user = new UserEntity();
 
 		try {
 			if (userProvider.checkEmail(email) == 0) {
 //	                log.info("구글 로그인이 최초입니다. 회원가입을 진행합니다.");
-	                user = new User(username, nickname, email, password, role, provider, provider_id);
-				userService.createUser(user);
+
+				user.setName(username);
+				user.setEmail(email);
+				user.setPassword(password);
+
+				userService.signUp(user);
 			} else {
 //	                log.info("구글 로그인 기록이 있습니다.");
 				// retrieveByEmail 구현 필요!!
-				UserEntity userData = userProvider.retrieveByEmail(email).orElseGet(null);
-				 user = new User(userData.getName(), userData.getName(), userData.getEmail(), userData.getPassword(), role, provider, provider_id);
+				 user = userProvider.retrieveByEmail(email).orElseGet(null);
+		
 			}
 		} catch (Exception e) {
 			throw new RuntimeException(e);

@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Map;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
@@ -13,14 +14,14 @@ import com.example.demo.entity.UserEntity;
 
 public class PrincipalDetails implements UserDetails, OAuth2User {
 
-    private final User user;
+    private final UserEntity user;
     private Map<String, Object> attributes;
 
-    public PrincipalDetails(User user) {
+    public PrincipalDetails(UserEntity user) {
         this.user = user;
     }
 
-    public PrincipalDetails(User user, Map<String, Object> attributes) {
+    public PrincipalDetails(UserEntity user, Map<String, Object> attributes) {
         this.user = user;
         this.attributes = attributes;
     }
@@ -28,14 +29,21 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
     //UserDetails
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Collection<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new GrantedAuthority() {
-            @Override
-            public String getAuthority() {
-                return user.getRole();
-            }
-        });
-        return authorities;
+    	String type = user.getType();
+    	ArrayList<GrantedAuthority> auth = new ArrayList<GrantedAuthority>();
+		switch (type) {
+		case "1": {
+			auth.add(new SimpleGrantedAuthority("ROLE_USER"));
+			break;
+		}
+		case "2": {
+			auth.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+			break;
+		}
+		default:
+
+		}
+		return auth;
     }
 
     @Override
@@ -79,7 +87,7 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
         return user.getName();
     }
 
-	public User getUser() {
+	public UserEntity getUser() {
 		return user;
 	}
 

@@ -3,7 +3,6 @@ package com.example.demo.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.demo.auth.User;
 import com.example.demo.entity.UserEntity;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,5 +23,4 @@ public interface UserService {
 
 	public boolean logOut(HttpServletRequest request, HttpServletResponse response);
 
-	public UserEntity createUser(User user);
 }

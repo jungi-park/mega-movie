@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Map;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
@@ -12,6 +13,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -26,7 +28,7 @@ import jakarta.persistence.TemporalType;
 @DynamicUpdate
 @DynamicInsert
 @Entity(name = "users")
-public class UserEntity implements UserDetails {
+public class UserEntity implements UserDetails,OAuth2User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(updatable = false, nullable = false, columnDefinition = "INT UNSIGNED")
@@ -237,6 +239,12 @@ public class UserEntity implements UserDetails {
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
 		return true;
+	}
+
+	@Override
+	public Map<String, Object> getAttributes() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
