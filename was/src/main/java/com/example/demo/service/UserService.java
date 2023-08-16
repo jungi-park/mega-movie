@@ -23,4 +23,8 @@ public interface UserService {
 
 	public boolean logOut(HttpServletRequest request, HttpServletResponse response);
 
+	public int checkEmail(String email);
+
+	public Optional<UserEntity> retrieveByEmail(String email);
+
 }

@@ -16,7 +16,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.auth.UserProvider;
 import com.example.demo.config.TokenProvider;
 import com.example.demo.entity.UserEntity;
 import com.example.demo.repository.UserRepository;
@@ -32,7 +31,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	private PasswordEncoder getPasswordEncoder;
 	private TokenProvider tokenProvider;
 	private AuthenticationManagerBuilder authenticationManagerBuilder;
-	private UserProvider userProvider;
 	@Value("${jwt.tokenKey}")
 	private String tokenKey;
 
@@ -42,14 +40,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 	@Autowired
 	public UserServiceImpl(UserRepository userRepository, PasswordEncoder getPasswordEncoder,
-			TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder,
-			UserProvider userProvider) {
+			TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder
+			) {
 		super();
 		this.userRepository = userRepository;
 		this.getPasswordEncoder = getPasswordEncoder;
 		this.tokenProvider = tokenProvider;
 		this.authenticationManagerBuilder = authenticationManagerBuilder;
-		this.userProvider = userProvider;
 	}
 
 	@Override
@@ -151,4 +148,23 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		return false;
 	}
 
+	public int checkEmail(String email) {
+		if (userRepository.findByEmail(email).isPresent()) {
+			return 1;
+		}
+		return 0;
+	}
+
+	public Optional<UserEntity> retrieveByEmail(String email) {
+		if (checkEmail(email) == 0) {
+			return null;
+		}
+		try {
+			return userRepository.findByEmail(email);
+
+		} catch (Exception e) {
+			return null;
+		}
+
+}
 }

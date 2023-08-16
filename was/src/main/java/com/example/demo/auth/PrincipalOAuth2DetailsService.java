@@ -16,7 +16,6 @@ import com.example.demo.service.UserService;
 public class PrincipalOAuth2DetailsService extends DefaultOAuth2UserService {
 
 	private PasswordEncoder passwordEncoder;
-	private UserProvider userProvider;
 	private UserService userService;
 
 	public PrincipalOAuth2DetailsService() {
@@ -24,10 +23,9 @@ public class PrincipalOAuth2DetailsService extends DefaultOAuth2UserService {
 	}
 
 	@Autowired
-	public PrincipalOAuth2DetailsService(PasswordEncoder passwordEncoder, UserProvider userProvider,
+	public PrincipalOAuth2DetailsService(PasswordEncoder passwordEncoder, 
 			UserService userService) {
 		this.passwordEncoder = passwordEncoder;
-		this.userProvider = userProvider;
 		this.userService = userService;
 	}
 
@@ -46,7 +44,7 @@ public class PrincipalOAuth2DetailsService extends DefaultOAuth2UserService {
 		UserEntity user = new UserEntity();
 
 		try {
-			if (userProvider.checkEmail(email) == 0) {
+			if (userService.checkEmail(email) == 0) {
 //	                log.info("구글 로그인이 최초입니다. 회원가입을 진행합니다.");
 
 				user.setName(username);
@@ -57,7 +55,7 @@ public class PrincipalOAuth2DetailsService extends DefaultOAuth2UserService {
 			} else {
 //	                log.info("구글 로그인 기록이 있습니다.");
 				// retrieveByEmail 구현 필요!!
-				 user = userProvider.retrieveByEmail(email).orElseGet(null);
+				 user = userService.retrieveByEmail(email).orElseGet(null);
 		
 			}
 		} catch (Exception e) {
