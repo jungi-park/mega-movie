@@ -50,7 +50,7 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 		cookie.setSecure(true);
 		response.addCookie(cookie);
 
-		targetUrl = UriComponentsBuilder.fromUriString("http://localhost:3000").queryParam("accessToken", accessToken).toUriString();
+		targetUrl = UriComponentsBuilder.fromUriString("http://localhost:3000/oauth/signin").queryParam("email", user.getEmail()).queryParam("name",user.getName()).toUriString();
 		getRedirectStrategy().sendRedirect(request, response, targetUrl);
 	}
 
