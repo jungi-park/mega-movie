@@ -62,6 +62,6 @@ public class PrincipalOAuth2DetailsService extends DefaultOAuth2UserService {
 			throw new RuntimeException(e);
 		}
 
-		return new PrincipalDetails(user, oAuth2User.getAttributes());
+		return user;
 	}
 }

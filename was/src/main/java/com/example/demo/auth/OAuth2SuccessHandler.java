@@ -33,13 +33,8 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
-		PrincipalDetails oAuth2User = (PrincipalDetails) authentication.getPrincipal();
+		UserEntity user = (UserEntity) authentication.getPrincipal();
 		String targetUrl;
-		UserEntity user= oAuth2User.getUser();
-		user.setName(user.getName());
-		user.setEmail(user.getEmail());
-		user.setPassword(user.getPassword());
-		user.setType("1");
 		String accessToken = tokenProvider.createToken(user);
 
 		Cookie cookie = new Cookie(tokenKey, accessToken);
