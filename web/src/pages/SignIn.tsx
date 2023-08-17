@@ -23,6 +23,10 @@ const SingIn = () => {
     window.location.href = "http://localhost:8080/oauth2/authorization/google";
   };
 
+  const kakaoSingIn = () => {
+    window.location.href = "http://localhost:8080/oauth2/authorization/kakao";
+  };
+
   const naverSingIn = () => {
     window.location.href = "http://localhost:8080/oauth2/authorization/naver";
   };
@@ -141,7 +145,14 @@ const SingIn = () => {
             <div className="icon-box">
               <span className="icon"></span>
             </div>
-            <button className="long">카카오 로그인</button>
+            <button
+              className="long"
+              onClick={() => {
+                kakaoSingIn();
+              }}
+            >
+              카카오 로그인
+            </button>
           </div>{" "}
           <div className="btnnaver ">
             <div className="icon-box">

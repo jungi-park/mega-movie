@@ -90,7 +90,20 @@ public class PrincipalOAuth2DetailsService extends DefaultOAuth2UserService {
 			user.setEmail(email);
 			user.setPassword(password);
 			return user;
-		}
+		}else if (userRequest.getClientRegistration().getRegistrationId().equals("kakao")) {
+	        Map<String, Object> attributes = oAuth2User.getAttributes();
+	        Map<String, Object> kakao_account = (Map<String, Object>) attributes.get("kakao_account");
+	        Map<String, Object> profile = (Map<String, Object>) kakao_account.get("profile");
+
+	        String username = (String) profile.get("nickname");
+	        String email = (String) kakao_account.get("email");
+	        String password = passwordEncoder.encode(UUID.randomUUID().toString());
+
+	        user.setName(username);
+	        user.setEmail(email);
+	        user.setPassword(password);
+	        return user;
+	    }
 		return null;
 	}
 }
