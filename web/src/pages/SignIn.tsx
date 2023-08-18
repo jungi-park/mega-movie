@@ -13,11 +13,29 @@ const SingIn = () => {
   const navigate = useNavigate();
   const url = "http://localhost:8080";
   const dispatch = useDispatch(); // 디스패치 함수를 가져옵니다
-
+  const [rememberId, setRememberId] = useState(false);
   const [form, setForm] = useState({
     password: "",
     email: "",
   });
+
+  useEffect(() => {
+    // 체크박스 초기 값 설정
+    const savedEmail = localStorage.getItem("savedEmail");
+    if (savedEmail !== null) {
+      setForm({ ...form, email: savedEmail });
+      setRememberId(true);
+    }
+  }, []);
+
+  // 새로운 이메일 값이 입력될 때마다 localStorage에 저장
+  useEffect(() => {
+    if (rememberId) {
+      localStorage.setItem("savedEmail", form.email);
+    } else {
+      localStorage.removeItem("savedEmail");
+    }
+  }, [form.email, rememberId]);
 
   const googleSingIn = () => {
     window.location.href = "http://localhost:8080/oauth2/authorization/google";
@@ -99,7 +117,15 @@ const SingIn = () => {
               </div>
             </div>
             <div className="idSave">
-              <input type="checkbox" name="" id="" />
+              <input
+                onChange={(event) => {
+                  setRememberId(event.target.checked);
+                }}
+                checked={rememberId}
+                type="checkbox"
+                name=""
+                id=""
+              />
               <label htmlFor="">아이디 저장</label>
             </div>
           </div>
