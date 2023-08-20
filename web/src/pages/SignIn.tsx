@@ -58,6 +58,8 @@ const SingIn = () => {
           );
           navigate("/");
           console.log("로그인", user);
+        } else {
+          alert("아이디 및 비밀번호를 확인해주세요");
         }
       })
       .catch((Error) => {
@@ -144,7 +146,13 @@ const SingIn = () => {
           <ul className="loginNav">
             <li>아이디 찾기</li>
             <li>비밀번호 찾기</li>
-            <li>회원가입</li>
+            <li
+              onClick={() => {
+                navigate("/signup");
+              }}
+            >
+              회원가입
+            </li>
           </ul>
         </div>
         <div className="btnEtc">
