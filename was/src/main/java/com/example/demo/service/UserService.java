@@ -3,6 +3,8 @@ package com.example.demo.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.http.ResponseEntity;
+
 import com.example.demo.entity.UserEntity;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,7 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 public interface UserService {
 	public List<UserEntity> findAllUser();
 
-	public UserEntity signUp(UserEntity user);
+	public ResponseEntity<UserEntity> signUp(UserEntity user);
 
 	public UserEntity selectUserById(int id);
 

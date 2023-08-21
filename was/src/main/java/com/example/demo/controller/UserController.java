@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
@@ -57,7 +58,7 @@ public class UserController {
 	 * @return
 	 */
 	@PostMapping("user")
-	public UserEntity signUp(@RequestBody UserEntity user) {
+	public ResponseEntity<UserEntity> signUp(@RequestBody UserEntity user) {
 		return userService.signUp(user);
 	}
 

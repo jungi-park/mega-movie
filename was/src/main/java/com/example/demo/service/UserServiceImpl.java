@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
@@ -40,8 +42,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 	@Autowired
 	public UserServiceImpl(UserRepository userRepository, PasswordEncoder getPasswordEncoder,
-			TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder
-			) {
+			TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder) {
 		super();
 		this.userRepository = userRepository;
 		this.getPasswordEncoder = getPasswordEncoder;
@@ -55,11 +56,16 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 	}
 
 	@Override
-	public UserEntity signUp(UserEntity user) {
+	public ResponseEntity<UserEntity> signUp(UserEntity user) {
+		String email = user.getEmail();
+		if (userRepository.findByEmail(email).isPresent()) {
+			return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
+		}
 		Optional.ofNullable(user.getType()).ifPresentOrElse(null, () -> {
 			user.setType("1");
 		});
-		return userRepository.save(user);
+		UserEntity savedUser = userRepository.save(user);
+		return ResponseEntity.status(HttpStatus.OK).body(savedUser);
 	}
 
 	@Override
@@ -166,5 +172,5 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 			return null;
 		}
 
-}
+	}
 }
