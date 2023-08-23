@@ -29,4 +29,6 @@ public interface UserService {
 
 	public Optional<UserEntity> retrieveByEmail(String email);
 
+	public UserEntity findByEmail(String email);
+
 }

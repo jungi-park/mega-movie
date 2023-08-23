@@ -44,9 +44,9 @@ public class SecurityConfig {
 		http.formLogin(formConfig -> formConfig.disable());
 
 		http.authorizeHttpRequests(requestConfig -> requestConfig.requestMatchers("/v1/admin/**").hasAnyRole("ADMIN").requestMatchers("/v1/login").permitAll()
-				.requestMatchers("/v1/logout").permitAll().requestMatchers("/v1/user").permitAll().requestMatchers("/v1/google/**").permitAll());
+				.requestMatchers("/v1/logout").permitAll().requestMatchers("/v1/signup").permitAll().requestMatchers("/v1/google/**").permitAll().requestMatchers("/v1/user/**").authenticated());
 //	        .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
-//				.requestMatchers("/v1/user/**").authenticated();
+				
 
 		
 		http.oauth2Login(oauthConfig -> oauthConfig.userInfoEndpoint(infoConfig -> infoConfig.userService(principalOAuth2DetailsService)).successHandler(oAuth2SuccessHandler));

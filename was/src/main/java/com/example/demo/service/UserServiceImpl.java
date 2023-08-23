@@ -173,4 +173,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		}
 
 	}
+
+	@Override
+	public UserEntity findByEmail(String email) {
+		return userRepository.findByEmail(email).orElseGet(null);
+	}
 }
