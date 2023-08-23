@@ -24,5 +24,12 @@ export const sendSignOut = async (form: any) => {
 };
 
 export const sendSignUp = async (form: any) => {
-  return await axios.post(`${url}/v1/user`, { ...form });
+  return await axios.post(`${url}/v1/signup`, { ...form });
+};
+
+export const getMyPage = async (email: String) => {
+  return await axios.get(`${url}/v1/logout`, {
+    params: { email },
+    // withCredentials: true,
+  });
 };

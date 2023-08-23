@@ -1,7 +1,7 @@
 import "./SignUp.scss";
 import axios from "axios";
 import React, { useState } from "react";
-import { sendSignUp } from "../utile/sign";
+import { sendSignUp } from "../utile/DAO/user";
 import { useNavigate } from "react-router-dom";
 
 const url = "http://localhost:8080";

@@ -3,10 +3,10 @@ import React from "react";
 import { RootState } from "../modules/rootReducer";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./Header.module.scss";
-import { sendSignOut } from "../utile/sign";
+import { sendSignOut } from "../utile/DAO/user";
 import { logoutUser } from "../modules/user";
 import { Link } from "../type/linkType";
-import { sendSignInGoogle } from "../utile/sign";
+import { sendSignInGoogle } from "../utile/DAO/user";
 import { useNavigate } from "react-router-dom";
 
 // function Header(){
@@ -88,6 +88,13 @@ function UtilArea() {
           .catch((Error) => {
             console.log(Error);
           });
+      },
+    },
+    {
+      title: "마이페이지",
+      showWhenLoggedIn: user.isLogin,
+      fuc: () => {
+        navigate("/mypage");
       },
     },
     { href: "/", title: "고객센터", showWhenLoggedIn: true },

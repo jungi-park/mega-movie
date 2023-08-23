@@ -8,6 +8,7 @@ import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import Main from "./pages/Main";
 import OauthSignIn from "./pages/OauthSignIn";
+import MyPage from "./pages/MyPage";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -21,6 +22,7 @@ root.render(
         <Route path="/*" element={<Main></Main>}></Route>
         <Route path="/signup" element={<SignUp></SignUp>}></Route>
         <Route path="/signin" element={<SignIn></SignIn>}></Route>
+        <Route path="/mypage" element={<MyPage></MyPage>}></Route>
         <Route
           path="/oauth/signin"
           element={<OauthSignIn></OauthSignIn>}
