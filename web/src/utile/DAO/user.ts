@@ -28,8 +28,8 @@ export const sendSignUp = async (form: any) => {
 };
 
 export const getMyPage = async (email: String) => {
-  return await axios.get(`${url}/v1/logout`, {
+  return await axios.get(`${url}/v1/user/mypage`, {
     params: { email },
-    // withCredentials: true,
+    withCredentials: true,
   });
 };
