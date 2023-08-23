@@ -115,7 +115,6 @@ public class UserController {
 
 	@GetMapping("/user/mypage")
 	public UserEntity findByEmail(@RequestParam("email") String email) {
-		System.out.println("user11111111111="+email);
 		return userService.findByEmail(email);
 	}
 
