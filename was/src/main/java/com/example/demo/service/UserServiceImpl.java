@@ -176,6 +176,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 	@Override
 	public UserEntity findByEmail(String email) {
-		return userRepository.findByEmail(email).orElseGet(null);
-	}
+	    Optional<UserEntity> userOptional = userRepository.findByEmail(email);
+	    if (userOptional.isPresent()) {
+	        UserEntity user = userOptional.get();
+	        user.setPassword(null);
+	        return user;
+	    } else {
+	        return null; // 또는 원하는 처리 방식으로 수정
+	    }	}
 }
