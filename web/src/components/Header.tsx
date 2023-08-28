@@ -214,10 +214,8 @@ type HeaderClass = {
 // Header
 function Header(color: HeaderClass) {
   return (
-    <header
-      className={`${styles[color.className]} ${styles.mainHeader} arrry-center`}
-    >
-      <div className={`${styles.layout} array-rowbetween`}>
+    <header className={`${styles[color.className]} ${styles.mainHeader}`}>
+      <div className={`${styles.layout}`}>
         <div className={styles.leftCont}>
           <h1 className={styles.ci}>
             <a href="/" title="MEGABOX 메인으로 가기">

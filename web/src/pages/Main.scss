@@ -9,177 +9,321 @@
   height: 776px;
 }
 
-// 기본 section div
+// 기본 section title
 .title {
   margin-bottom: 16px;
+  font-weight: bold;
+  color: $color-text;
+  span {
+    margin-left: 8px;
+    @extend h6;
+    font-weight: normal;
+    color: $color-text-light;
+  }
+}
+
+// mainSection
+.mainSection {
+  background: linear-gradient(
+    rgba($color-primary-variant, 1) 0%,
+    rgba($color-primary-variant, 1) 30%,
+    rgba($color-primary, 1) 100%
+  );
 }
 
 // bannerSection
 .HeroBanner {
-  position: relative;
   width: 100%;
-  height: 648px;
-  background: #000000;
+  height: 744px;
+  .layout,
+  .bannerBg {
+    height: 100%;
+    padding-top: 128px;
+  }
   .layout {
     position: relative;
-    height: 100%;
-    color: #fff;
   }
-}
-.bannerBg {
-  position: absolute;
-  right: 0;
-  height: 100%;
-  opacity: 0.8;
-  overflow: hidden;
-  img {
-    height: 100%;
+  .bannerBg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    overflow: hidden;
+    img {
+      height: 100%;
+      -webkit-mask-image: linear-gradient(
+        90deg,
+        rgba($color-primary-variant, 0) 0%,
+        rgba($color-primary-variant, 1) 50%,
+        rgba($color-primary-variant, 1) 100%
+      );
+    }
   }
-}
-.bannerGrad {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 0) 50%,
-    rgba(0, 0, 0, 0) 100%
-  );
-}
-.bannerCont {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-  width: 40%;
-  height: 100%;
-  z-index: 1;
-}
-.titleLogo {
-  height: 240px;
-  margin-bottom: 24px;
-}
-.ticketing {
-  margin-top: 40px;
+  .bannerCont {
+    @include flex(
+      $direction: column,
+      $justifyContent: center,
+      $alignItems: flex-start
+    );
+    position: relative;
+    width: 40%;
+    height: 100%;
+    z-index: 1;
+  }
+  .titleLogo {
+    height: 256px;
+    margin-bottom: 32px;
+  }
+  .titleKor {
+    color: $color-text-white;
+  }
+  .titleEng {
+    margin-top: 12px;
+    color: $color-text-light;
+  }
+  .ticketing {
+    margin-top: 32px;
+    box-shadow: 4px 8px 16px rgba($color-primary-variant, 0.5);
+  }
 }
 
 // movieSection
 .movieSection {
   width: 100%;
-  padding: 32px 0;
-  background: #000;
-}
-.movieSlide {
-  width: 100%;
-  height: 366px;
-  overflow: hidden;
-  position: relative;
-}
-.movieList {
-  display: flex;
-  column-gap: 16px;
-  position: absolute;
-  height: 366px;
-}
-.movie {
-  width: 256px;
-  height: 366px;
-  background: #150e2c;
+  border-radius: 40px 40px 0 0;
+  background-color: $color-surface;
+  .layout {
+    @include flex(
+      $direction: column,
+      $justifyContent: center,
+      $alignItems: flex-start
+    );
+    height: 100%;
+    padding: 48px 0;
+  }
+  .movieSlide {
+    position: relative;
+    width: 100%;
+    height: 440px;
+    overflow: hidden;
+  }
+  .movieList {
+    display: flex;
+    column-gap: 16px;
+    position: absolute;
+    height: 400px;
+  }
+  .movie,
+  .movieCont,
+  .movieRank {
+    background-color: $color-primary-variant;
+  }
+  .movie {
+    @include flex($direction: column, $justifyContent: space-between);
+    position: relative;
+    width: 256px;
+    height: 100%;
+    &:nth-of-type(1) {
+      // 1위
+      box-shadow: 4px 8px 16px rgba($color-primary-variant, 0.5);
+      margin-right: 16px;
+      transform: scale(1.04);
+      transform-origin: top left;
+      &,
+      .movieCont,
+      .movieRank {
+        background-color: $color-primary;
+      }
+    }
+    &:hover {
+      filter: brightness(0.3);
+    }
+  }
+  .posterImg {
+    padding: 4px;
+    width: 100%;
+  }
+  .movieCont {
+    @include flex($justifyContent: space-between);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    padding: 4px 16px 0 56px;
+  }
+  .movieRank {
+    @include flex($justifyContent: center);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 48px;
+    height: 56px;
+    padding-top: 4px;
+    color: $color-text-white;
+    h3 {
+      font-weight: bold;
+    }
+  }
+  .moviePer {
+    color: $color-text-white;
+    span {
+      @extend p;
+      opacity: 0.7;
+    }
+  }
+  .movieStar {
+    @include flex($justifyContent: center);
+    color: $color-text-white;
+    opacity: 0.7;
+    img {
+      height: 24px;
+    }
+  }
 }
 
-.eventSection .layout,
-.curationSection .layout {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100%;
-}
-.eventCont,
-.curationCont {
-  display: flex;
-  justify-content: space-between;
-  column-gap: 104px;
-  width: 100%;
-  height: 512px;
-}
-.eventInfo,
-.curationInfo {
-  display: flex;
-  flex-direction: column;
-  row-gap: 32px;
-  width: 32%;
-  height: 100%;
-}
-.eventTitle,
-.curationTitle {
-  width: 100%;
-  height: 80px;
-  background: gainsboro;
-}
-.eventDate,
-.curationDate {
-  width: 100%;
-  height: 40px;
-  background: gainsboro;
-}
-.eventList {
-  width: 64%;
-  height: 512px;
-  background: gainsboro;
-}
-.eventScreen {
-  width: 720px;
-  height: 100%;
-  background: gray;
-}
-.eventBg {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 360px;
-  background: #642ec2;
-  z-index: -1;
+.eventSection {
+  .layout {
+    @include flex(
+      $direction: column,
+      $justifyContent: center,
+      $alignItems: flex-start
+    );
+    height: 100%;
+  }
+  .eventCont {
+    @include flex($justifyContent: space-between, $alignItems: flex-start);
+    column-gap: 104px;
+    width: 100%;
+    height: 512px;
+  }
+  .eventInfo {
+    @include flex(
+      $direction: column,
+      $justifyContent: flex-start,
+      $alignItems: flex-start
+    );
+    row-gap: 32px;
+    width: 32%;
+    height: 100%;
+  }
+  .eventTitle {
+    color: $color-primary;
+    h3 {
+      margin-bottom: 16px;
+    }
+  }
+  .eventsSub {
+    color: $color-text-light;
+    h5 {
+      line-height: 28px;
+    }
+    .eventDate {
+      margin-top: 8px;
+    }
+  }
+  .eventList {
+    @include flex($justifyContent: center);
+    column-gap: 16px;
+    width: 64%;
+    height: 512px;
+  }
+  .eventScreen {
+    width: 720px;
+    height: 100%;
+    background-color: $color-primary-variant;
+    &:hover {
+      filter: brightness(0.3);
+    }
+  }
+  .eventNav {
+    @include flex($direction: column, $justifyContent: flex-start);
+    row-gap: 16px;
+    width: 400px;
+    height: 100%;
+    overflow: hidden;
+  }
+  .event {
+    width: 100%;
+    height: 120px;
+    background-color: $color-surface;
+    box-shadow: 4px 8px 16px rgba($color-primary-variant, 0.5);
+    &:hover {
+      filter: brightness(0.3);
+    }
+  }
+  .eventBg {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 360px;
+    background-color: $color-primary;
+    z-index: -1;
+  }
 }
 
 .curationSection {
-  background: #150e2c;
-}
-.curationtSlide {
-  position: relative;
-  width: 64%;
-  height: 512px;
-}
-.curationtList {
-  display: flex;
-  column-gap: 16px;
-  position: absolute;
-  height: 100%;
-}
-.curationCard {
-  width: 528px;
-  height: 100%;
-  background: #642ec2;
+  background-color: $color-primary-variant;
+  .layout {
+    @include flex(
+      $direction: column,
+      $justifyContent: center,
+      $alignItems: flex-start
+    );
+    height: 100%;
+  }
+  .curationCont {
+    @include flex($justifyContent: flex-start, $alignItems: flex-start);
+    column-gap: 104px;
+    width: 100%;
+    height: 512px;
+  }
+  .curationInfo {
+    @include flex($direction: column, $alignItems: flex-start);
+    height: 100%;
+  }
+  .curationTitle {
+    line-height: 44px;
+    color: $color-text-light;
+  }
+  .curationtSlide {
+    position: relative;
+    height: 512px;
+  }
+  .curationtList {
+    @include flex();
+    column-gap: 16px;
+    position: absolute;
+    height: 100%;
+  }
+  .curationCard {
+    width: 400px;
+    height: 100%;
+    background-color: $color-surface;
+    box-shadow: 4px 8px 16px rgba($color-primary, 0.5);
+    &:hover {
+      filter: brightness(0.3);
+    }
+  }
 }
 
 .guideSection {
-  display: flex;
+  @include flex($alignItems: flex-start);
   width: 100%;
   height: 528px;
   padding: 32px 0;
-}
-.guideList {
-  display: flex;
-  column-gap: 16px;
-  justify-content: center;
-  width: 100%;
-}
-.guideCard {
-  width: 208px;
-  height: 298px;
-  background: #642ec2;
+  .guideList {
+    @include flex($alignItems: flex-start);
+    column-gap: 16px;
+    width: 100%;
+  }
+  .guideCard {
+    width: 296px;
+    height: 296px;
+    background-color: $color-primary;
+    &:hover {
+      filter: brightness(0.3);
+    }
+  }
 }
 
 footer {
