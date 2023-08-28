@@ -6,26 +6,26 @@
     format("woff");
 }
 
-:root {
-  --color-primary: #642ec2;
-  --color-primary-variant: #150e2c;
-  --color-secondary: #00e0f6;
-  --color-secondary-variant: #00b9cc;
+$color-primary: #642ec2;
+$color-primary-variant: #150e2c;
+$color-secondary: #00e0f6;
+$color-secondary-variant: #00b9cc;
 
-  --color-surface-dim: #ffffff;
-  --color-surface: #ffffff;
-  --color-surface-bright: #ffffff;
+$color-surface-dim: #ffffff;
+$color-surface: #ffffff;
+$color-surface-bright: #ffffff;
 
-  --color-text-light: #999999;
-  --color-text: #4e4e4e;
-  --color-text-dark: #000000;
+$color-text-light: #999999;
+$color-text: #4e4e4e;
+$color-text-dark: #000000;
 
-  --color-text-white: #ffffff;
+$color-text-white: #ffffff;
 
-  --color-success: #178ff6;
-  --color-error: #ef4a52;
-  --color-warning: #da9500;
-}
+$color-success: #178ff6;
+$color-error: #ef4a52;
+$color-warning: #da9500;
+
+$color-primary-opacity-90: rgba($color-primary-variant, 0.9);
 
 // flex
 @mixin flex(
@@ -39,29 +39,6 @@
   flex-wrap: $wrap;
   justify-content: $justifyContent;
   align-items: $alignItems;
-}
-.array {
-  &-rowcenter {
-    @include flex(row, wrap, center, center);
-  }
-  &-columncenter {
-    @include flex(column, wrap, center, center);
-  }
-  &-rowbetween {
-    @include flex(row, wrap, space-between, center);
-  }
-  &-columnbetween {
-    @include flex(column, wrap, space-between, center);
-  }
-  &-leftcenter {
-    @include flex(row, wrap, flex-start, center);
-  }
-  &-rightcenter {
-    @include flex(row, wrap, flex-end, center);
-  }
-  &-topcenter {
-    @include flex(column, wrap, flex-start, center);
-  }
 }
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -226,12 +203,17 @@ input {
 
 // font
 h1 {
-  font-size: 56px;
+  font-size: 64px;
   font-weight: bold;
 }
 
 h2 {
-  font-size: 24px;
+  font-size: 56px;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 32px;
 }
 
 h4 {
@@ -279,7 +261,7 @@ button {
     padding: 0;
     border: 0;
     background: transparent;
-    color: var(--color-text-white);
+    color: $color-text-white;
     padding-top: 0.32em;
     opacity: 1;
     &:hover {
@@ -294,22 +276,23 @@ button {
     }
     &:after,
     &:before {
-      @extend .array-rowcenter;
+      @include flex($alignItems: center);
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       font-size: 16px;
       font-weight: bold;
-      color: var(--color-text-white);
+      color: $color-text-white;
       transition: $btnSpeed;
-      border: solid 1px var(--color-primary);
+      border: solid 1px $color-primary;
+      background-color: $color-primary-variant;
       z-index: -1;
     }
     &:after {
       content: attr(data-text);
       position: absolute;
-      background: var(--color-primary);
+      background-color: $color-primary;
       transform: translateY(-50%) rotateX(90deg);
       opacity: 0;
     }
