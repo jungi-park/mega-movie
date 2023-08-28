@@ -35,5 +35,9 @@ export const getMyPage = async (email: String) => {
 };
 
 export const sendUserUpdate = async (form: any) => {
-  return await axios.put(`${url}/v1/user/mypage`, { ...form });
+  return await axios.put(
+    `${url}/v1/user/mypage`,
+    { ...form },
+    { withCredentials: true }
+  );
 };

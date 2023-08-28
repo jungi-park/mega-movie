@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,48 +42,7 @@ public class UserController {
 	public ResponseEntity<UserEntity> signUp(@RequestBody UserEntity user) {
 		return userService.signUp(user);
 	}
-//
-//	/**
-//	 * 멤버 전체 조회
-//	 * 
-//	 * @return
-//	 */
-//	@GetMapping("user")
-//	public List<UserEntity> findAllUser() {
-//		return userService.findAllUser();
-//	}
 
-//	/**
-//	 * 멤버 조회
-//	 * 
-//	 * @return
-//	 */
-//	@GetMapping("user/{id}")
-//	public UserEntity selectUserById(@PathVariable("id") int id) {
-//		return userService.selectUserById(id);
-//	}
-//
-//	/**
-//	 * 멤버 수정
-//	 * 
-//	 * @return
-//	 */
-//
-//	@PutMapping("user")
-//	public UserEntity updateUserById(@RequestBody UserEntity user) {
-//		return userService.updateUserById(user);
-//	}
-//
-//	/**
-//	 * 멤버 삭제
-//	 * 
-//	 * @return
-//	 */
-//
-//	@DeleteMapping("user/{id}")
-//	public String deleteUserById(@PathVariable("id") int id) {
-//		return userService.deleteUserById(id);
-//	}
 
 	/**
 	 * 로그인
@@ -116,6 +76,17 @@ public class UserController {
 	@GetMapping("/user/mypage")
 	public UserEntity findByEmail(@RequestParam("email") String email) {
 		return userService.findByEmail(email);
+	}
+	
+	/**
+	 * 멤버 수정
+	 * 
+	 * @return
+	 */
+
+	@PutMapping("/user/mypage")
+	public UserEntity updateUser(@RequestBody UserEntity user) {
+		return userService.updateUserById(user);
 	}
 
 }

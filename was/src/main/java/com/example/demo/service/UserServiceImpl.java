@@ -94,9 +94,14 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 	@Override
 	public UserEntity updateUserById(UserEntity user) {
-		Optional<UserEntity> userExeist = userRepository.findById(user.getId());
+		Optional<UserEntity> userExeist = userRepository.findByEmail(user.getEmail());
 		if (userExeist.isPresent()) {
-			userRepository.save(user);
+			UserEntity savedUser = userExeist.get();
+			savedUser.setName(user.getName());
+			savedUser.setPhoneNumber(user.getPhoneNumber());
+			savedUser.setBirthDate(user.getBirthDate());
+			savedUser.setSex(user.getSex());
+			userRepository.save(savedUser);
 		} else {
 			return null;
 		}

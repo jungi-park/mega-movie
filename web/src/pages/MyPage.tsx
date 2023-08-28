@@ -13,7 +13,7 @@ export default function MyPage() {
     phoneNumber: "",
     birthDate: "",
     sex: "",
-    password: "",
+    // password: "",
     createdAt: "",
   });
 
@@ -23,9 +23,13 @@ export default function MyPage() {
       const createDate = result.data.createdAt;
       const formattedDate = formatDate(createDate);
       const userInfo = {
-        ...result.data,
+        name: result.data.name,
+        email: result.data.email,
+        phoneNumber: result.data.phoneNumber,
+        sex: result.data.sex,
+        birthDate: result.data.birthDate,
         createdAt: formattedDate,
-        password: "",
+        // password: "",
       };
       setUserInfo(userInfo);
     });
@@ -37,12 +41,16 @@ export default function MyPage() {
 
   const userUpdateHandler = () => {
     if (!validate()) return;
+    // console.log("userInfo", userInfo);
+    const updateData = { ...userInfo, createdAt: null };
 
-    sendUserUpdate(userInfo)
+    sendUserUpdate(updateData)
       .then((Response) => {
+        console.log("Response", Response);
         // navigate("/signin");
       })
       .catch((Error) => {
+        console.log("Error", Error);
         // setError("아이디가 중복되요");
       });
   };
@@ -52,14 +60,11 @@ export default function MyPage() {
       setError("이름을 입력해주세요");
       return false;
     }
-    if (userInfo.email.length <= 0) {
-      setError("이메일을 입력해주세요");
-      return false;
-    }
-    if (userInfo.password.length < 8) {
-      setError("비밀번호는 8자리 이상으로 만들어주세요");
-      return false;
-    }
+
+    // if (userInfo.password.length < 8) {
+    //   setError("비밀번호는 8자리 이상으로 만들어주세요");
+    //   return false;
+    // }
     if (userInfo.birthDate.length <= 0 || userInfo.birthDate.length > 6) {
       setError("생일은 6자리로 입력해주세요");
       return false;
@@ -91,15 +96,9 @@ export default function MyPage() {
         ></input>
       </div>
       <div>
-        이메일:{" "}
-        <input
-          value={userInfo?.email}
-          onChange={(event) =>
-            setUserInfo({ ...userInfo, email: event.target.value })
-          }
-        ></input>
+        이메일: <input value={userInfo?.email} readOnly></input>
       </div>
-      <div>
+      {/* <div>
         비밀번호:{" "}
         <input
           value={userInfo?.password}
@@ -107,7 +106,7 @@ export default function MyPage() {
             setUserInfo({ ...userInfo, password: event.target.value })
           }
         ></input>
-      </div>
+      </div> */}
       <div>
         핸드폰번호:{" "}
         <input
