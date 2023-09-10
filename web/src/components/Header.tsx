@@ -97,7 +97,7 @@ function UtilArea() {
         navigate("/mypage");
       },
     },
-    { href: "/", title: "고객센터", showWhenLoggedIn: true },
+    // { href: "/", title: "고객센터", showWhenLoggedIn: true },
   ];
 
   return (
@@ -194,14 +194,14 @@ function Nav() {
             </ul>
           </li>
         ))}
-        <li className={styles.gnbAll}>
+        {/* <li className={styles.gnbAll}>
           <svg viewBox="0 0 54 54">
             <path
               d="M-4542-24v-3h48v3zm0-12v-3h48v3z"
               transform="translate(4545 59)"
             ></path>
           </svg>
-        </li>
+        </li> */}
       </ul>
     </nav>
   );
@@ -222,8 +222,8 @@ function Header(color: HeaderClass) {
               MEGABOX : Life Theater
             </a>
           </h1>
-          <Nav></Nav>
         </div>
+        <Nav></Nav>
         <div className={styles.rightCont}>
           <UtilArea></UtilArea>
           {/* <ul>

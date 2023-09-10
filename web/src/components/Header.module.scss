@@ -5,9 +5,8 @@
   top: 0;
   left: 0;
   width: 100vw;
-  height: 128px;
-  z-index: 10000;
-  backdrop-filter: blur(4px);
+  height: 100px;
+  z-index: 1000;
 }
 
 .layout {
@@ -27,15 +26,10 @@
   align-items: center;
 }
 
-.ci {
-  width: 140px;
-  padding-top: 8px;
-}
-
 .ci a {
   display: block;
   width: 140px;
-  height: 46px;
+  height: 48px;
   margin: 0;
   padding: 0;
   font-size: 0;
@@ -55,10 +49,9 @@
 .areaLink {
   display: flex;
   column-gap: 24px;
-  color: $color-text-light;
   a {
     font-size: 14px;
-    color: $color-text-light;
+    color: $color-text-white-dark;
     &:hover {
       color: $color-text-white;
     }
@@ -159,7 +152,7 @@
 
 // colorMode
 .mainHeader.dark {
-  background-color: $color-primary-opacity-90;
+  background-color: $color-primary;
   .ci a {
     background: url(../../public/logo_white.png) center/contain no-repeat;
   }

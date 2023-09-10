@@ -15,10 +15,11 @@ $color-surface-dim: #ffffff;
 $color-surface: #ffffff;
 $color-surface-bright: #ffffff;
 
-$color-text-light: #999999;
+$color-text-light: #727272;
 $color-text: #4e4e4e;
 $color-text-dark: #000000;
 
+$color-text-white-dark: #cccccc;
 $color-text-white: #ffffff;
 
 $color-success: #178ff6;
@@ -208,7 +209,7 @@ h1 {
 }
 
 h2 {
-  font-size: 56px;
+  font-size: 40px;
   font-weight: bold;
 }
 
@@ -238,7 +239,7 @@ main {
 
 .layout {
   width: 92%;
-  max-width: 1800px;
+  max-width: 1280px;
   margin: auto;
 }
 
