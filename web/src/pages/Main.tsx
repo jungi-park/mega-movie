@@ -14,26 +14,28 @@ const MovieComponent: React.FC<{
   <div className="movie">
     <img
       className="posterImg"
-      src={process.env.PUBLIC_URL + `/img_poster_${name}.jpg`}
+      src={process.env.PUBLIC_URL + `/img_poster_${rank}.jpg`}
       alt=""
     />
     <div className="movieCont">
       <div className="movieRank">
-        <h3>{rank}</h3>
+        <h4>{rank}</h4>
       </div>
-      <div className="moviePer">
-        <h6>
-          <span>예매율 : </span>
-          {rate}
-        </h6>
+      <div className="movieName">
+        <h5>{name}</h5>
       </div>
-      <div className="movieStar">
-        <img
-          className="posterImg"
-          src={process.env.PUBLIC_URL + "/images/icon_star.svg"}
-          alt=""
-        />
-        <p>{star}</p>
+      <div className="movueDescription">
+        <p className="moviePer">
+          드라마 예매율 : <span>{rate}</span>
+        </p>
+        <div className="movieStar">
+          <img
+            className="posterImg"
+            src={process.env.PUBLIC_URL + "/images/icon_star.svg"}
+            alt=""
+          />
+          <p>{star}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -41,15 +43,14 @@ const MovieComponent: React.FC<{
 
 const MovieList: React.FC = () => {
   const movies = [
-    { name: "1", rank: 1, rate: "99.9%", star: "9.9" },
-    { name: "1", rank: 2, rate: "98.5%", star: "8.7" },
-    { name: "1", rank: 3, rate: "96.2%", star: "7.8" },
-    { name: "1", rank: 4, rate: "99.9%", star: "9.9" },
-    { name: "1", rank: 5, rate: "98.5%", star: "8.7" },
-    { name: "1", rank: 6, rate: "96.2%", star: "7.8" },
-    { name: "1", rank: 7, rate: "99.9%", star: "9.9" },
-    { name: "1", rank: 8, rate: "98.5%", star: "8.7" },
-    { name: "1", rank: 9, rate: "96.2%", star: "7.8" },
+    { name: "더 퍼스트 슬램덩크", rank: 1, rate: "99.9%", star: "9.9" },
+    { name: "더 퍼스트 슬램덩크", rank: 1, rate: "98.5%", star: "8.7" },
+    { name: "더 퍼스트 슬램덩크", rank: 1, rate: "96.2%", star: "7.8" },
+    { name: "더 퍼스트 슬램덩크", rank: 1, rate: "99.9%", star: "9.9" },
+    { name: "더 퍼스트 슬램덩크", rank: 1, rate: "99.9%", star: "9.9" },
+    { name: "더 퍼스트 슬램덩크", rank: 1, rate: "98.5%", star: "8.7" },
+    { name: "더 퍼스트 슬램덩크", rank: 1, rate: "96.2%", star: "7.8" },
+    { name: "더 퍼스트 슬램덩크", rank: 1, rate: "99.9%", star: "9.9" },
   ];
 
   return (
@@ -120,61 +121,77 @@ function Main() {
       <Header className="dark"></Header>
       <main className="mainCont">
         <div className="mainSection">
-          <div className="HeroBanner">
-            <div className="layout">
-              <div className="bannerBg">
-                <img src={process.env.PUBLIC_URL + "/img_main_1.png"} alt="" />
-              </div>
-              <div className="bannerCont">
-                <div className="title">
-                  <img
-                    className="titleLogo"
-                    src={process.env.PUBLIC_URL + "/logo_main_1.png"}
-                    alt=""
-                  />
-                  <h1 className="titleKor">더 퍼스트 슬램덩크</h1>
-                  <h6 className="titleEng">The First Slam Dunk</h6>
+          <div className="heroBanner">
+            <div className="bannerBg">
+              <img
+                src={process.env.PUBLIC_URL + "/images/img_main_1.jpg"}
+                alt=""
+              />
+            </div>
+
+            <div className="bannerCont">
+              <div className="layout">
+                <div className="bannerList">
+                  <div className="banner">
+                    <div className="title">
+                      <h5 className="titleName">잠</h5>
+                      <h6 className="titleDescription">“누가 들어왔어”</h6>
+                    </div>
+                  </div>
+                  <div className="banner">
+                    <div className="title">
+                      <h5 className="titleName">오펜하이머</h5>
+                      <h6 className="titleDescription">
+                        “나는 이제 죽음이요, 세상의 파괴자가 되었다.”
+                      </h6>
+                    </div>
+                  </div>
+                  <div className="banner">
+                    <div className="title">
+                      <h5 className="titleName">달짝지근해: 7510</h5>
+                      <h6 className="titleDescription">
+                        OMG 세상에 이런 맛이! 올여름, 달짝지근해진 그가 온다!
+                      </h6>
+                    </div>
+                  </div>
+                  <div className="banner">
+                    <div className="title">
+                      <h5 className="titleName">
+                        천박사 퇴마 연구소: 설경의 비밀
+                      </h5>
+                      <h6 className="titleDescription">
+                        귀신을 믿지 않는 가짜 퇴마사! 그의 세계를 흔드는 진짜
+                        사건이 나타났다!
+                      </h6>
+                    </div>
+                  </div>
                 </div>
-                <button className="ticketing primaryBtn default">
+                {/* <button className="ticketing primaryBtn default">
                   예매하기
-                </button>
+                </button> */}
               </div>
             </div>
           </div>
+
           <div className="movieSection">
             <div className="layout">
-              <h5 className="title">
-                박스 오피스<span>08.15 18:30 기준</span>
-              </h5>
-              <div className="movieSlide">
-                <MovieList></MovieList>
-              </div>
+              <MovieList></MovieList>
             </div>
           </div>
         </div>
 
         <div className="eventSection">
           <div className="layout">
-            <h5 className="title">혜택</h5>
+            <div className="title">
+              <h4 className="titleName">이벤트</h4>
+            </div>
             <div className="eventCont">
-              <div className="eventInfo">
-                <div className="eventTitle">
-                  <h3>메가박스 오리지널 티켓</h3>
-                  <h2> No.87 오펜하이머</h2>
-                </div>
-                <div className="eventsSub">
-                  <h5>
-                    메가박스가 제안하는 오펜하이머를
-                    <br />
-                    가장 잘 간직하는 방법
-                  </h5>
-                  <p className="eventDate">2002.01.01</p>
-                </div>
-              </div>
               <div className="eventList">
-                <div className="eventScreen"></div>
-                <div className="eventNav">
+                <div className="eventScreen">
                   <div className="event"></div>
+                  <div className="event"></div>
+                </div>
+                <div className="eventNav">
                   <div className="event"></div>
                   <div className="event"></div>
                   <div className="event"></div>
@@ -185,7 +202,7 @@ function Main() {
           <div className="eventBg"></div>
         </div>
 
-        <div className="curationSection">
+        {/* <div className="curationSection">
           <div className="layout">
             <h5 className="title">큐레이션</h5>
             <div className="curationCont">
@@ -209,18 +226,18 @@ function Main() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="guideSection">
           <div className="layout">
-            <h5 className="title">특별관</h5>
+            <h4 className="title">특별관</h4>
             <div className="guideList">
+              {/* <div className="guideCard"></div>
               <div className="guideCard"></div>
               <div className="guideCard"></div>
               <div className="guideCard"></div>
               <div className="guideCard"></div>
-              <div className="guideCard"></div>
-              <div className="guideCard"></div>
+              <div className="guideCard"></div> */}
             </div>
           </div>
         </div>
