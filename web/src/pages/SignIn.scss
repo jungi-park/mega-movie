@@ -5,7 +5,7 @@
   width: 100vw;
   height: 100vh;
   text-align: center;
-  background-color: var(--color-primary-variant);
+  background-color: $color-primary-variant;
   .content {
     display: inline-flex;
     padding: 56px 52px;
