@@ -216,13 +216,11 @@ function Header(color: HeaderClass) {
   return (
     <header className={`${styles[color.className]} ${styles.mainHeader}`}>
       <div className={`${styles.layout}`}>
-        <div className={styles.leftCont}>
-          <h1 className={styles.ci}>
-            <a href="/" title="MEGABOX 메인으로 가기">
-              MEGABOX : Life Theater
-            </a>
-          </h1>
-        </div>
+        <h1 className={styles.ci}>
+          <a href="/" title="MEGABOX 메인으로 가기">
+            MEGABOX : Life Theater
+          </a>
+        </h1>
         <Nav></Nav>
         <div className={styles.rightCont}>
           <UtilArea></UtilArea>

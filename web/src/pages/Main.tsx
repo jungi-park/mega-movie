@@ -7,14 +7,16 @@ import Header from "../components/Header";
 
 const MovieComponent: React.FC<{
   name: string;
+  genre: string;
+  img: string;
   rank: number;
   rate: string;
   star: string;
-}> = ({ name, rank, rate, star }) => (
+}> = ({ name, genre, img, rank, rate, star }) => (
   <div className="movie">
     <img
       className="posterImg"
-      src={process.env.PUBLIC_URL + `/img_poster_${rank}.jpg`}
+      src={process.env.PUBLIC_URL + `/images/img_poster_${img}.jpg`}
       alt=""
     />
     <div className="movieCont">
@@ -26,7 +28,8 @@ const MovieComponent: React.FC<{
       </div>
       <div className="movueDescription">
         <p className="moviePer">
-          드라마 예매율 : <span>{rate}</span>
+          <span className="movieGenre">{genre}</span>예매율 :{" "}
+          <span>{rate}</span>
         </p>
         <div className="movieStar">
           <img
@@ -38,19 +41,79 @@ const MovieComponent: React.FC<{
         </div>
       </div>
     </div>
+    <div className="movieInfo">
+      <h6 className="veiwDetail">상세보기</h6>
+      <h6 className="reserveTicket">예약하기</h6>
+    </div>
   </div>
 );
 
 const MovieList: React.FC = () => {
   const movies = [
-    { name: "더 퍼스트 슬램덩크", rank: 1, rate: "99.9%", star: "9.9" },
-    { name: "더 퍼스트 슬램덩크", rank: 1, rate: "98.5%", star: "8.7" },
-    { name: "더 퍼스트 슬램덩크", rank: 1, rate: "96.2%", star: "7.8" },
-    { name: "더 퍼스트 슬램덩크", rank: 1, rate: "99.9%", star: "9.9" },
-    { name: "더 퍼스트 슬램덩크", rank: 1, rate: "99.9%", star: "9.9" },
-    { name: "더 퍼스트 슬램덩크", rank: 1, rate: "98.5%", star: "8.7" },
-    { name: "더 퍼스트 슬램덩크", rank: 1, rate: "96.2%", star: "7.8" },
-    { name: "더 퍼스트 슬램덩크", rank: 1, rate: "99.9%", star: "9.9" },
+    {
+      name: "잠",
+      genre: "미스터리",
+      img: "sleep",
+      rank: 1,
+      rate: "27.7%",
+      star: "9.9",
+    },
+    {
+      name: "1947 보스톤",
+      genre: "드라마",
+      img: "boston",
+      rank: 2,
+      rate: "16.8%",
+      star: "8.7",
+    },
+    {
+      name: "천박사 퇴마 연구소: 설경의 비밀",
+      genre: "기타",
+      img: "exorcism",
+      rank: 3,
+      rate: "5.9%",
+      star: "8.9",
+    },
+    {
+      name: "거미집",
+      genre: "코미디, 드라마",
+      img: "spider",
+      rank: 4,
+      rate: "4.9%",
+      star: "8.9",
+    },
+    {
+      name: "잠",
+      genre: "미스터리",
+      img: "sleep",
+      rank: 5,
+      rate: "27.7%",
+      star: "9.9",
+    },
+    {
+      name: "1947 보스톤",
+      genre: "드라마",
+      img: "boston",
+      rank: 6,
+      rate: "16.8%",
+      star: "8.7",
+    },
+    {
+      name: "천박사 퇴마 연구소: 설경의 비밀",
+      genre: "기타",
+      img: "exorcism",
+      rank: 7,
+      rate: "5.9%",
+      star: "8.9",
+    },
+    {
+      name: "거미집",
+      genre: "코미디, 드라마",
+      img: "spider",
+      rank: 8,
+      rate: "4.9%",
+      star: "8.9",
+    },
   ];
 
   return (
@@ -58,6 +121,8 @@ const MovieList: React.FC = () => {
       {movies.map((movie) => (
         <MovieComponent
           name={movie.name}
+          genre={movie.genre}
+          img={movie.img}
           rank={movie.rank}
           rate={movie.rate}
           star={movie.star}
@@ -128,7 +193,8 @@ function Main() {
                 alt=""
               />
             </div>
-
+            <div className="banner-prev"></div>
+            <div className="banner-next"></div>
             <div className="bannerCont">
               <div className="layout">
                 <div className="bannerList">
@@ -166,16 +232,44 @@ function Main() {
                     </div>
                   </div>
                 </div>
-                {/* <button className="ticketing primaryBtn default">
-                  예매하기
-                </button> */}
               </div>
             </div>
+            <ul className="quickMenu">
+              <li className="quickButton">
+                <img
+                  src={process.env.PUBLIC_URL + "/images/icon_ticket.svg"}
+                  alt=""
+                />
+                <p>빠른예매</p>
+              </li>
+              <li className="quickButton">
+                <img
+                  src={process.env.PUBLIC_URL + "/images/icon_ticket.svg"}
+                  alt=""
+                />
+                <p>멤버십</p>
+              </li>
+              <li className="quickButton">
+                <img
+                  src={process.env.PUBLIC_URL + "/images/icon_ticket.svg"}
+                  alt=""
+                />
+                <p>VIP</p>
+              </li>
+              <li className="quickButton">
+                <img
+                  src={process.env.PUBLIC_URL + "/images/icon_ticket.svg"}
+                  alt=""
+                />
+                <p>고객센터</p>
+              </li>
+            </ul>
           </div>
 
           <div className="movieSection">
             <div className="layout">
               <MovieList></MovieList>
+              <h6 className="viewAll">+ 영화 전체보기</h6>
             </div>
           </div>
         </div>
@@ -183,20 +277,46 @@ function Main() {
         <div className="eventSection">
           <div className="layout">
             <div className="title">
-              <h4 className="titleName">이벤트</h4>
+              <h4 className="titleName">MEGA 이벤트</h4>
             </div>
             <div className="eventCont">
               <div className="eventList">
                 <div className="eventScreen">
-                  <div className="event"></div>
-                  <div className="event"></div>
+                  <div className="event">
+                    <img
+                      src={process.env.PUBLIC_URL + "/images/img_event_1.png"}
+                      alt=""
+                    />
+                  </div>
+                  <div className="event">
+                    <img
+                      src={process.env.PUBLIC_URL + "/images/img_event_2.jpg"}
+                      alt=""
+                    />
+                  </div>
                 </div>
                 <div className="eventNav">
-                  <div className="event"></div>
-                  <div className="event"></div>
-                  <div className="event"></div>
+                  <div className="event">
+                    <img
+                      src={process.env.PUBLIC_URL + "/images/img_event_3.jpg"}
+                      alt=""
+                    />
+                  </div>
+                  <div className="event">
+                    <img
+                      src={process.env.PUBLIC_URL + "/images/img_event_3.jpg"}
+                      alt=""
+                    />
+                  </div>
+                  <div className="event">
+                    <img
+                      src={process.env.PUBLIC_URL + "/images/img_event_3.jpg"}
+                      alt=""
+                    />
+                  </div>
                 </div>
               </div>
+              <h6 className="viewAll">+ 이벤트 전체보기</h6>
             </div>
           </div>
           <div className="eventBg"></div>
@@ -229,15 +349,16 @@ function Main() {
         </div> */}
 
         <div className="guideSection">
-          <div className="layout">
-            <h4 className="title">특별관</h4>
+          <h4 className="title">MEGA 특별관</h4>
+          <div className="guideCont">
             <div className="guideList">
-              {/* <div className="guideCard"></div>
               <div className="guideCard"></div>
               <div className="guideCard"></div>
               <div className="guideCard"></div>
               <div className="guideCard"></div>
-              <div className="guideCard"></div> */}
+              <div className="guideCard"></div>
+              <div className="guideCard"></div>{" "}
+              <div className="guideCard"></div>
             </div>
           </div>
         </div>
