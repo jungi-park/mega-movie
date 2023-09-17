@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="142" height="147.656" viewBox="0 0 142 147.656">
+  <defs>
+    <filter id="패스_443" x="29.5" y="0.086" width="83.683" height="147.57" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="ic_arw_left_large" transform="translate(-8.53 -389.371)">
+    <g id="그룹_451" data-name="그룹 451">
+      <rect id="사각형_2730" data-name="사각형 2730" width="142" height="142" transform="translate(8.53 389.371)" fill="none"/>
+      <g transform="matrix(1, 0, 0, 1, 8.53, 389.37)" filter="url(#패스_443)">
+        <path id="패스_443-2" data-name="패스 443" d="M-563.731-4311-627-4247.631l63.269,63.371" transform="translate(666.5 4318.5)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      </g>
+    </g>
+  </g>
+</svg>

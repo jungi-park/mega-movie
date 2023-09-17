@@ -6,7 +6,7 @@
     format("woff");
 }
 
-$color-primary: #642ec2;
+$color-primary: #5924b5;
 $color-primary-variant: #150e2c;
 $color-secondary: #00e0f6;
 $color-secondary-variant: #00b9cc;
@@ -187,6 +187,7 @@ html {
 
 body {
   width: 100%;
+  min-width: 1280px;
   height: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
@@ -231,10 +232,6 @@ h6 {
 
 p {
   font-size: 12px;
-}
-
-main {
-  width: 100vw;
 }
 
 .layout {
