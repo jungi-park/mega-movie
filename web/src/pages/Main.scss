@@ -1,4 +1,4 @@
-@import "../styles/utils";
+@import "../assets/scss/style.scss";
 
 // 기본 section
 // .curationSection,
@@ -10,35 +10,35 @@
 .mainCont {
   position: relative;
   top: 100px;
-  background-color: $color-surface-dim;
+  background-color: $color-surface-d;
 }
 
 // 기본 section title
 .title {
   font-weight: bold;
-  color: $color-text-white;
+  color: $color-text-w;
   span {
     margin-left: 8px;
     @extend h6;
     font-weight: normal;
-    color: $color-text-light;
+    color: $color-text-l;
   }
 }
 
 .viewAll {
-  color: $color-text-white-dark;
+  color: $color-text-wd;
   margin: 64px 0;
   text-decoration: underline;
 }
 
 // mainSection
 .mainSection {
-  background-color: $color-primary-variant;
+  background-color: $color-primary-v;
 }
 
 // bannerSection
 .heroBanner {
-  @include flex($justifyContent: center);
+  @include flex($justify: center);
   position: relative;
   width: 100%;
   height: 920px;
@@ -48,7 +48,7 @@
     height: 100%;
   }
   .bannerBg {
-    @include flex($justifyContent: center);
+    @include flex($justify: center);
     img {
       height: 100%;
     }
@@ -79,7 +79,7 @@
     width: 100%;
     height: 128px;
     z-index: 1;
-    background-color: rgba($color-primary-variant, 0.8);
+    background-color: rgba($color-primary-v, 0.8);
     .layout {
       position: relative;
     }
@@ -126,7 +126,7 @@
     left: 0;
     width: 1px;
     height: 100%;
-    background-color: rgba($color-text-white, 0.1);
+    background-color: rgba($color-text-w, 0.1);
   }
   .title {
     width: 100%;
@@ -140,11 +140,11 @@
   }
 
   .titleName {
-    color: $color-text-white;
+    color: $color-text-w;
   }
   .titleDescription {
     margin-top: 12px;
-    color: $color-text-light;
+    color: $color-text-l;
   }
 }
 
@@ -155,7 +155,7 @@
   background-color: rgba($color-primary, 0.8);
   transform: translate(0, -64px);
   li {
-    @include flex($direction: column, $justifyContent: center);
+    @include flex($direction: column, $justify: center);
     row-gap: 12px;
     position: relative;
     width: 100%;
@@ -164,7 +164,7 @@
       height: 36px;
     }
     p {
-      color: rgba($color-text-white, 0.8);
+      color: rgba($color-text-w, 0.8);
     }
     & + li::before {
       content: "";
@@ -174,7 +174,7 @@
       left: 0;
       width: 100%;
       height: 1px;
-      background-color: rgba($color-text-white, 0.1);
+      background-color: rgba($color-text-w, 0.1);
     }
   }
 }
@@ -182,14 +182,14 @@
 // movieSection
 .movieSection {
   width: 100%;
-  background-color: $color-primary-variant;
+  background-color: $color-primary-v;
   .layout {
-    @include flex($direction: column, $justifyContent: center);
+    @include flex($direction: column, $justify: center);
     height: 100%;
     padding: 80px 24px;
   }
   .movieList {
-    @include flex($justifyContent: center, $wrap: wrap);
+    @include flex($justify: center, $wrap: wrap);
     row-gap: 60px;
     column-gap: 40px;
     width: 100%;
@@ -197,26 +197,26 @@
   .movie,
   .movieCont,
   .movieRank {
-    background-color: $color-primary-variant;
+    background-color: $color-primary-v;
   }
   .movie {
-    @include flex($direction: column, $justifyContent: space-between);
+    @include flex($direction: column, $justify: space-between);
     position: relative;
     width: 256px;
     padding: 8px;
     &:nth-of-type(1) {
       // 1위
-      box-shadow: 4px 8px 16px rgba($color-primary-variant, 0.6);
+      box-shadow: 4px 8px 16px rgba($color-primary-v, 0.6);
       transform-origin: top left;
       &,
       .movieCont,
       .movieRank {
-        color: $color-text-white;
+        color: $color-text-w;
         background-color: $color-primary;
       }
       .movieName,
       .movueDescription {
-        color: $color-text-white;
+        color: $color-text-w;
       }
     }
     &:hover {
@@ -233,7 +233,7 @@
     position: relative;
   }
   .movieCont {
-    @include flex($direction: column, $alignItems: flex-start);
+    @include flex($direction: column, $align: flex-start);
     position: relative;
     left: 0;
     bottom: 0;
@@ -241,14 +241,14 @@
     padding: 4px 8px;
   }
   .movieRank {
-    @include flex($justifyContent: center);
+    @include flex($justify: center);
     position: absolute;
     left: 0;
     top: 0;
     width: 40px;
     height: 48px;
     padding-top: 4px;
-    color: $color-text-white;
+    color: $color-text-w;
     transform: translate(-1%, -99%);
     h4 {
       font-weight: bold;
@@ -257,7 +257,7 @@
   .movieName {
     width: 100%;
     font-weight: bold;
-    color: $color-text-white-dark;
+    color: $color-text-wd;
     line-height: 40px;
     h5 {
       width: 100%;
@@ -267,18 +267,18 @@
     }
   }
   .movueDescription {
-    @include flex($justifyContent: space-between);
-    color: $color-text-light;
+    @include flex($justify: space-between);
+    color: $color-text-l;
     width: 100%;
   }
   .movieGenre {
     padding-right: 8px;
     margin-right: 8px;
-    border-right: solid 1px rgba($color-text-white, 0.4);
+    border-right: solid 1px rgba($color-text-w, 0.4);
   }
   .movieStar {
-    @include flex($justifyContent: center);
-    color: $color-text-white;
+    @include flex($justify: center);
+    color: $color-text-w;
     opacity: 0.7;
     img {
       height: 16px;
@@ -295,10 +295,10 @@
     transition: 0.2s;
     .veiwDetail,
     .reserveTicket {
-      @include flex($justifyContent: center);
+      @include flex($justify: center);
       width: 100%;
       height: 50%;
-      color: $color-text-white-dark;
+      color: $color-text-wd;
       &:hover {
         background-color: rgba($color-primary, 0.8);
       }
@@ -317,12 +317,12 @@
   .title {
     @include flex($direction: column);
     h4 {
-      color: $color-text-white;
+      color: $color-text-w;
     }
     // h6 {
     //   margin-top: 12px;
     //   font-weight: normal;
-    //   color: $color-text-white-dark;
+    //   color: $color-text-wd;
     // }
   }
   .eventCont {
@@ -333,8 +333,8 @@
   // .eventInfo {
   //   @include flex(
   //     $direction: column,
-  //     $justifyContent: flex-start,
-  //     $alignItems: flex-start
+  //     $justify: flex-start,
+  //     $align: flex-start
   //   );
   //   row-gap: 32px;
   //   width: 32%;
@@ -347,7 +347,7 @@
   //   }
   // }
   // .eventsSub {
-  //   color: $color-text-light;
+  //   color: $color-text-l;
   //   h5 {
   //     line-height: 28px;
   //   }
@@ -391,7 +391,7 @@
     width: 100%;
     height: 120px;
     background-color: $color-surface;
-    // box-shadow: 4px 8px 16px rgba($color-primary-variant, 0.5);
+    // box-shadow: 4px 8px 16px rgba($color-primary-v, 0.5);
     &:hover {
       filter: brightness(0.3);
     }
@@ -407,28 +407,28 @@
 }
 
 // .curationSection {
-//   background-color: $color-primary-variant;
+//   background-color: $color-primary-v;
 //   .layout {
 //     @include flex(
 //       $direction: column,
-//       $justifyContent: center,
-//       $alignItems: flex-start
+//       $justify: center,
+//       $align: flex-start
 //     );
 //     height: 100%;
 //   }
 //   .curationCont {
-//     @include flex($justifyContent: flex-start, $alignItems: flex-start);
+//     @include flex($justify: flex-start, $align: flex-start);
 //     column-gap: 104px;
 //     width: 100%;
 //     height: 512px;
 //   }
 //   .curationInfo {
-//     @include flex($direction: column, $alignItems: flex-start);
+//     @include flex($direction: column, $align: flex-start);
 //     height: 100%;
 //   }
 //   .curationTitle {
 //     line-height: 44px;
-//     color: $color-text-light;
+//     color: $color-text-l;
 //   }
 //   .curationtSlide {
 //     position: relative;
@@ -461,7 +461,7 @@
     color: $color-text;
   }
   .guideList {
-    @include flex($alignItems: flex-start);
+    @include flex($align: flex-start);
     column-gap: 24px;
   }
   .guideCard {

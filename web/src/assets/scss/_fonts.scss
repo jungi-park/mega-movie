@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2");
+
+@font-face {
+  font-family: "GmarketSans";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+    format("woff");
+}
+
+body,
+button,
+input {
+  font-family: "GmarketSans", -apple-system, BlinkMacSystemFont, system-ui,
+    Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR",
+    "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    sans-serif;
+}
+
+// :root {
+//   --mainEng-font: postea-variable;
+//   --subEng-font: "organetto-variable";
+//   --mainKor-font: "Pretendard";
+// }
+
+// .mainEng-font {
+//   font-family: var(--mainEng-font);
+//   font-variation-settings: "wght" 800;
+// }
+
+// .subEng-font {
+//   font-family: var(--subEng-font);
+//   font-variation-settings: "wght" 800;
+// }
+
+h1 {
+  font-size: 64px;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+h3 {
+  font-size: 32px;
+}
+
+h4 {
+  font-size: 24px;
+}
+
+h5 {
+  font-size: 20px;
+}
+
+h6 {
+  font-size: 16px;
+}
+
+p {
+  font-size: 12px;
+}

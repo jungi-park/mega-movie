@@ -183,7 +183,6 @@ function Main() {
   //       </>)
   return (
     <>
-      <Header className="dark"></Header>
       <main className="mainCont">
         <div className="mainSection">
           <div className="heroBanner">
@@ -363,7 +362,6 @@ function Main() {
           </div>
         </div>
       </main>
-      <footer></footer>
     </>
   );
 }

@@ -1,0 +1,22 @@
+@import "../assets/scss/style.scss";
+
+.fullpage {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding-top: 100px;
+  background-color: $color-primary-v;
+}
+
+.page {
+  width: 100%;
+  height: 100%;
+}
+
+.ticketing_container {
+  width: 92%;
+  max-width: 1480px;
+  height: 92%;
+}
