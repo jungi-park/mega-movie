@@ -3,6 +3,11 @@
 @import "./mixin";
 @import "./fonts";
 
+body {
+  overflow-x: hidden;
+  background-color: $color-surface;
+}
+
 .layout {
   width: 92%;
   max-width: 1280px;

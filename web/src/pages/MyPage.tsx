@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../modules/rootReducer";
 import { getMyPage, sendUserUpdate } from "../utile/DAO/user";
 import moment from "moment";
+import styles from "./MyPage.module.scss";
 
 export default function MyPage() {
   const user = useSelector((state: RootState) => state.userReducer);
@@ -82,7 +83,50 @@ export default function MyPage() {
   };
 
   return (
-    <div>
+    <main>
+      <div className={styles.layout}>
+        <div className={styles.leftContainer}>
+          <h4 className={styles.liTitle}>마이페이지</h4>
+          <div className={styles.leftContent}>
+            <div className={styles.userContent}>
+              <div className={styles.userImg}></div>
+              <div className={styles.userInfo}>
+                <h6>박준기</h6>
+                <p>현재 포인트 200p</p>
+              </div>
+            </div>
+            <ul className={styles.pageMenu}>
+              <ul className={styles.selected}>예매/구매내역</ul>
+              <ul>
+                영화/스토어 관람권
+                <li>- 영화관람권</li>
+                <li>- 스토어 교환권</li>
+              </ul>
+              <ul>메가박스/제휴쿠폰</ul>
+              <ul>
+                멤버십 포인트
+                <li>- 포인트 이용내역</li>
+                <li>- 멤버십 카드관리</li>
+                <li>- MiL.k 포인트</li>
+              </ul>
+
+              <ul>나의 무비스토리</ul>
+              <ul>나의 이벤트 응모내역</ul>
+              <ul>나의 문의내역</ul>
+              <ul>자주쓰는 카드 관리</ul>
+              <ul>회원정보</ul>
+            </ul>
+          </div>
+        </div>
+        <div className={styles.rightContainer}>
+          <div className={styles.liContent}>
+            <div className={styles.mainContainer}></div>
+            <div className={styles.subContainer}></div>
+            <div className={styles.aContainer}></div>
+            <div className={styles.bContainer}></div>
+          </div>
+        </div>
+      </div>
       <div>
         <h2 className="form-title">{error.length > 0 ? error : "MY PAGE"}</h2>
       </div>
@@ -151,6 +195,6 @@ export default function MyPage() {
           수정
         </button>
       </div>
-    </div>
+    </main>
   );
 }
