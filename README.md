@@ -12,17 +12,27 @@
 게시글 작성<br/> 
 <br/> 
 <br/> 🛠️ Tech Stack <br/>
-<br/> Java
-<br/> Spring Boot
-<br/> Spring Security
-<br/> JPA
-<br/> TypeScript
-<br/> React
-<br/> Redux
-<br/> MySQL <br/>
-<br/> ⚙️ Architecture <br/>
-<br/> MVC <br/>
+### ✔️Frond-end
+<img src="https://img.shields.io/badge/TypeScript-61DAFB?style=for-the-badge&logo=TypeScript&logoColor=black"><img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black"><img src="https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=Redux&logoColor=purple">
+### ✔️Back-end
+<img src="https://img.shields.io/badge/Java-6DB33F?style=for-the-badge&logo=Java&logoColor=yellow"><img src="https://img.shields.io/badge/Springsecurity-6DB33F?style=for-the-badge&logo=Springsecurity&logoColor=green"><img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=for-the-badge&logo=Spring Boot&logoColor=yellow"><img src="https://img.shields.io/badge/JPA-6DB33F?style=for-the-badge&logo=JPA&logoColor=yellow">
+### ✔️DB
+<img src="https://img.shields.io/badge/Mysql-6DB33F?style=for-the-badge&logo=Mysql&logoColor=black">
+<br/>
 <br/> 📌 Part <br/>
+<br/>
+<table>
+  <tbody>
+    <tr>
+      <td align="center">풀스택</td>
+      <td align="center">디자인</td>
+    </tr>
+    <tr>
+      <td align="center"><a href="https://github.com/jungi-park"><img src="https://avatars.githubusercontent.com/u/135617410?s=400&v=4" width="100px;" alt=""/><br /><sub><b>@jungi-park </b></sub></a><br /></td>
+      <td align="center"><a href="https://github.com/inahk"><img src="https://avatars.githubusercontent.com/u/68561098?v=4" width="100px;" alt=""/><br /><sub><b>@inahk </b></sub></a><br /></td>
+     <tr/>
+  </tbody>
+</table>
 <br/> 협동 프로젝트(백엔드개발, 프론트엔드개발) <br/>
 <br/> 💡 Learned <br/>
 <br/> 1.JPA를 사용해본것은 처음이다 Mybatis도 사용해보았지만 ORM에 대표적인 기술인 JPA를 이용해 테이블 생성 및 객체 맵핑등 다양한 로직이 구현 가능하다는 것을 배웠다. <br/>
