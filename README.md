@@ -19,8 +19,8 @@
 <br/> TypeScript
 <br/> React
 <br/> Redux
-<br/> MySQL
-<br/> ⚙️ Architecture
+<br/> MySQL <br/>
+<br/> ⚙️ Architecture <br/>
 <br/> MVC <br/>
 <br/> 📌 Part <br/>
 <br/> 협동 프로젝트(백엔드개발, 프론트엔드개발) <br/>
