@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../modules/rootReducer";
 import { getMyPage, sendUserUpdate } from "../utile/DAO/user";
 import moment from "moment";
+import Navigation from "../components/Navigation";
 import styles from "./MyPage.module.scss";
 
 export default function MyPage() {
@@ -84,53 +85,227 @@ export default function MyPage() {
 
   return (
     <main>
+      <Navigation></Navigation>
       <div className={styles.layout}>
-        <div className={styles.leftContainer}>
-          <h4 className={styles.liTitle}>마이페이지</h4>
-          <div className={styles.leftContent}>
-            <div className={styles.userContent}>
-              <div className={styles.userImg}></div>
-              <div className={styles.userInfo}>
-                <h6>박준기</h6>
-                <p>현재 포인트 200p</p>
-              </div>
-            </div>
-            <ul className={styles.pageMenu}>
-              <ul className={styles.selected}>예매/구매내역</ul>
-              <ul>
-                영화/스토어 관람권
-                <li>- 영화관람권</li>
-                <li>- 스토어 교환권</li>
-              </ul>
-              <ul>메가박스/제휴쿠폰</ul>
-              <ul>
-                멤버십 포인트
-                <li>- 포인트 이용내역</li>
-                <li>- 멤버십 카드관리</li>
-                <li>- MiL.k 포인트</li>
-              </ul>
-
-              <ul>나의 무비스토리</ul>
-              <ul>나의 이벤트 응모내역</ul>
-              <ul>나의 문의내역</ul>
-              <ul>자주쓰는 카드 관리</ul>
-              <ul>회원정보</ul>
+        <div className={styles.nav}>
+          <ul className={styles.list}>
+            <ul className={styles.selected}>예매/구매내역</ul>
+            <ul>
+              영화/스토어 관람권
+              <li>- 영화관람권</li>
+              <li>- 스토어 교환권</li>
             </ul>
-          </div>
+            <ul>메가박스/제휴쿠폰</ul>
+            <ul>
+              멤버십 포인트
+              <li>- 포인트 이용내역</li>
+              <li>- 멤버십 카드관리</li>
+              <li>- MiL.k 포인트</li>
+            </ul>
+
+            <ul>나의 무비스토리</ul>
+            <ul>나의 이벤트 응모내역</ul>
+            <ul>나의 문의내역</ul>
+            <ul>자주쓰는 카드 관리</ul>
+            <ul>회원정보</ul>
+          </ul>
         </div>
-        <div className={styles.rightContainer}>
-          <div className={styles.liContent}>
-            <div className={styles.mainContainer}></div>
-            <div className={styles.subContainer}></div>
-            <div className={styles.aContainer}></div>
-            <div className={styles.bContainer}></div>
-          </div>
+        <div className={styles.content}>
+          <h3 className={styles.location}>MY BOX</h3>
+          <ul className={styles.list_con}>
+            <li className={styles.main}>
+              <div className={styles.user}>
+                <div className={styles.left_con}>
+                  <div className={styles.symbol}></div>
+                  <div className={styles.text}>
+                    <div>
+                      <h3>박준기님은</h3>
+                      <h3>
+                        <span>WELCOME</span> 등급입니다.
+                      </h3>
+                    </div>
+                    <div className={styles.link}>
+                      <a href="">개인정보 수정</a>
+                      <a href="">지난등급조회</a>
+                    </div>
+                  </div>
+                </div>
+                <ul className={styles.right_con}>
+                  <li className={styles.point}>
+                    <h4>100 p</h4>
+                  </li>
+                  <li>
+                    <h6>다음 등급까지</h6>
+                    <h6>100p</h6>
+                  </li>
+                  <li>
+                    <p>적립 예정</p>
+                    <p>100p</p>
+                  </li>
+                  <li>
+                    <p>당월소멸예정</p>
+                    <p>100p</p>
+                  </li>
+                </ul>
+              </div>
+              <div className={styles.rank}>
+                <div className={styles.line}></div>
+                <div className={styles.percent}></div>
+                <ul className={styles.dot}>
+                  <li className={styles.on}>
+                    <p>WELCOME</p>
+                  </li>
+                  <li>
+                    <p>WELCOME</p>
+                  </li>
+                  <li>
+                    <p>WELCOME</p>
+                  </li>
+                  <li>
+                    <p>WELCOME</p>
+                  </li>
+                  <li>
+                    <p>WELCOME</p>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li className={styles.sub}>
+              <div className={styles.left_con}>
+                <ul>
+                  <li>
+                    <img
+                      src={process.env.PUBLIC_URL + "/images/ticket2.svg"}
+                      alt=""
+                    />
+                    <p>영화관람권</p>
+                    <p>0</p>
+                  </li>
+                  <li>
+                    <img
+                      src={process.env.PUBLIC_URL + "/images/ticket2.svg"}
+                      alt=""
+                    />
+                    <p>영화관람권</p>
+                    <p>0</p>
+                  </li>
+                  <li>
+                    <img
+                      src={process.env.PUBLIC_URL + "/images/ticket2.svg"}
+                      alt=""
+                    />
+                    <p>영화관람권</p>
+                    <p>0</p>
+                  </li>
+                  <li>
+                    <img
+                      src={process.env.PUBLIC_URL + "/images/ticket2.svg"}
+                      alt=""
+                    />
+                    <p>영화관람권</p>
+                    <p>0</p>
+                  </li>
+                </ul>
+              </div>
+              <div className={styles.right_con}>
+                <p>가입된 멤버십이 없습니다.</p>
+              </div>
+            </li>
+            <li className={styles.container_1}>
+              <div className={styles.left_con}>
+                <h5 className={styles.title}>선호관람정보</h5>
+                <div className={styles.box}>
+                  <div className={styles.group}>
+                    <h6 className={styles.name}>내 선호극장</h6>
+                    <ul className={styles.item}>
+                      <li>인천아아</li>
+                      <li>아아</li>
+                    </ul>
+                  </div>
+                  <div className={styles.group}>
+                    <h6 className={styles.name}>내 선호극장</h6>
+                    <ul className={styles.item}>
+                      <li>인천아아</li>
+                      <li>아아</li>
+                    </ul>
+                  </div>
+                  <div className={styles.group}>
+                    <h6 className={styles.name}>내 선호극장</h6>
+                    <ul className={styles.item}>
+                      <li>인천아아</li>
+                      <li>아아</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div className={styles.right_con}>
+                <h5 className={styles.title}>나의 무비스토리</h5>
+                <div className={styles.box}>
+                  <div className={styles.category}>
+                    <ul className={styles.item}>
+                      <li>
+                        <h4>0</h4>
+                        <p>본 영화</p>
+                      </li>
+                      <li>
+                        <h4>0</h4>
+                        <p>본 영화</p>
+                      </li>
+                      <li>
+                        <h4>0</h4>
+                        <p>본 영화</p>
+                      </li>
+                      <li>
+                        <h4>0</h4>
+                        <p>본 영화</p>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className={styles.category}>
+                    <h6 className={styles.name}>최근 본 영화</h6>
+                    <ul className={styles.list}>
+                      <li>
+                        <img
+                          src={
+                            process.env.PUBLIC_URL +
+                            "/images/img_poster_sleep.jpg"
+                          }
+                          alt=""
+                        />
+                      </li>
+                      <li>
+                        <img
+                          src={
+                            process.env.PUBLIC_URL +
+                            "/images/img_poster_sleep.jpg"
+                          }
+                          alt=""
+                        />
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li className={styles.container_2}>
+              <h5 className={styles.title}>선호관람정보</h5>
+              <div className={styles.box}></div>
+            </li>
+            <li className={styles.container_2}>
+              <h5 className={styles.title}>선호관람정보</h5>
+              <div className={styles.box}></div>
+            </li>
+            <li className={styles.container_1}>
+              <div className={styles.left_con}></div>
+              <div className={styles.right_con}></div>
+            </li>
+          </ul>
         </div>
       </div>
-      <div>
+      {/* <div>
         <h2 className="form-title">{error.length > 0 ? error : "MY PAGE"}</h2>
-      </div>
-      <div>
+      </div> */}
+      {/* <div>
         이름:{" "}
         <input
           value={userInfo?.name}
@@ -141,7 +316,7 @@ export default function MyPage() {
       </div>
       <div>
         이메일: <input value={userInfo?.email} readOnly></input>
-      </div>
+      </div> */}
       {/* <div>
         비밀번호:{" "}
         <input
@@ -151,7 +326,7 @@ export default function MyPage() {
           }
         ></input>
       </div> */}
-      <div>
+      {/* <div>
         핸드폰번호:{" "}
         <input
           value={userInfo?.phoneNumber}
@@ -194,7 +369,7 @@ export default function MyPage() {
         >
           수정
         </button>
-      </div>
+      </div> */}
     </main>
   );
 }

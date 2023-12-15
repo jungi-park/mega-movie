@@ -4,6 +4,14 @@
   font-family: "GmarketSans";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
     format("woff");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "GmarketSans";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff")
+    format("woff");
+  font-weight: bold;
 }
 
 body,
@@ -43,20 +51,25 @@ h2 {
 
 h3 {
   font-size: 32px;
+  line-height: 48px;
 }
 
 h4 {
   font-size: 24px;
+  line-height: 36px;
 }
 
 h5 {
   font-size: 20px;
+  line-height: 30px;
 }
 
 h6 {
   font-size: 16px;
+  line-height: 24px;
 }
 
 p {
-  font-size: 12px;
+  font-size: 14px;
+  line-height: 22px;
 }
