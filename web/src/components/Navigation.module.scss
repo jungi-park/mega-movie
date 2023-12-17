@@ -1,8 +1,32 @@
 @import "../assets/scss/style.scss";
 
-.Navigation {
+.navigation {
+  @include flex();
   width: 100%;
   height: 48px;
-  background-color: $color-surface;
   border-bottom: solid 1px $color-text-wd;
+  .list {
+    @include flex();
+    column-gap: 4px;
+    width: 100%;
+    height: 100%;
+    .home {
+      height: 20px;
+    }
+    span {
+      vertical-align: middle;
+      position: relative;
+      color: $color-text-l;
+    }
+    span::before {
+      display: inline-block;
+      content: "";
+      width: 20px;
+      height: 20px;
+      background: url(../../public/images/icon_arrow_right.svg) center/contain
+        no-repeat;
+      margin-right: 4px;
+      vertical-align: middle;
+    }
+  }
 }

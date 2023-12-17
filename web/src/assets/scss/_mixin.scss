@@ -11,3 +11,12 @@
   justify-content: $justify;
   align-items: $align;
 }
+
+$top: "-top";
+$left: "-left";
+$right: "-right";
+$bottom: "-bottom";
+
+@mixin line($direction: "", $weight: 1, $color: $color-text-wd) {
+  border#{$direction}: solid #{$weight}px #{$color}; // solid 오타 수정
+}
