@@ -1,11 +1,11 @@
-@import "../styles/utils";
+@import "../assets/scss/style.scss";
 
 // background
 .login {
   width: 100vw;
   height: 100vh;
   text-align: center;
-  background-color: $color-primary-variant;
+  background-color: $color-primary-v;
   .content {
     display: inline-flex;
     padding: 56px 52px;

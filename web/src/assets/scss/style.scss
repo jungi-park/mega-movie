@@ -1,0 +1,79 @@
+@import "./reset";
+@import "./vars";
+@import "./mixin";
+@import "./fonts";
+
+body {
+  overflow-x: hidden;
+  background-color: $color-surface;
+}
+
+.layout {
+  width: 92%;
+  max-width: 1280px;
+  margin: auto;
+}
+
+// button
+button {
+  border: 0;
+  font-size: 16px;
+  $btnSpeed: 0.4s;
+  &.default {
+    width: 192px;
+    height: 48px;
+  }
+  &.long {
+    width: 404px;
+    height: 50px;
+  }
+  &.primaryBtn {
+    position: relative;
+    display: inline-block;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: $color-text-w;
+    padding-top: 0.32em;
+    opacity: 1;
+    &:hover {
+      &:after {
+        opacity: 1;
+        transform: translateY(0) rotateX(0);
+      }
+      &:before {
+        opacity: 0;
+        transform: translateY(50%) rotateX(90deg);
+      }
+    }
+    &:after,
+    &:before {
+      @include flex($align: center);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      font-size: 16px;
+      font-weight: bold;
+      color: $color-text-w;
+      transition: $btnSpeed;
+      border: solid 1px $color-primary;
+      background-color: $color-primary-v;
+      z-index: -1;
+    }
+    &:after {
+      content: attr(data-text);
+      position: absolute;
+      background-color: $color-primary;
+      transform: translateY(-50%) rotateX(90deg);
+      opacity: 0;
+    }
+    &:before {
+      content: attr(data-text);
+      position: absolute;
+
+      transform: translateY(0) rotateX(0);
+      opacity: 1;
+    }
+  }
+}

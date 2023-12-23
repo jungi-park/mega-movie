@@ -3,7 +3,6 @@ import { RootState } from "../modules/rootReducer";
 import { useSelector } from "react-redux";
 import "./Main.scss";
 import axios from "axios";
-import Header from "../components/Header";
 
 const MovieComponent: React.FC<{
   name: string;
@@ -183,7 +182,6 @@ function Main() {
   //       </>)
   return (
     <>
-      <Header className="dark"></Header>
       <main className="mainCont">
         <div className="mainSection">
           <div className="heroBanner">
@@ -363,7 +361,6 @@ function Main() {
           </div>
         </div>
       </main>
-      <footer></footer>
     </>
   );
 }

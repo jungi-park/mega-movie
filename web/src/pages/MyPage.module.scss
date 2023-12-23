@@ -1,0 +1,350 @@
+@import "../assets/scss/style.scss";
+
+// 기본값
+$con-margin-top: 56px;
+$nav-width: 288px;
+$nav-row-gap: 8px;
+
+$color-welcome: #00e0f6;
+$color-friends: #18baf8;
+$color-vip: #2f93fa;
+$color-vvip: #476cfc;
+$color-mvip: #5e46fe;
+
+main {
+  //bg-color : 배경색
+  background-color: $color-surface-d;
+}
+.layout {
+  display: table;
+  table-layout: fixed;
+}
+
+//Location : 현재 페이지 위치
+.location {
+  margin-bottom: 32px;
+  color: $color-text;
+}
+
+//Nav
+.nav {
+  display: table-cell;
+  width: $nav-width;
+  height: 100%;
+  padding: $con-margin-top 40px;
+  // @include line($direction: $left);
+  @include line($direction: $right);
+  vertical-align: top;
+  .list {
+    @include flex($direction: column, $align: flex-start);
+    row-gap: $nav-row-gap;
+  }
+  ul {
+    @include flex($direction: column, $align: flex-start);
+    row-gap: $nav-row-gap;
+    width: 100%;
+    color: $color-text-l;
+    h6 {
+      width: 100%;
+      padding: 12px 0;
+    }
+    li {
+      padding: 4px 12px;
+      @extend p;
+    }
+    .selected {
+      color: $color-primary;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+  }
+}
+
+//Content : Nav 위치
+.content {
+  display: table-cell;
+  padding: $con-margin-top 68px;
+  .list_con {
+    @include flex($direction: column);
+    row-gap: 36px;
+  }
+}
+
+//First-con
+.main {
+  width: 100%;
+  background: linear-gradient(120deg, $color-primary-d 0%, $color-primary 100%);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+  // padding
+  $padding-column: 28px;
+  $padding-row: 36px;
+  .user {
+    @include flex($justify: space-between, $align: flex-end);
+    padding: $padding-column $padding-row 0;
+    .left_con {
+      @include flex($align: flex-start);
+      .symbol {
+        width: 104px;
+        height: 144px;
+        margin-right: 28px;
+        background: linear-gradient(
+          180deg,
+          $color-welcome 0%,
+          $color-friends 100%
+        );
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .text {
+        @include flex(
+          $direction: column,
+          $justify: space-between,
+          $align: flex-start
+        );
+        height: 144px;
+        h3 {
+          color: $color-text-w;
+          span {
+            font-weight: bold;
+            color: $color-welcome;
+          }
+        }
+      }
+      .link {
+        a {
+          color: rgba($color-text-w, 0.8);
+          &:first-child {
+            padding-right: 16px;
+          }
+          & + a {
+            padding-left: 16px;
+            @include line(
+              $direction: $left,
+              $weight: 2,
+              $color: rgba($color-text-w, 0.4)
+            );
+          }
+        }
+      }
+    }
+    .right_con {
+      @include flex($direction: column, $align: flex-start);
+      row-gap: 4px;
+      li {
+        @include flex($justify: space-between);
+        column-gap: 16px;
+        width: 100%;
+        color: rgba($color-text-w, 0.8);
+        &.point {
+          font-weight: bold;
+          color: $color-text-w;
+        }
+        &:nth-child(2) {
+          margin-bottom: 12px;
+        }
+      }
+    }
+  }
+  .rank {
+    width: 100%;
+    padding: 0 $padding-row $padding-column;
+    margin: 36px 0;
+    .line {
+      position: relative;
+      width: 100%;
+      height: 4px;
+      border-radius: 4px;
+      background-color: $color-primary-v;
+    }
+    .dot {
+      @include flex($justify: space-between);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      li {
+        position: relative;
+        height: 100%;
+        aspect-ratio: 1/1;
+        margin: 0 40px;
+        background-color: $color-primary-l;
+        p {
+          position: absolute;
+          left: 50%;
+          transform: translate(-50%, 100%);
+          bottom: -8px;
+          color: rgba($color-text-w, 0.2);
+        }
+        &.on {
+          background-color: rgba($color-text-w, 0.6);
+          p {
+            padding: 0.12em 8px 0px;
+            border-radius: 4px;
+            color: $color-text-w;
+            background: linear-gradient(
+              180deg,
+              $color-welcome 0%,
+              $color-friends 100%
+            );
+          }
+        }
+      }
+    }
+    .percent {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 20%;
+      height: 100%;
+      border-radius: 4px;
+      overflow: hidden;
+      .color {
+        position: absolute;
+        width: 784px;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          $color-welcome 0%,
+          $color-primary-l 100%
+        );
+      }
+    }
+  }
+}
+
+.sub {
+  @include flex();
+  width: 100%;
+  height: 144px;
+  padding: 16px 0;
+  color: $color-text-l;
+  background-color: $color-surface;
+  & > div {
+    @include flex($justify: center);
+    width: 50%;
+    height: 100%;
+    & + div {
+      @include line($direction: $left);
+    }
+  }
+  .left_con {
+    padding: 0 36px;
+    ul {
+      @include flex($justify: space-between);
+      width: 100%;
+      li {
+        @include flex($direction: column);
+        row-gap: 4px;
+        img {
+          width: 40px;
+          height: 40px;
+        }
+      }
+    }
+  }
+}
+
+.container_1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 24px;
+  width: 100%;
+  & > div {
+    width: 100%;
+    .title {
+      margin-bottom: 8px;
+      color: $color-primary-v;
+    }
+    .box {
+      @include flex($direction: column, $align: flex-start);
+      row-gap: 24px;
+      width: 100%;
+      height: 360px;
+      padding: calc(0.12em + 28px) 36px 24px;
+      @include line();
+    }
+    .group {
+      .name {
+        margin-bottom: 12px;
+        color: $color-text;
+        img {
+          width: 20px;
+          height: 20px;
+          margin-left: 8px;
+          margin-bottom: 0.12em;
+          vertical-align: middle;
+        }
+      }
+      .item {
+        @include flex($wrap: wrap);
+        gap: 12px;
+        li {
+          @extend p;
+          padding: calc(0.12em + 2px) 20px 2px;
+          color: $color-primary-ll;
+          @include line($color: $color-primary-ll);
+        }
+      }
+    }
+    .category {
+      width: 100%;
+      .item {
+        width: 100%;
+        @include flex($justify: space-between);
+        li {
+          @include flex($direction: column);
+          row-gap: 4px;
+          width: 20%;
+          text-align: center;
+          h4 {
+            font-weight: bold;
+            color: $color-text;
+          }
+          p {
+            color: $color-text-l;
+          }
+        }
+      }
+      & + .category {
+        padding-top: 24px;
+        @include line($direction: $top);
+      }
+      .name {
+        color: $color-text;
+        margin-bottom: 16px;
+      }
+      .list {
+        @include flex();
+        column-gap: 16px;
+        height: 148px;
+        width: 100%;
+        li {
+          height: 100%;
+          border: solid 1px $color-text-ll;
+          box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+          img {
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+.container_2 {
+  width: 100%;
+  .title {
+    margin-bottom: 8px;
+    color: $color-text;
+  }
+  .box {
+    @include flex($direction: column, $align: flex-start);
+    row-gap: 24px;
+    width: 100%;
+    padding: 36px;
+    @include line();
+  }
+}

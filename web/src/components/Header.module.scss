@@ -1,9 +1,9 @@
-@import "../styles/utils";
+@import "../assets/scss/style.scss";
 
 .mainHeader {
-  position: fixed;
-  top: 0;
-  left: 0;
+  // position: fixed;
+  // top: 0;
+  // left: 0;
   width: 100%;
   min-width: 1280px;
   height: 100px;
@@ -11,7 +11,7 @@
 }
 
 .layout {
-  @include flex($justifyContent: space-between);
+  @include flex($justify: space-between);
   height: 100%;
 }
 
@@ -38,7 +38,7 @@ Nav {
 }
 
 .gnbTitle {
-  @include flex($justifyContent: center);
+  @include flex($justify: center);
   position: relative;
   height: 100%;
   padding: 0 40px;
@@ -49,7 +49,7 @@ Nav {
     transition: 0.2s;
   }
   &:hover {
-    background-color: $color-primary-variant;
+    background-color: $color-primary-v;
     a {
       transform: translate(0, 2px);
     }
@@ -87,7 +87,7 @@ Nav {
 }
 
 .gnbBody {
-  @include flex($justifyContent: center);
+  @include flex($justify: center);
   display: none;
   column-gap: 24px;
   position: absolute;
@@ -95,14 +95,14 @@ Nav {
   width: 200vw;
   height: 48px;
   transform: translate(0, 100%);
-  background-color: rgba($color-primary-variant, 0.8);
+  background-color: rgba($color-primary-v, 0.8);
   li {
     position: relative;
     bottom: -0.68ex;
     font-size: 14px;
-    color: $color-text-white-dark;
+    color: $color-text-wd;
     &:hover {
-      color: $color-text-white;
+      color: $color-text-w;
     }
   }
   &:hover {
@@ -130,9 +130,9 @@ Nav {
   column-gap: 24px;
   a {
     font-size: 14px;
-    color: $color-text-white-dark;
+    color: $color-text-wd;
     &:hover {
-      color: $color-text-white;
+      color: $color-text-w;
     }
   }
 }
@@ -147,16 +147,16 @@ Nav {
     link,
     svg,
     a {
-      color: $color-text-white;
+      color: $color-text-w;
     }
     a::after {
-      background-color: $color-text-white;
+      background-color: $color-text-w;
     }
   }
   .gnbAll {
     svg,
     div {
-      fill: $color-text-white;
+      fill: $color-text-w;
     }
   }
 }

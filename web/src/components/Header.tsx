@@ -150,12 +150,12 @@ type Gnb = {
 function Nav() {
   const gnbData: Gnb[] = [
     {
-      href: "/",
+      href: "ticketing",
       title: "영화",
       body: ["전체영화", "큐레이션", "무비포스트"],
     },
     {
-      href: "/",
+      href: "mypage",
       title: "예매",
       body: ["빠른예매", "상영시간표", "더 부티크 프라이빗 예매"],
     },
