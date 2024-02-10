@@ -5,7 +5,7 @@
   width: 100vw;
   height: 100vh;
   text-align: center;
-  background-color: $color-primary-v;
+  background-color: $primary-variant;
   .content {
     display: inline-flex;
     padding: 56px 52px;
@@ -20,21 +20,21 @@
 }
 
 // logo
-.ci {
-  width: 156px;
-  height: 52px;
-  margin: auto;
-  position: relative;
-}
-.ci a {
-  display: block;
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  font-size: 0;
-  line-height: 0;
-  background: url(../../public/images/logo_default.svg) center/contain no-repeat;
-}
+// .ci {
+//   width: 156px;
+//   height: 52px;
+//   margin: auto;
+//   position: relative;
+// }
+// .ci a {
+//   display: block;
+//   width: 100%;
+//   height: 100%;
+//   padding: 0;
+//   font-size: 0;
+//   line-height: 0;
+//   background: url(../../public/images/logo_default.svg) center/contain no-repeat;
+// }
 
 // input
 .loginCont {
@@ -123,8 +123,8 @@
 
 .btnLogin {
   button {
-    color: var(--color-text-white);
-    background-color: var(--color-primary-variant);
+    color: var(--text-whitehite);
+    background-color: var(--primary-variantariant);
   }
 }
 .loginNav {
@@ -176,14 +176,14 @@
     position: relative;
     button {
       background: #797979;
-      color: var(--color-text-white);
+      color: var(--text-whitehite);
     }
   }
   .btngoogle {
     position: relative;
     button {
       background: #e04a32;
-      color: var(--color-text-white);
+      color: var(--text-whitehite);
     }
   }
   .btnkakao {
@@ -197,7 +197,7 @@
     position: relative;
     button {
       background: #03c75a;
-      color: var(--color-text-white);
+      color: var(--text-whitehite);
     }
   }
 }

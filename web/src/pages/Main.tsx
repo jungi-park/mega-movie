@@ -1,8 +1,9 @@
 import React from "react";
 import { RootState } from "../modules/rootReducer";
 import { useSelector } from "react-redux";
-import "./Main.scss";
 import axios from "axios";
+//style
+import "../assets/scss/section/main.scss";
 
 const MovieComponent: React.FC<{
   name: string;
@@ -12,38 +13,37 @@ const MovieComponent: React.FC<{
   rate: string;
   star: string;
 }> = ({ name, genre, img, rank, rate, star }) => (
-  <div className="movie">
-    <img
-      className="posterImg"
-      src={process.env.PUBLIC_URL + `/images/img_poster_${img}.jpg`}
-      alt=""
-    />
-    <div className="movieCont">
-      <div className="movieRank">
-        <h4>{rank}</h4>
+  <div className="movie-card">
+    <div className="poster">
+      <img
+        src={process.env.PUBLIC_URL + `/images/img_poster_${img}.jpg`}
+        alt=""
+      />
+    </div>
+
+    <div className="con">
+      <div className="rank">
+        <h3>{rank}</h3>
       </div>
-      <div className="movieName">
-        <h5>{name}</h5>
+      <div className="name">
+        <span>{name}</span>
       </div>
-      <div className="movueDescription">
-        <p className="moviePer">
-          <span className="movieGenre">{genre}</span>예매율 :{" "}
-          <span>{rate}</span>
-        </p>
-        <div className="movieStar">
-          <img
-            className="posterImg"
-            src={process.env.PUBLIC_URL + "/images/icon_star.svg"}
-            alt=""
-          />
-          <p>{star}</p>
+      <div className="des">
+        <div className="genre">
+          <span>{genre}</span>
+        </div>
+        <div className="star">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M9.99991 14.3915L15.1498 17.4999L13.7832 11.6416L18.3331 7.69995L12.3416 7.19162L9.99991 1.66666L7.65826 7.19162L1.66663 7.69995L6.2166 11.6416L4.84994 17.4999L9.99991 14.3915Z" />
+          </svg>
+          <span>{star}</span>
         </div>
       </div>
     </div>
-    <div className="movieInfo">
+    {/* <div className="movieInfo">
       <h6 className="veiwDetail">상세보기</h6>
       <h6 className="reserveTicket">예약하기</h6>
-    </div>
+    </div> */}
   </div>
 );
 
@@ -52,7 +52,7 @@ const MovieList: React.FC = () => {
     {
       name: "잠",
       genre: "미스터리",
-      img: "sleep",
+      img: "boston",
       rank: 1,
       rate: "27.7%",
       star: "9.9",
@@ -116,7 +116,7 @@ const MovieList: React.FC = () => {
   ];
 
   return (
-    <div className="movieList">
+    <div className="movie-list">
       {movies.map((movie) => (
         <MovieComponent
           name={movie.name}
@@ -182,57 +182,66 @@ function Main() {
   //       </>)
   return (
     <>
-      <main className="mainCont">
-        <div className="mainSection">
-          <div className="heroBanner">
-            <div className="bannerBg">
+      <main>
+        <div className="wrapper">
+          <div className="hero-banner">
+            <div className="bg">
               <img
                 src={process.env.PUBLIC_URL + "/images/img_main_1.jpg"}
                 alt=""
               />
             </div>
-            <div className="banner-prev"></div>
-            <div className="banner-next"></div>
-            <div className="bannerCont">
+            <div className="prev-btn"></div>
+            <div className="next-btn"></div>
+            <div className="bottom">
               <div className="layout">
-                <div className="bannerList">
-                  <div className="banner">
-                    <div className="title">
-                      <h5 className="titleName">잠</h5>
-                      <h6 className="titleDescription">“누가 들어왔어”</h6>
+                <div className="con">
+                  <div className="list">
+                    <div className="list-con">
+                      <h2 className="name">잠</h2>
+                      <h6 className="des">“누가 들어왔어”</h6>
                     </div>
                   </div>
-                  <div className="banner">
-                    <div className="title">
-                      <h5 className="titleName">오펜하이머</h5>
-                      <h6 className="titleDescription">
-                        “나는 이제 죽음이요, 세상의 파괴자가 되었다.”
-                      </h6>
+                  <div className="list">
+                    <div className="list-con">
+                      <div className="name ">
+                        <span className="font-big">오펜하이머</span>
+                      </div>
+                      <div className="des">
+                        <span className="font-body">
+                          “나는 이제 죽음이요, 세상의 파괴자가 되었다.”
+                        </span>
+                      </div>
                     </div>
                   </div>
-                  <div className="banner">
-                    <div className="title">
-                      <h5 className="titleName">달짝지근해: 7510</h5>
-                      <h6 className="titleDescription">
-                        OMG 세상에 이런 맛이! 올여름, 달짝지근해진 그가 온다!
-                      </h6>
+                  <div className="list">
+                    <div className="list-con">
+                      <div className="name ">
+                        <span className="font-big">오펜하이머</span>
+                      </div>
+                      <div className="des">
+                        <span className="font-body">
+                          “나는 이제 죽음이요, 세상의 파괴자가 되었다.”
+                        </span>
+                      </div>
                     </div>
                   </div>
-                  <div className="banner">
-                    <div className="title">
-                      <h5 className="titleName">
-                        천박사 퇴마 연구소: 설경의 비밀
-                      </h5>
-                      <h6 className="titleDescription">
-                        귀신을 믿지 않는 가짜 퇴마사! 그의 세계를 흔드는 진짜
-                        사건이 나타났다!
-                      </h6>
+                  <div className="list">
+                    <div className="list-con">
+                      <div className="name ">
+                        <span className="font-big">오펜하이머</span>
+                      </div>
+                      <div className="des">
+                        <span className="font-body">
+                          “나는 이제 죽음이요, 세상의 파괴자가 되었다.”
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <ul className="quickMenu">
+            {/* <ul className="quickMenu">
               <li className="quickButton">
                 <img
                   src={process.env.PUBLIC_URL + "/images/icon_ticket.svg"}
@@ -261,103 +270,125 @@ function Main() {
                 />
                 <p>고객센터</p>
               </li>
-            </ul>
+            </ul> */}
           </div>
 
-          <div className="movieSection">
+          <div className="container boxoffice-cont">
             <div className="layout">
+              <div className="title-main">
+                <div className="main">
+                  <span>T</span>
+                  <span>O</span>
+                  <span>P</span>
+                  <span>8</span>
+                </div>
+                <div className="sub">
+                  <span>실시간 박스오피스</span>
+                </div>
+              </div>
               <MovieList></MovieList>
-              <h6 className="viewAll">+ 영화 전체보기</h6>
+              {/* <h6 className="viewAll">+ 영화 전체보기</h6> */}
             </div>
           </div>
         </div>
-
-        <div className="eventSection">
+        <div className="container recommend-movie-cont">
           <div className="layout">
-            <div className="title">
-              <h4 className="titleName">MEGA 이벤트</h4>
+            <div className="title-main">
+              <div className="main">
+                <span>추</span>
+                <span>천</span>
+                <span>영</span>
+                <span>화</span>
+              </div>
+              <div className="sub">
+                <span>내 취향저격 영화</span>
+              </div>
             </div>
-            <div className="eventCont">
-              <div className="eventList">
-                <div className="eventScreen">
-                  <div className="event">
-                    <img
-                      src={process.env.PUBLIC_URL + "/images/img_event_1.png"}
-                      alt=""
-                    />
+            <div className="content">
+              <div className="area-img">
+                <img src="/images/img_poster_sleep.jpg" alt="" />
+              </div>
+              <div className="area-text">
+                <div className="name">
+                  <h3>윙카</h3>
+                </div>
+                <div className="description">
+                  <span className="font-accent">세상에서 가장 달콤한 여정</span>
+                  <p>
+                    좋은 일은 모두 꿈에서부터 시작된다!
+                    <br /> 마법사이자 초콜릿 메이커 ‘윌리 웡카’의 꿈은디저트의
+                    성지, ‘달콤 백화점’에 자신만의 초콜릿 가게를 여는 것.
+                  </p>
+                </div>
+                <div className="review">
+                  <div className="user">
+                    <span className="ico_person"></span>
+                    <p>aaaa****</p>
                   </div>
-                  <div className="event">
-                    <img
-                      src={process.env.PUBLIC_URL + "/images/img_event_2.jpg"}
-                      alt=""
-                    />
+                  <div className="wrap">
+                    <div className="text">
+                      <p>관람평</p>
+                    </div>
+                    <div className="point">
+                      <span className="font-accent">10</span>
+                    </div>
+                    <div className="point detail">
+                      <p>
+                        연출 외<br />
+                        +3
+                      </p>
+                    </div>
+                    <div className="comment">
+                      <p>너무 재밌어요!!!!</p>
+                    </div>
                   </div>
                 </div>
-                <div className="eventNav">
-                  <div className="event">
-                    <img
-                      src={process.env.PUBLIC_URL + "/images/img_event_3.jpg"}
-                      alt=""
-                    />
+                <div className="review">
+                  <div className="user">
+                    <span className="ico_person"></span>
+                    <p>aaaa****</p>
                   </div>
-                  <div className="event">
-                    <img
-                      src={process.env.PUBLIC_URL + "/images/img_event_3.jpg"}
-                      alt=""
-                    />
-                  </div>
-                  <div className="event">
-                    <img
-                      src={process.env.PUBLIC_URL + "/images/img_event_3.jpg"}
-                      alt=""
-                    />
+                  <div className="wrap">
+                    <div className="text">
+                      <p>관람평</p>
+                    </div>
+                    <div className="point">
+                      <span className="font-accent">10</span>
+                    </div>
+                    <div className="point detail">
+                      <p>
+                        연출 외<br />
+                        +3
+                      </p>
+                    </div>
+                    <div className="comment">
+                      <p>너무 재밌어요!!!!</p>
+                    </div>
                   </div>
                 </div>
               </div>
-              <h6 className="viewAll">+ 이벤트 전체보기</h6>
             </div>
           </div>
-          <div className="eventBg"></div>
         </div>
-
-        {/* <div className="curationSection">
-          <div className="layout">
-            <h5 className="title">큐레이션</h5>
-            <div className="curationCont">
-              <div className="curationInfo">
-                <div className="curationTitle">
-                  <h3>
-                    관심있는
-                    <br />
-                    큐레이션을 확인하세요.
-                  </h3>
-                </div>
-              </div>
-              <div className="curationtSlide">
-                <div className="curationtList">
-                  <div className="curationCard"></div>
-                  <div className="curationCard"></div>
-                  <div className="curationCard"></div>
-                  <div className="curationCard"></div>
-                  <div className="curationCard"></div>
-                </div>
-              </div>
+        <div className="container event-cont">
+          <div className="title-main">
+            <div className="main">
+              <span>이</span>
+              <span>벤</span>
+              <span>트</span>
+            </div>
+            <div className="sub">
+              <span>참여하자</span>
             </div>
           </div>
-        </div> */}
 
-        <div className="guideSection">
-          <h4 className="title">MEGA 특별관</h4>
-          <div className="guideCont">
-            <div className="guideList">
-              <div className="guideCard"></div>
-              <div className="guideCard"></div>
-              <div className="guideCard"></div>
-              <div className="guideCard"></div>
-              <div className="guideCard"></div>
-              <div className="guideCard"></div>{" "}
-              <div className="guideCard"></div>
-            </div>
+          <div className="content">
+            <ul className="list-event">
+              <li></li> <li></li> <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
           </div>
         </div>
       </main>

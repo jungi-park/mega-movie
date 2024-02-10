@@ -1,23 +1,22 @@
 @import url("https://fonts.googleapis.com/css2");
 
 @font-face {
-  font-family: "GmarketSans";
+  font-family: "GmarketSansMedium";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
     format("woff");
-  font-weight: normal;
 }
 
 @font-face {
-  font-family: "GmarketSans";
+  font-family: "GmarketSansBold";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff")
     format("woff");
-  font-weight: bold;
+  font-weight: 900;
 }
 
 body,
 button,
 input {
-  font-family: "GmarketSans", -apple-system, BlinkMacSystemFont, system-ui,
+  font-family: "GmarketSansMedium", -apple-system, BlinkMacSystemFont, system-ui,
     Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR",
     "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
     sans-serif;
@@ -41,17 +40,16 @@ input {
 
 h1 {
   font-size: 64px;
-  font-weight: bold;
 }
 
 h2 {
   font-size: 40px;
-  font-weight: bold;
 }
 
 h3 {
-  font-size: 32px;
-  line-height: 48px;
+  position: relative;
+  bottom: -0.1em;
+  font-size: 40px;
 }
 
 h4 {
@@ -69,7 +67,28 @@ h6 {
   line-height: 24px;
 }
 
+.font {
+  &-menu {
+    font-size: 20px;
+  }
+  &-link {
+    font-size: 14px;
+  }
+  &-body {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  &-accent {
+    font-size: 24px;
+  }
+  &-big {
+    font-size: 20px;
+  }
+  &-small {
+    font-size: 12px;
+  }
+}
+
 p {
-  font-size: 14px;
-  line-height: 22px;
+  @extend .font-body;
 }

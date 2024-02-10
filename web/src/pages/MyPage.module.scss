@@ -13,7 +13,6 @@ $color-mvip: #5e46fe;
 
 main {
   //bg-color : 배경색
-  background-color: $color-surface-d;
 }
 .layout {
   display: table;
@@ -23,7 +22,7 @@ main {
 //Location : 현재 페이지 위치
 .location {
   margin-bottom: 32px;
-  color: $color-text;
+  // color: $color-text;
 }
 
 //Nav
@@ -43,7 +42,7 @@ main {
     @include flex($direction: column, $align: flex-start);
     row-gap: $nav-row-gap;
     width: 100%;
-    color: $color-text-l;
+    color: $text-light;
     h6 {
       width: 100%;
       padding: 12px 0;
@@ -53,7 +52,7 @@ main {
       @extend p;
     }
     .selected {
-      color: $color-primary;
+      color: $primary;
       font-weight: bold;
       text-decoration: underline;
     }
@@ -73,7 +72,7 @@ main {
 //First-con
 .main {
   width: 100%;
-  background: linear-gradient(120deg, $color-primary-d 0%, $color-primary 100%);
+  background: linear-gradient(120deg, $primary-dark 0%, $primary 100%);
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
   // padding
   $padding-column: 28px;
@@ -105,7 +104,7 @@ main {
         );
         height: 144px;
         h3 {
-          color: $color-text-w;
+          color: $text-white;
           span {
             font-weight: bold;
             color: $color-welcome;
@@ -114,7 +113,7 @@ main {
       }
       .link {
         a {
-          color: rgba($color-text-w, 0.8);
+          color: rgba($text-white, 0.8);
           &:first-child {
             padding-right: 16px;
           }
@@ -123,7 +122,7 @@ main {
             @include line(
               $direction: $left,
               $weight: 2,
-              $color: rgba($color-text-w, 0.4)
+              $color: rgba($text-white, 0.4)
             );
           }
         }
@@ -136,10 +135,10 @@ main {
         @include flex($justify: space-between);
         column-gap: 16px;
         width: 100%;
-        color: rgba($color-text-w, 0.8);
+        color: rgba($text-white, 0.8);
         &.point {
           font-weight: bold;
-          color: $color-text-w;
+          color: $text-white;
         }
         &:nth-child(2) {
           margin-bottom: 12px;
@@ -156,7 +155,7 @@ main {
       width: 100%;
       height: 4px;
       border-radius: 4px;
-      background-color: $color-primary-v;
+      background-color: $primary-variant;
     }
     .dot {
       @include flex($justify: space-between);
@@ -170,20 +169,20 @@ main {
         height: 100%;
         aspect-ratio: 1/1;
         margin: 0 40px;
-        background-color: $color-primary-l;
+        background-color: $primary-light;
         p {
           position: absolute;
           left: 50%;
           transform: translate(-50%, 100%);
           bottom: -8px;
-          color: rgba($color-text-w, 0.2);
+          color: rgba($text-white, 0.2);
         }
         &.on {
-          background-color: rgba($color-text-w, 0.6);
+          background-color: rgba($text-white, 0.6);
           p {
             padding: 0.12em 8px 0px;
             border-radius: 4px;
-            color: $color-text-w;
+            color: $text-white;
             background: linear-gradient(
               180deg,
               $color-welcome 0%,
@@ -208,7 +207,7 @@ main {
         background: linear-gradient(
           90deg,
           $color-welcome 0%,
-          $color-primary-l 100%
+          $primary-light 100%
         );
       }
     }
@@ -220,8 +219,8 @@ main {
   width: 100%;
   height: 144px;
   padding: 16px 0;
-  color: $color-text-l;
-  background-color: $color-surface;
+  color: $text-light;
+  background-color: $bg-white;
   & > div {
     @include flex($justify: center);
     width: 50%;
@@ -256,7 +255,7 @@ main {
     width: 100%;
     .title {
       margin-bottom: 8px;
-      color: $color-primary-v;
+      color: $primary-variant;
     }
     .box {
       @include flex($direction: column, $align: flex-start);
@@ -269,7 +268,7 @@ main {
     .group {
       .name {
         margin-bottom: 12px;
-        color: $color-text;
+        color: $text;
         img {
           width: 20px;
           height: 20px;
@@ -284,8 +283,8 @@ main {
         li {
           @extend p;
           padding: calc(0.12em + 2px) 20px 2px;
-          color: $color-primary-ll;
-          @include line($color: $color-primary-ll);
+          color: #7d74c2;
+          @include line($color: #7d74c2);
         }
       }
     }
@@ -301,10 +300,10 @@ main {
           text-align: center;
           h4 {
             font-weight: bold;
-            color: $color-text;
+            color: $text;
           }
           p {
-            color: $color-text-l;
+            color: $text-light;
           }
         }
       }
@@ -313,7 +312,7 @@ main {
         @include line($direction: $top);
       }
       .name {
-        color: $color-text;
+        color: $text;
         margin-bottom: 16px;
       }
       .list {
@@ -323,7 +322,7 @@ main {
         width: 100%;
         li {
           height: 100%;
-          border: solid 1px $color-text-ll;
+          border: solid 1px $text-white;
           box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
           img {
             height: 100%;
@@ -338,7 +337,7 @@ main {
   width: 100%;
   .title {
     margin-bottom: 8px;
-    color: $color-text;
+    color: $text;
   }
   .box {
     @include flex($direction: column, $align: flex-start);

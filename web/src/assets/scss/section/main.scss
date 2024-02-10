@@ -1,0 +1,333 @@
+@import "../style.scss";
+
+// banner
+.hero-banner {
+  @include flex($justify: center);
+  position: relative;
+  width: 100%;
+  height: calc(100vh - var(--header-height));
+  max-height: 1080px;
+  background-color: $primary-variant;
+  //bg image
+  .bg {
+    @include flex($justify: center);
+    height: 100%;
+    img {
+      height: 100%;
+    }
+  }
+  // arrow
+  .prev-btn,
+  .next-btn {
+    position: absolute;
+    width: 108px;
+    height: 108px;
+    transform: translate(0, -64px);
+    opacity: 0.6;
+  }
+  .prev-btn {
+    left: 24px;
+    // background: url(../../public/images/icon_arrow_left.svg) center/contain
+    //   no-repeat;
+  }
+  .next-btn {
+    right: 24px;
+    // background: url(../../public/images/icon_arrow_right.svg) center/contain
+    //   no-repeat;
+  }
+  // progress bar
+  .bottom {
+    @include flex();
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 128px;
+    background-color: $primary-variant90;
+    z-index: 1;
+    .con {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      height: 100%;
+    }
+    .list {
+      @include flex();
+      column-gap: 16px;
+      flex-grow: 1;
+      position: relative;
+      width: 100%;
+      height: 100%;
+      padding: 0 24px;
+      overflow: hidden;
+      &:hover {
+        background-color: rgba($primary, 0.5);
+      }
+      .list-con {
+        position: relative;
+        bottom: -0.12em;
+      }
+      .name,
+      .des {
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        span {
+          position: relative;
+          bottom: -0.2em;
+        }
+      }
+      .name {
+        margin-bottom: 12px;
+        color: $text-white;
+        font-weight: bold;
+        span {
+          position: relative;
+          bottom: -0.12em;
+        }
+      }
+      .des {
+        color: $text-light;
+      }
+      &:first-of-type {
+        flex-grow: 2;
+        &::before {
+          content: "";
+          width: 132px;
+          height: 132px;
+          // background: url(../../public/images/icon_play.svg) center/contain
+          //   no-repeat;
+        }
+        &:hover {
+          background-color: unset;
+        }
+      }
+    }
+    .list + .list::before {
+      content: "";
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1px;
+      height: 100%;
+      background-color: rgba($text-white, 0.1);
+    }
+    .list-con {
+      width: 100%;
+    }
+  }
+}
+
+// .quickMenu {
+//   position: absolute;
+//   right: 240px;
+//   width: 96px;
+//   background-color: rgba($primary, 0.8);
+//   transform: translate(0, -64px);
+//   li {
+//     @include flex($direction: column, $justify: center);
+//     row-gap: 12px;
+//     position: relative;
+//     width: 100%;
+//     height: 92px;
+//     img {
+//       height: 36px;
+//     }
+//     p {
+//       color: rgba($text-white, 0.8);
+//     }
+//     & + li::before {
+//       content: "";
+//       display: inline-block;
+//       position: absolute;
+//       top: 0;
+//       left: 0;
+//       width: 100%;
+//       height: 1px;
+//       background-color: rgba($text-white, 0.1);
+//     }
+//   }
+// }
+
+.container {
+  width: 100%;
+  padding: 120px 0;
+  .layout {
+    @include flex($direction: column, $justify: center);
+  }
+  .title-main {
+    margin-bottom: 80px;
+  }
+}
+
+.boxoffice-cont {
+  background-color: $primary-variant;
+  .title-main {
+    .main span {
+      color: $primary-variant;
+    }
+    .sub {
+      color: $text-white;
+    }
+  }
+  .movie-list {
+    @include flex($justify: center, $wrap: wrap);
+    gap: 48px;
+    width: 100%;
+  }
+  .movie-card {
+    .rank {
+      color: $text-white;
+      background-color: $primary-variant90;
+    }
+    .name {
+      color: $text-white;
+    }
+    .des {
+      color: $text-light;
+      svg {
+        fill: $text-light;
+      }
+    }
+    &:nth-of-type(1) {
+      // 1위
+      box-shadow: 4px 8px 16px rgba($primary-variant, 0.6);
+      transform-origin: top left;
+      &,
+      .rank {
+        background-color: $primary;
+      }
+      .des {
+        color: $text-white;
+        svg {
+          fill: $text-white;
+        }
+      }
+    }
+    &:hover {
+      .movieInfo {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+// Recommend-movie
+.recommend-movie-cont {
+  background-color: $primary;
+  .title-main {
+    .main span {
+      color: $primary;
+    }
+    .sub {
+      color: $text-white;
+    }
+  }
+
+  .content {
+    @include flex($justify: center, $align: flex-start);
+    column-gap: 64px;
+    width: 80%;
+    height: 420px;
+    .area-img {
+      height: 100%;
+      font-size: 0;
+      box-shadow: 4px 8px 16px rgba($primary-variant, 0.6);
+    }
+    .area-text {
+      @include flex($direction: column, $align: flex-start);
+      height: 100%;
+      .name {
+        color: $text-white;
+        font-weight: bold;
+        margin-bottom: 32px;
+      }
+      .description {
+        margin-bottom: 40px;
+        .font-accent {
+          display: inline-block;
+          color: $text-white;
+          margin-bottom: 16px;
+        }
+        p {
+          color: $text-white;
+          word-break: keep-all;
+        }
+      }
+      .review {
+        display: table;
+        width: 100%;
+        height: 100px;
+        & + .review {
+          margin-top: 12px;
+        }
+        .user {
+          display: table-cell;
+          width: 120px;
+          text-align: center;
+          vertical-align: middle;
+          color: $text-white;
+          .ico_person {
+            width: 40px;
+            height: 40px;
+          }
+        }
+        .wrap {
+          @include flex();
+          width: 100%;
+          height: 100%;
+          text-align: center;
+          padding: 8px;
+          > div {
+            @include flex($direction: column, $justify: center);
+            height: 100%;
+            color: $text-white;
+            background-color: $primary-dark;
+          }
+          .text {
+            width: 20%;
+          }
+          .point {
+            width: 20%;
+          }
+          .comment {
+            width: 40%;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Event
+.event-cont {
+  .title-main {
+    .main span {
+      font-family: GmarketSansMedium;
+      font-weight: bold;
+      color: $text-white;
+      background-color: $primary;
+    }
+    .sub {
+      color: $primary;
+    }
+  }
+
+  .content {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow-x: hidden;
+    ul {
+      @include flex($justify: center);
+      column-gap: 48px;
+      position: absolute;
+      li {
+        width: 400px;
+        height: 400px;
+        background-color: $primary;
+      }
+    }
+  }
+}

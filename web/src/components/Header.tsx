@@ -2,12 +2,13 @@ import axios from "axios";
 import React from "react";
 import { RootState } from "../modules/rootReducer";
 import { useDispatch, useSelector } from "react-redux";
-import styles from "./Header.module.scss";
 import { sendSignOut } from "../utile/DAO/user";
 import { logoutUser } from "../modules/user";
 import { Link } from "../type/linkType";
 import { sendSignInGoogle } from "../utile/DAO/user";
 import { useNavigate } from "react-router-dom";
+
+import "../assets/scss/section/header.scss";
 
 // function Header(){
 //     const user = useSelector((state: RootState) => state.userReducer);
@@ -101,8 +102,8 @@ function UtilArea() {
   ];
 
   return (
-    <div className={styles.utilArea}>
-      <ul className={styles.areaLink}>
+    <div className="utilArea">
+      <ul className="areaLink">
         {Links.map((link) => (
           <li
             key={link.title}
@@ -150,7 +151,7 @@ type Gnb = {
 function Nav() {
   const gnbData: Gnb[] = [
     {
-      href: "ticketing",
+      href: "movies",
       title: "영화",
       body: ["전체영화", "큐레이션", "무비포스트"],
     },
@@ -183,11 +184,11 @@ function Nav() {
 
   return (
     <nav>
-      <ul className={styles.gnbList}>
+      <ul className="gnb">
         {gnbData.map((gnb) => (
-          <li className={styles.gnbTitle} key={gnb.title}>
+          <li className="menu" key={gnb.title}>
             <a href={gnb.href}>{gnb.title}</a>
-            <ul className={styles.gnbBody}>
+            <ul className="gnbBody">
               {gnb.body.map((lnb, index) => (
                 <li key={index}>{lnb}</li>
               ))}
@@ -214,15 +215,15 @@ type HeaderClass = {
 // Header
 function Header(color: HeaderClass) {
   return (
-    <header className={`${styles[color.className]} ${styles.mainHeader}`}>
-      <div className={`${styles.layout}`}>
-        <h1 className={styles.ci}>
+    <header className="header">
+      <div className="layout">
+        <h1 className="ci">
           <a href="/" title="MEGABOX 메인으로 가기">
             MEGABOX : Life Theater
           </a>
         </h1>
         <Nav></Nav>
-        <div className={styles.rightCont}>
+        <div className="lnb">
           <UtilArea></UtilArea>
           {/* <ul>
             <li className={styles.rightGnb}>
@@ -230,7 +231,7 @@ function Header(color: HeaderClass) {
               <div className={styles.gnbPerson}></div>
             </li>
           </ul> */}
-          <div className={styles.gnbSearch}></div>
+          <div className="gnbSearch"></div>
         </div>
       </div>
     </header>

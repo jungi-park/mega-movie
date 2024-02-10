@@ -1,79 +1,136 @@
-@import "./reset";
-@import "./vars";
-@import "./mixin";
-@import "./fonts";
+@import "./setting/reset";
+@import "./setting/vars";
+@import "./setting/mixin";
+@import "./setting/fonts";
+@import "./setting/icons";
+
+:root {
+  --header-height: 100px;
+}
+
+main {
+  position: relative;
+  background-color: $bg-white;
+}
 
 body {
   overflow-x: hidden;
-  background-color: $color-surface;
+  background-color: $bg-white;
 }
 
 .layout {
   width: 92%;
   max-width: 1280px;
-  margin: auto;
+  height: 100%;
+  margin: 0 auto;
 }
 
-// button
-button {
-  border: 0;
-  font-size: 16px;
-  $btnSpeed: 0.4s;
-  &.default {
-    width: 192px;
-    height: 48px;
+.title-main {
+  @include flex($direction: column);
+  row-gap: 28px;
+  .main {
+    @include flex($justify: center);
+    column-gap: 4px;
+    span {
+      @include flex($justify: center);
+      height: 64px;
+      padding: 0 8px;
+      background-color: white;
+      padding-top: 0.24em;
+      @extend h3;
+      font-family: GmarketSansBold;
+    }
   }
-  &.long {
-    width: 404px;
-    height: 50px;
+  .sub {
+    @extend .font-big;
+    font-weight: bold;
   }
-  &.primaryBtn {
-    position: relative;
-    display: inline-block;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    color: $color-text-w;
-    padding-top: 0.32em;
-    opacity: 1;
-    &:hover {
-      &:after {
-        opacity: 1;
-        transform: translateY(0) rotateX(0);
-      }
-      &:before {
-        opacity: 0;
-        transform: translateY(50%) rotateX(90deg);
-      }
-    }
-    &:after,
-    &:before {
-      @include flex($align: center);
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      font-size: 16px;
-      font-weight: bold;
-      color: $color-text-w;
-      transition: $btnSpeed;
-      border: solid 1px $color-primary;
-      background-color: $color-primary-v;
-      z-index: -1;
-    }
-    &:after {
-      content: attr(data-text);
-      position: absolute;
-      background-color: $color-primary;
-      transform: translateY(-50%) rotateX(90deg);
-      opacity: 0;
-    }
-    &:before {
-      content: attr(data-text);
-      position: absolute;
+}
 
-      transform: translateY(0) rotateX(0);
-      opacity: 1;
+.movie-card {
+  @include flex($direction: column);
+  row-gap: 16px;
+  position: relative;
+  width: 284px;
+  padding: 16px 12px;
+  .poster {
+    @include flex($justify: center);
+    width: 100%;
+    height: 376px;
+    overflow: hidden;
+    img {
+      height: 100%;
+    }
+  }
+  .con {
+    @include flex($direction: column, $align: flex-start);
+    row-gap: 12px;
+    position: relative;
+    left: 0;
+    width: 100%;
+    .rank {
+      @include flex($justify: center);
+      position: absolute;
+      left: 0;
+      top: -15px;
+      width: 60px;
+      height: 72px;
+      transform: translate(0%, -100%);
+      h3 {
+        position: relative;
+        bottom: -0.12em;
+      }
+    }
+    .name {
+      width: 99%;
+      @extend .font-accent;
+      font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      span {
+        position: relative;
+        bottom: -0.12em;
+      }
+    }
+    .des {
+      @include flex($justify: space-between);
+      width: 100%;
+      height: 16px;
+      @extend .font-body;
+      .star {
+        @include flex($justify: center);
+        column-gap: 4px;
+        svg {
+          width: 16px;
+          height: 16px;
+        }
+      }
+      span {
+        position: relative;
+        bottom: -0.12em;
+      }
+    }
+  }
+
+  .movieInfo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(#000000, 0.8);
+    opacity: 0;
+    transition: 0.2s;
+    .veiwDetail,
+    .reserveTicket {
+      @include flex($justify: center);
+      width: 100%;
+      height: 50%;
+      color: $text-white;
+      &:hover {
+        background-color: rgba($primary, 0.8);
+      }
     }
   }
 }

@@ -1,0 +1,77 @@
+@import "../assets/scss/style.scss";
+
+.greeting {
+  @include flex($justify: center);
+  height: 400px;
+  background-color: $primary-variant;
+  .main-title main span {
+    color: $primary-variant;
+  }
+}
+
+.movies-con {
+  padding: 120px 0;
+}
+
+.list-filter {
+  @include flex($justify: space-between);
+  width: 100%;
+  height: 52px;
+  border-bottom: solid 1px $text-white;
+  .list {
+    @include flex();
+    li {
+      @include flex();
+      height: 52px;
+      padding: 0 32px;
+      color: $text-white;
+      span {
+        padding-top: 0.12em;
+        @extend .font-accent;
+      }
+      &.selected {
+        color: $text-white;
+        background-color: $primary-variant;
+      }
+    }
+  }
+  .search {
+    background: url(../../public//icon_search.svg) center/contain no-repeat;
+    background-size: 60%;
+    width: 52px;
+    height: 52px;
+  }
+}
+
+.search-filter {
+  @include flex();
+  width: 100%;
+  height: 28px;
+  margin-top: 24px;
+  margin-bottom: 60px;
+  .list {
+    @include flex();
+    column-gap: 16px;
+    li {
+      @include flex();
+      height: 28px;
+      padding: 0 24px;
+      border: solid 1px $text-white;
+    }
+    span {
+      padding-top: 0.12em;
+      @extend .font-link;
+    }
+  }
+}
+
+.movies-list {
+  @include flex($justify: center, $wrap: wrap);
+  gap: 48px;
+  .movie-card {
+    .rank {
+      color: $text-white;
+      background-color: rgba($primary-variant, 0.9);
+    }
+  }
+}
