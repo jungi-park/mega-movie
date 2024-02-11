@@ -14,21 +14,21 @@ const MovieComponent: React.FC<{
   star: string;
 }> = ({ name, genre, img, rank, rate, star }) => (
   <div className="movie-card">
-    <div className="poster">
+    <div className="area-img">
       <img
         src={process.env.PUBLIC_URL + `/images/img_poster_${img}.jpg`}
         alt=""
       />
     </div>
 
-    <div className="con">
+    <div className="area-text">
       <div className="rank">
         <h3>{rank}</h3>
       </div>
       <div className="name">
         <span>{name}</span>
       </div>
-      <div className="des">
+      <div className="description">
         <div className="genre">
           <span>{genre}</span>
         </div>
@@ -40,10 +40,14 @@ const MovieComponent: React.FC<{
         </div>
       </div>
     </div>
-    {/* <div className="movieInfo">
-      <h6 className="veiwDetail">상세보기</h6>
-      <h6 className="reserveTicket">예약하기</h6>
-    </div> */}
+    <div className="hover">
+      <div className="veiw-detail">
+        <span className="font-big">상세보기</span>
+      </div>
+      <div className="reserve">
+        <span className="font-big">예약하기</span>
+      </div>
+    </div>
   </div>
 );
 
@@ -191,86 +195,100 @@ function Main() {
                 alt=""
               />
             </div>
-            <div className="prev-btn"></div>
-            <div className="next-btn"></div>
-            <div className="bottom">
+            <div className="prev-btn">
+              <span className="arr-left"></span>
+            </div>
+            <div className="next-btn">
+              <span className="arr-right"></span>
+            </div>
+            <div className="list-banner">
               <div className="layout">
-                <div className="con">
-                  <div className="list">
-                    <div className="list-con">
-                      <h2 className="name">잠</h2>
-                      <h6 className="des">“누가 들어왔어”</h6>
-                    </div>
-                  </div>
-                  <div className="list">
-                    <div className="list-con">
-                      <div className="name ">
-                        <span className="font-big">오펜하이머</span>
+                <ul className="content">
+                  <li>
+                    <div className="area-text">
+                      <div className="name">
+                        <span className="font-accent">오펜하이머</span>
                       </div>
-                      <div className="des">
+                      <div className="description">
                         <span className="font-body">
                           “나는 이제 죽음이요, 세상의 파괴자가 되었다.”
                         </span>
                       </div>
                     </div>
-                  </div>
-                  <div className="list">
-                    <div className="list-con">
-                      <div className="name ">
+                  </li>
+                  <li>
+                    <div className="area-text">
+                      <div className="name">
                         <span className="font-big">오펜하이머</span>
                       </div>
-                      <div className="des">
+                      <div className="description">
                         <span className="font-body">
                           “나는 이제 죽음이요, 세상의 파괴자가 되었다.”
                         </span>
                       </div>
                     </div>
-                  </div>
-                  <div className="list">
-                    <div className="list-con">
-                      <div className="name ">
+                  </li>
+                  <li>
+                    <div className="area-text">
+                      <div className="name">
                         <span className="font-big">오펜하이머</span>
                       </div>
-                      <div className="des">
+                      <div className="description">
                         <span className="font-body">
                           “나는 이제 죽음이요, 세상의 파괴자가 되었다.”
                         </span>
                       </div>
                     </div>
-                  </div>
-                </div>
+                  </li>
+                  <li>
+                    <div className="area-text">
+                      <div className="name">
+                        <span className="font-big">오펜하이머</span>
+                      </div>
+                      <div className="description">
+                        <span className="font-body">
+                          “나는 이제 죽음이요, 세상의 파괴자가 되었다.”
+                        </span>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
               </div>
             </div>
-            {/* <ul className="quickMenu">
-              <li className="quickButton">
-                <img
-                  src={process.env.PUBLIC_URL + "/images/icon_ticket.svg"}
-                  alt=""
-                />
-                <p>빠른예매</p>
+            <ul className="nav-skip">
+              <li>
+                <div className="img-area">
+                  <span className="ico-ticket"></span>
+                </div>
+                <div className="text-area">
+                  <span className="font-link">빠른예매</span>
+                </div>
               </li>
-              <li className="quickButton">
-                <img
-                  src={process.env.PUBLIC_URL + "/images/icon_ticket.svg"}
-                  alt=""
-                />
-                <p>멤버십</p>
+              <li>
+                <div className="img-area">
+                  <span className="ico-ticket"></span>
+                </div>
+                <div className="text-area">
+                  <span className="font-link">빠른예매</span>
+                </div>
               </li>
-              <li className="quickButton">
-                <img
-                  src={process.env.PUBLIC_URL + "/images/icon_ticket.svg"}
-                  alt=""
-                />
-                <p>VIP</p>
+              <li>
+                <div className="img-area">
+                  <span className="ico-ticket"></span>
+                </div>
+                <div className="text-area">
+                  <span className="font-link">빠른예매</span>
+                </div>
               </li>
-              <li className="quickButton">
-                <img
-                  src={process.env.PUBLIC_URL + "/images/icon_ticket.svg"}
-                  alt=""
-                />
-                <p>고객센터</p>
+              <li>
+                <div className="img-area">
+                  <span className="ico-ticket"></span>
+                </div>
+                <div className="text-area">
+                  <span className="font-link">빠른예매</span>
+                </div>
               </li>
-            </ul> */}
+            </ul>
           </div>
 
           <div className="container boxoffice-cont">
@@ -313,7 +331,7 @@ function Main() {
                   <h3>윙카</h3>
                 </div>
                 <div className="description">
-                  <span className="font-accent">세상에서 가장 달콤한 여정</span>
+                  <span className="font-big">세상에서 가장 달콤한 여정</span>
                   <p>
                     좋은 일은 모두 꿈에서부터 시작된다!
                     <br /> 마법사이자 초콜릿 메이커 ‘윌리 웡카’의 꿈은디저트의

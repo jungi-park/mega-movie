@@ -102,17 +102,18 @@ function UtilArea() {
   ];
 
   return (
-    <div className="utilArea">
-      <ul className="areaLink">
+    <nav>
+      <ul className="lnb">
         {Links.map((link) => (
           <li
             key={link.title}
             style={{
-              display: isLoggedIn || link.showWhenLoggedIn ? "block" : "none",
+              display: isLoggedIn || link.showWhenLoggedIn ? "flex" : "none",
             }}
           >
             {link.href ? (
               <a
+                className="font-link"
                 href={link.href}
                 title={link.title}
                 onClick={(e) => {
@@ -137,7 +138,7 @@ function UtilArea() {
           </li>
         ))}
       </ul>
-    </div>
+    </nav>
   );
 }
 
@@ -187,22 +188,18 @@ function Nav() {
       <ul className="gnb">
         {gnbData.map((gnb) => (
           <li className="menu" key={gnb.title}>
-            <a href={gnb.href}>{gnb.title}</a>
-            <ul className="gnbBody">
+            <a className="font-menu" href={gnb.href}>
+              {gnb.title}
+            </a>
+            <ul className="menu-detail">
               {gnb.body.map((lnb, index) => (
-                <li key={index}>{lnb}</li>
+                <li className="font-link" key={index}>
+                  {lnb}
+                </li>
               ))}
             </ul>
           </li>
         ))}
-        {/* <li className={styles.gnbAll}>
-          <svg viewBox="0 0 54 54">
-            <path
-              d="M-4542-24v-3h48v3zm0-12v-3h48v3z"
-              transform="translate(4545 59)"
-            ></path>
-          </svg>
-        </li> */}
       </ul>
     </nav>
   );
@@ -223,16 +220,7 @@ function Header(color: HeaderClass) {
           </a>
         </h1>
         <Nav></Nav>
-        <div className="lnb">
-          <UtilArea></UtilArea>
-          {/* <ul>
-            <li className={styles.rightGnb}>
-              <div className={styles.gnbCalendar}></div>
-              <div className={styles.gnbPerson}></div>
-            </li>
-          </ul> */}
-          <div className="gnbSearch"></div>
-        </div>
+        <UtilArea></UtilArea>
       </div>
     </header>
   );

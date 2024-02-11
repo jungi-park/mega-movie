@@ -21,10 +21,10 @@ $bottom: "-bottom";
   border#{$direction}: solid #{$weight}px #{$color}; // solid 오타 수정
 }
 
-.div2 {
+@mixin ellipsis($line: 1) {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: $line;
   -webkit-box-orient: vertical;
 }

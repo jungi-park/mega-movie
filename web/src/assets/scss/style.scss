@@ -27,7 +27,7 @@ body {
 
 .title-main {
   @include flex($direction: column);
-  row-gap: 28px;
+  row-gap: 24px;
   .main {
     @include flex($justify: center);
     column-gap: 4px;
@@ -35,25 +35,24 @@ body {
       @include flex($justify: center);
       height: 64px;
       padding: 0 8px;
+      font-weight: 800;
       background-color: white;
-      padding-top: 0.24em;
       @extend h3;
-      font-family: GmarketSansBold;
     }
   }
   .sub {
     @extend .font-big;
-    font-weight: bold;
+    font-weight: 600;
   }
 }
 
 .movie-card {
   @include flex($direction: column);
-  row-gap: 16px;
+  row-gap: 20px;
   position: relative;
   width: 284px;
   padding: 16px 12px;
-  .poster {
+  .area-img {
     @include flex($justify: center);
     width: 100%;
     height: 376px;
@@ -62,7 +61,7 @@ body {
       height: 100%;
     }
   }
-  .con {
+  .area-text {
     @include flex($direction: column, $align: flex-start);
     row-gap: 12px;
     position: relative;
@@ -76,44 +75,39 @@ body {
       width: 60px;
       height: 72px;
       transform: translate(0%, -100%);
-      h3 {
-        position: relative;
-        bottom: -0.12em;
-      }
     }
     .name {
-      width: 99%;
+      width: 100%;
       @extend .font-accent;
-      font-weight: bold;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      span {
-        position: relative;
-        bottom: -0.12em;
-      }
+      @include ellipsis();
+      font-weight: 600;
+      color: $text-white;
+      padding: 0 4px;
     }
-    .des {
+    .description {
       @include flex($justify: space-between);
       width: 100%;
       height: 16px;
       @extend .font-body;
+      color: $text-light;
+      padding: 0 4px;
       .star {
         @include flex($justify: center);
         column-gap: 4px;
         svg {
           width: 16px;
           height: 16px;
+          fill: $text-light;
         }
-      }
-      span {
-        position: relative;
-        bottom: -0.12em;
       }
     }
   }
-
-  .movieInfo {
+  &:hover {
+    .hover {
+      opacity: 1;
+    }
+  }
+  .hover {
     position: absolute;
     top: 0;
     left: 0;
@@ -122,14 +116,14 @@ body {
     background-color: rgba(#000000, 0.8);
     opacity: 0;
     transition: 0.2s;
-    .veiwDetail,
-    .reserveTicket {
+    .veiw-detail,
+    .reserve {
       @include flex($justify: center);
       width: 100%;
       height: 50%;
       color: $text-white;
       &:hover {
-        background-color: rgba($primary, 0.8);
+        background-color: $primary90;
       }
     }
   }

@@ -1,70 +1,21 @@
-@import url("https://fonts.googleapis.com/css2");
-
-@font-face {
-  font-family: "GmarketSansMedium";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
-    format("woff");
-}
-
-@font-face {
-  font-family: "GmarketSansBold";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff")
-    format("woff");
-  font-weight: 900;
-}
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css");
 
 body,
 button,
 input {
-  font-family: "GmarketSansMedium", -apple-system, BlinkMacSystemFont, system-ui,
-    Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR",
-    "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-    sans-serif;
+  font-family: "Pretendard Variable", Pretendard, -apple-system,
+    BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
+    "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  font-weight: 500;
 }
-
-// :root {
-//   --mainEng-font: postea-variable;
-//   --subEng-font: "organetto-variable";
-//   --mainKor-font: "Pretendard";
-// }
-
-// .mainEng-font {
-//   font-family: var(--mainEng-font);
-//   font-variation-settings: "wght" 800;
-// }
-
-// .subEng-font {
-//   font-family: var(--subEng-font);
-//   font-variation-settings: "wght" 800;
-// }
 
 h1 {
   font-size: 64px;
 }
 
-h2 {
-  font-size: 40px;
-}
-
 h3 {
-  position: relative;
-  bottom: -0.1em;
-  font-size: 40px;
-}
-
-h4 {
-  font-size: 24px;
-  line-height: 36px;
-}
-
-h5 {
-  font-size: 20px;
-  line-height: 30px;
-}
-
-h6 {
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 48px;
 }
 
 .font {
@@ -72,20 +23,21 @@ h6 {
     font-size: 20px;
   }
   &-link {
-    font-size: 14px;
+    font-size: 16px;
+    line-height: 1.5;
   }
   &-body {
     font-size: 16px;
     line-height: 24px;
   }
   &-accent {
-    font-size: 24px;
+    font-size: 28px;
   }
   &-big {
-    font-size: 20px;
+    font-size: 24px;
   }
   &-small {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 
