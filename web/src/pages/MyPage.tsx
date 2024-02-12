@@ -84,7 +84,7 @@ export default function MyPage() {
   };
 
   return (
-    <main>
+    <main className="mypage">
       <Navigation></Navigation>
       <div className="layout">
         <div className="nav">

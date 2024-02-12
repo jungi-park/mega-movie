@@ -1,4 +1,4 @@
-let movies = [
+export const movies = [
   {
     name: "잠",
     genre: "미스터리",

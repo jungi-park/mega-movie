@@ -2,8 +2,28 @@ import React from "react";
 import { RootState } from "../modules/rootReducer";
 import { useSelector } from "react-redux";
 import axios from "axios";
+
+//movies
+import { movies } from "../assets/moviesData";
 //style
 import "../assets/scss/section/main.scss";
+
+const MovieList: React.FC = () => {
+  return (
+    <div className="movie-list">
+      {movies.map((movie) => (
+        <MovieComponent
+          name={movie.name}
+          genre={movie.genre}
+          img={movie.img}
+          rank={movie.rank}
+          rate={movie.rate}
+          star={movie.star}
+        />
+      ))}
+    </div>
+  );
+};
 
 const MovieComponent: React.FC<{
   name: string;
@@ -50,90 +70,6 @@ const MovieComponent: React.FC<{
     </div>
   </div>
 );
-
-const MovieList: React.FC = () => {
-  const movies = [
-    {
-      name: "잠",
-      genre: "미스터리",
-      img: "boston",
-      rank: 1,
-      rate: "27.7%",
-      star: "9.9",
-    },
-    {
-      name: "1947 보스톤",
-      genre: "드라마",
-      img: "boston",
-      rank: 2,
-      rate: "16.8%",
-      star: "8.7",
-    },
-    {
-      name: "천박사 퇴마 연구소: 설경의 비밀",
-      genre: "기타",
-      img: "exorcism",
-      rank: 3,
-      rate: "5.9%",
-      star: "8.9",
-    },
-    {
-      name: "거미집",
-      genre: "코미디, 드라마",
-      img: "spider",
-      rank: 4,
-      rate: "4.9%",
-      star: "8.9",
-    },
-    {
-      name: "잠",
-      genre: "미스터리",
-      img: "sleep",
-      rank: 5,
-      rate: "27.7%",
-      star: "9.9",
-    },
-    {
-      name: "1947 보스톤",
-      genre: "드라마",
-      img: "boston",
-      rank: 6,
-      rate: "16.8%",
-      star: "8.7",
-    },
-    {
-      name: "천박사 퇴마 연구소: 설경의 비밀",
-      genre: "기타",
-      img: "exorcism",
-      rank: 7,
-      rate: "5.9%",
-      star: "8.9",
-    },
-    {
-      name: "거미집",
-      genre: "코미디, 드라마",
-      img: "spider",
-      rank: 8,
-      rate: "4.9%",
-      star: "8.9",
-    },
-  ];
-
-  return (
-    <div className="movie-list">
-      {movies.map((movie) => (
-        <MovieComponent
-          name={movie.name}
-          genre={movie.genre}
-          img={movie.img}
-          rank={movie.rank}
-          rate={movie.rate}
-          star={movie.star}
-        />
-      ))}
-    </div>
-  );
-};
 
 // scroll 744px이상 header 숨김
 // const header = document.querySelector('.sticky-header');
