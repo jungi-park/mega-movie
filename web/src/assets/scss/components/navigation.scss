@@ -1,16 +1,17 @@
-@import "../assets/scss/style.scss";
+@import "../style.scss";
 
 .navigation {
   @include flex();
   width: 100%;
   height: 48px;
   border-bottom: solid 1px $text-white;
-  .list {
+  .guide {
     @include flex();
-    column-gap: 4px;
+    column-gap: 8px;
     width: 100%;
     height: 100%;
-    .home {
+    .ico-home {
+      width: 20px;
       height: 20px;
     }
     span {
@@ -23,10 +24,9 @@
       content: "";
       width: 20px;
       height: 20px;
-      // background: url(../../public/images/icon_arrow_right.svg) center/contain
-      //   no-repeat;
-      margin-right: 4px;
+      margin-right: 8px;
       vertical-align: middle;
+      @extend .arr-right;
     }
   }
 }

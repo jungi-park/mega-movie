@@ -1,17 +1,15 @@
 import React from "react";
-import styles from "./Navigation.module.scss";
+
+//style
+import "../assets/scss/components/navigation.scss";
 
 function Navigation() {
   return (
-    <div className={styles.navigation}>
-      <div className={styles.layout}>
-        <p className={styles.list}>
-          <img
-            className={styles.home}
-            src={process.env.PUBLIC_URL + "/images/icon_home.svg"}
-            alt=""
-          />
-          <span>MY BOX</span>
+    <div className="navigation">
+      <div className="layout">
+        <p className="guide">
+          <span className="ico-home"></span>
+          <span className="font-body">MY BOX</span>
         </p>
       </div>
     </div>

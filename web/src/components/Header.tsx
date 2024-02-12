@@ -8,7 +8,8 @@ import { Link } from "../type/linkType";
 import { sendSignInGoogle } from "../utile/DAO/user";
 import { useNavigate } from "react-router-dom";
 
-import "../assets/scss/section/header.scss";
+//style
+import "../assets/scss/components/header.scss";
 
 // function Header(){
 //     const user = useSelector((state: RootState) => state.userReducer);
@@ -214,7 +215,7 @@ function Header(color: HeaderClass) {
   return (
     <header className="header">
       <div className="layout">
-        <h1 className="ci">
+        <h1 className="ci-w">
           <a href="/" title="MEGABOX 메인으로 가기">
             MEGABOX : Life Theater
           </a>

@@ -123,7 +123,7 @@ function Main() {
   return (
     <>
       <main>
-        <div className="wrapper">
+        <div className="wrapper main">
           <div className="hero-banner">
             <div className="bg">
               <img
@@ -226,7 +226,6 @@ function Main() {
               </li>
             </ul>
           </div>
-
           <div className="container boxoffice-cont">
             <div className="layout">
               <div className="title-main">
@@ -243,106 +242,106 @@ function Main() {
               <MovieList></MovieList>
               {/* <h6 className="viewAll">+ 영화 전체보기</h6> */}
             </div>
+          </div>{" "}
+          <div className="container recommend-movie-cont">
+            <div className="layout">
+              <div className="title-main">
+                <div className="main">
+                  <span>추</span>
+                  <span>천</span>
+                  <span>영</span>
+                  <span>화</span>
+                </div>
+                <div className="sub">
+                  <span>내 취향저격 영화</span>
+                </div>
+              </div>
+              <div className="content">
+                <div className="area-img">
+                  <img src="/images/img_poster_sleep.jpg" alt="" />
+                </div>
+                <div className="area-text">
+                  <div className="name">
+                    <h3>윙카</h3>
+                  </div>
+                  <div className="description">
+                    <span className="font-big">세상에서 가장 달콤한 여정</span>
+                    <p>
+                      좋은 일은 모두 꿈에서부터 시작된다!
+                      <br /> 마법사이자 초콜릿 메이커 ‘윌리 웡카’의 꿈은디저트의
+                      성지, ‘달콤 백화점’에 자신만의 초콜릿 가게를 여는 것.
+                    </p>
+                  </div>
+                  <div className="review">
+                    <div className="user">
+                      <span className="ico_person"></span>
+                      <p>aaaa****</p>
+                    </div>
+                    <div className="wrap">
+                      <div className="text">
+                        <p>관람평</p>
+                      </div>
+                      <div className="point">
+                        <span className="font-accent">10</span>
+                      </div>
+                      <div className="point detail">
+                        <p>
+                          연출 외<br />
+                          +3
+                        </p>
+                      </div>
+                      <div className="comment">
+                        <p>너무 재밌어요!!!!</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="review">
+                    <div className="user">
+                      <span className="ico_person"></span>
+                      <p>aaaa****</p>
+                    </div>
+                    <div className="wrap">
+                      <div className="text">
+                        <p>관람평</p>
+                      </div>
+                      <div className="point">
+                        <span className="font-accent">10</span>
+                      </div>
+                      <div className="point detail">
+                        <p>
+                          연출 외<br />
+                          +3
+                        </p>
+                      </div>
+                      <div className="comment">
+                        <p>너무 재밌어요!!!!</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="container recommend-movie-cont">
-          <div className="layout">
+          <div className="container event-cont">
             <div className="title-main">
               <div className="main">
-                <span>추</span>
-                <span>천</span>
-                <span>영</span>
-                <span>화</span>
+                <span>이</span>
+                <span>벤</span>
+                <span>트</span>
               </div>
               <div className="sub">
-                <span>내 취향저격 영화</span>
+                <span>참여하자</span>
               </div>
             </div>
-            <div className="content">
-              <div className="area-img">
-                <img src="/images/img_poster_sleep.jpg" alt="" />
-              </div>
-              <div className="area-text">
-                <div className="name">
-                  <h3>윙카</h3>
-                </div>
-                <div className="description">
-                  <span className="font-big">세상에서 가장 달콤한 여정</span>
-                  <p>
-                    좋은 일은 모두 꿈에서부터 시작된다!
-                    <br /> 마법사이자 초콜릿 메이커 ‘윌리 웡카’의 꿈은디저트의
-                    성지, ‘달콤 백화점’에 자신만의 초콜릿 가게를 여는 것.
-                  </p>
-                </div>
-                <div className="review">
-                  <div className="user">
-                    <span className="ico_person"></span>
-                    <p>aaaa****</p>
-                  </div>
-                  <div className="wrap">
-                    <div className="text">
-                      <p>관람평</p>
-                    </div>
-                    <div className="point">
-                      <span className="font-accent">10</span>
-                    </div>
-                    <div className="point detail">
-                      <p>
-                        연출 외<br />
-                        +3
-                      </p>
-                    </div>
-                    <div className="comment">
-                      <p>너무 재밌어요!!!!</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="review">
-                  <div className="user">
-                    <span className="ico_person"></span>
-                    <p>aaaa****</p>
-                  </div>
-                  <div className="wrap">
-                    <div className="text">
-                      <p>관람평</p>
-                    </div>
-                    <div className="point">
-                      <span className="font-accent">10</span>
-                    </div>
-                    <div className="point detail">
-                      <p>
-                        연출 외<br />
-                        +3
-                      </p>
-                    </div>
-                    <div className="comment">
-                      <p>너무 재밌어요!!!!</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="container event-cont">
-          <div className="title-main">
-            <div className="main">
-              <span>이</span>
-              <span>벤</span>
-              <span>트</span>
-            </div>
-            <div className="sub">
-              <span>참여하자</span>
-            </div>
-          </div>
 
-          <div className="content">
-            <ul className="list-event">
-              <li></li> <li></li> <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-            </ul>
+            <div className="content">
+              <ul className="list-event">
+                <li></li> <li></li> <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+              </ul>
+            </div>
           </div>
         </div>
       </main>

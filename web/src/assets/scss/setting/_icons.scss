@@ -1,10 +1,24 @@
-.ci a {
+.ci-w a {
   display: block;
   margin: 0;
   padding: 0;
   font-size: 0;
   line-height: 0;
   background: url(../../img/logo_w.svg) center/contain no-repeat;
+}
+
+.ci-c a {
+  display: block;
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+  line-height: 0;
+  background: url(../../img/logo_c.svg) center/contain no-repeat;
+}
+
+.ico-home {
+  display: inline-block;
+  background: url(../../img/icon_home.svg) center/contain no-repeat;
 }
 
 .ico_person {

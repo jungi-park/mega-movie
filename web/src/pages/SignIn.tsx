@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-// import "./SignIn.scss";
 import axios from "axios";
 import { loginUser, logoutUser } from "../modules/user";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,6 +6,9 @@ import { RootState } from "../modules/rootReducer";
 import { Link, useNavigate } from "react-router-dom";
 import { sendSignIn, sendSignOut } from "../utile/DAO/user";
 import Header from "../components/Header";
+
+//style
+import "../assets/scss/section/signin.scss";
 
 const SingIn = () => {
   const user = useSelector((state: RootState) => state.userReducer);
@@ -79,15 +81,15 @@ const SingIn = () => {
   };
 
   return (
-    <main className="login">
-      <div className="content">
-        <h1 className="ci">
+    <main className="wrapper signin">
+      <div className="container">
+        <h1 className="ci-c">
           <a href="/" title="MEGABOX 메인으로 가기">
             MEGABOX : Life Theater
           </a>
         </h1>
-        <div className="loginCont">
-          <div className="inputCont">
+        <div className="input-Cont">
+          <div className="content">
             <div className="inputBox">
               <div className="idBox">
                 <div className="icon-box">

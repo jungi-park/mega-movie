@@ -1,0 +1,23 @@
+@import "../style.scss";
+
+.signup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  .container {
+    gap: 48px;
+    @include flex($direction: column, $justify: center);
+    display: inline-flex;
+    padding: 56px 52px;
+    margin-top: 80px;
+    background: #fff;
+    filter: drop-shadow(0px 1px 4px rgba(17, 17, 17, 0.1));
+    .ci-c a {
+      width: 140px;
+      height: 48px;
+    }
+  }
+}
