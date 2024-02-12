@@ -152,7 +152,7 @@ type Gnb = {
 function Nav() {
   const gnbData: Gnb[] = [
     {
-      href: "movies",
+      href: "movie",
       title: "영화",
       body: ["전체영화", "큐레이션", "무비포스트"],
     },

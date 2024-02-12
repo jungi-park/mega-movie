@@ -13,7 +13,7 @@ import Main from "./pages/Main";
 import OauthSignIn from "./pages/OauthSignIn";
 import MyPage from "./pages/MyPage";
 import Ticketing from "./pages/Ticketing";
-import Movies from "./pages/Movies";
+import Movie from "./pages/Movie";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -29,7 +29,7 @@ root.render(
         <Route path="/signup" element={<SignUp></SignUp>}></Route>
         <Route path="/signin" element={<SignIn></SignIn>}></Route>
         <Route path="/mypage" element={<MyPage></MyPage>}></Route>
-        <Route path="/movies" element={<Movies></Movies>}></Route>
+        <Route path="/movie" element={<Movie></Movie>}></Route>
         <Route
           path="/oauth/signin"
           element={<OauthSignIn></OauthSignIn>}

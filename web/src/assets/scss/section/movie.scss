@@ -1,4 +1,4 @@
-@import "../assets/scss/style.scss";
+@import "../style.scss";
 
 .greeting {
   @include flex($justify: center);
@@ -36,7 +36,7 @@
     }
   }
   .search {
-    background: url(../../public//icon_search.svg) center/contain no-repeat;
+    // background: url(../../public//icon_search.svg) center/contain no-repeat;
     background-size: 60%;
     width: 52px;
     height: 52px;

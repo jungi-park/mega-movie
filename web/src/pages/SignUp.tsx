@@ -1,4 +1,3 @@
-import "./SignUp.scss";
 import axios from "axios";
 import React, { useState } from "react";
 import { sendSignUp } from "../utile/DAO/user";
