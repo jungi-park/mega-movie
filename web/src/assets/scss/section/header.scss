@@ -1,0 +1,82 @@
+@import "../style.scss";
+
+.header {
+  width: 100%;
+  height: var(--header-height);
+  background-color: $primary;
+  z-index: 100;
+  .layout {
+    @include flex($justify: space-between);
+    height: 100%;
+    .ci a {
+      width: 140px;
+      height: 48px;
+    }
+  }
+  nav {
+    height: 100%;
+    .gnb {
+      @include flex();
+      height: 100%;
+      .menu {
+        @include flex($justify: center);
+        position: relative;
+        height: 100%;
+        padding: 0 40px;
+        transition: 0.2s;
+        a {
+          font-weight: 600;
+          color: $text-white;
+          transition: 0.2s;
+        }
+        &:hover {
+          background-color: $primary-variant;
+          a {
+            transform: translate(0, 12%);
+          }
+          .menu-detail {
+            display: flex;
+          }
+        }
+        .menu-detail {
+          @include flex($justify: center);
+          display: none;
+          column-gap: 24px;
+          position: absolute;
+          bottom: 0;
+          width: 200vw;
+          height: 52px;
+          background-color: $primary-variant90;
+          transform: translate(0, 100%);
+          z-index: 100;
+          li {
+            position: relative;
+            font-weight: 600;
+            color: $text-white-dark;
+            &:hover {
+              color: $text-white;
+            }
+          }
+          &:hover {
+            display: flex;
+          }
+        }
+      }
+    }
+    .lnb {
+      @include flex();
+      column-gap: 24px;
+      height: 100%;
+      li {
+        @include flex($justify: center);
+        height: 100%;
+        a {
+          color: $text-white-dark;
+          &:hover {
+            color: $text-white;
+          }
+        }
+      }
+    }
+  }
+}

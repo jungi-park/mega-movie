@@ -1,0 +1,28 @@
+.ci a {
+  display: block;
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+  line-height: 0;
+  background: url(../../img/logo_w.svg) center/contain no-repeat;
+}
+
+.ico_person {
+  display: inline-block;
+  background: url(../../img/icon_person.svg) center/contain no-repeat;
+}
+
+.arr-left {
+  display: inline-block;
+  background: url(../../img/icon_arrow_left.svg) center/contain no-repeat;
+}
+
+.arr-right {
+  display: inline-block;
+  background: url(../../img/icon_arrow_right.svg) center/contain no-repeat;
+}
+
+.ico-ticket {
+  display: inline-block;
+  background: url(../../img/icon_ticket.svg) center/contain no-repeat;
+}

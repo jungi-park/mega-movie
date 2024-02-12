@@ -4,7 +4,7 @@
   @include flex();
   width: 100%;
   height: 48px;
-  border-bottom: solid 1px $color-text-wd;
+  border-bottom: solid 1px $text-white;
   .list {
     @include flex();
     column-gap: 4px;
@@ -16,15 +16,15 @@
     span {
       vertical-align: middle;
       position: relative;
-      color: $color-text-l;
+      color: $text-light;
     }
     span::before {
       display: inline-block;
       content: "";
       width: 20px;
       height: 20px;
-      background: url(../../public/images/icon_arrow_right.svg) center/contain
-        no-repeat;
+      // background: url(../../public/images/icon_arrow_right.svg) center/contain
+      //   no-repeat;
       margin-right: 4px;
       vertical-align: middle;
     }

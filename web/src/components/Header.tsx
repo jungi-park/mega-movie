@@ -2,12 +2,13 @@ import axios from "axios";
 import React from "react";
 import { RootState } from "../modules/rootReducer";
 import { useDispatch, useSelector } from "react-redux";
-import styles from "./Header.module.scss";
 import { sendSignOut } from "../utile/DAO/user";
 import { logoutUser } from "../modules/user";
 import { Link } from "../type/linkType";
 import { sendSignInGoogle } from "../utile/DAO/user";
 import { useNavigate } from "react-router-dom";
+
+import "../assets/scss/section/header.scss";
 
 // function Header(){
 //     const user = useSelector((state: RootState) => state.userReducer);
@@ -101,17 +102,18 @@ function UtilArea() {
   ];
 
   return (
-    <div className={styles.utilArea}>
-      <ul className={styles.areaLink}>
+    <nav>
+      <ul className="lnb">
         {Links.map((link) => (
           <li
             key={link.title}
             style={{
-              display: isLoggedIn || link.showWhenLoggedIn ? "block" : "none",
+              display: isLoggedIn || link.showWhenLoggedIn ? "flex" : "none",
             }}
           >
             {link.href ? (
               <a
+                className="font-link"
                 href={link.href}
                 title={link.title}
                 onClick={(e) => {
@@ -136,7 +138,7 @@ function UtilArea() {
           </li>
         ))}
       </ul>
-    </div>
+    </nav>
   );
 }
 
@@ -150,7 +152,7 @@ type Gnb = {
 function Nav() {
   const gnbData: Gnb[] = [
     {
-      href: "ticketing",
+      href: "movie",
       title: "영화",
       body: ["전체영화", "큐레이션", "무비포스트"],
     },
@@ -183,25 +185,21 @@ function Nav() {
 
   return (
     <nav>
-      <ul className={styles.gnbList}>
+      <ul className="gnb">
         {gnbData.map((gnb) => (
-          <li className={styles.gnbTitle} key={gnb.title}>
-            <a href={gnb.href}>{gnb.title}</a>
-            <ul className={styles.gnbBody}>
+          <li className="menu" key={gnb.title}>
+            <a className="font-menu" href={gnb.href}>
+              {gnb.title}
+            </a>
+            <ul className="menu-detail">
               {gnb.body.map((lnb, index) => (
-                <li key={index}>{lnb}</li>
+                <li className="font-link" key={index}>
+                  {lnb}
+                </li>
               ))}
             </ul>
           </li>
         ))}
-        {/* <li className={styles.gnbAll}>
-          <svg viewBox="0 0 54 54">
-            <path
-              d="M-4542-24v-3h48v3zm0-12v-3h48v3z"
-              transform="translate(4545 59)"
-            ></path>
-          </svg>
-        </li> */}
       </ul>
     </nav>
   );
@@ -214,24 +212,15 @@ type HeaderClass = {
 // Header
 function Header(color: HeaderClass) {
   return (
-    <header className={`${styles[color.className]} ${styles.mainHeader}`}>
-      <div className={`${styles.layout}`}>
-        <h1 className={styles.ci}>
+    <header className="header">
+      <div className="layout">
+        <h1 className="ci">
           <a href="/" title="MEGABOX 메인으로 가기">
             MEGABOX : Life Theater
           </a>
         </h1>
         <Nav></Nav>
-        <div className={styles.rightCont}>
-          <UtilArea></UtilArea>
-          {/* <ul>
-            <li className={styles.rightGnb}>
-              <div className={styles.gnbCalendar}></div>
-              <div className={styles.gnbPerson}></div>
-            </li>
-          </ul> */}
-          <div className={styles.gnbSearch}></div>
-        </div>
+        <UtilArea></UtilArea>
       </div>
     </header>
   );

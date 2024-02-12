@@ -4,7 +4,7 @@ import { RootState } from "../modules/rootReducer";
 import { getMyPage, sendUserUpdate } from "../utile/DAO/user";
 import moment from "moment";
 import Navigation from "../components/Navigation";
-import styles from "./MyPage.module.scss";
+import "../assets/scss/section/mypage.scss";
 
 export default function MyPage() {
   const user = useSelector((state: RootState) => state.userReducer);
@@ -84,13 +84,13 @@ export default function MyPage() {
   };
 
   return (
-    <main>
+    <main className="mypage">
       <Navigation></Navigation>
-      <div className={styles.layout}>
-        <div className={styles.nav}>
-          <h3 className={styles.location}>MY BOX</h3>
-          <ul className={styles.list}>
-            <ul className={styles.selected}>
+      <div className="layout">
+        <div className="nav">
+          <h3 className="location">MY BOX</h3>
+          <ul className="list">
+            <ul className="selected">
               <h6>예매/구매내역</h6>
             </ul>
             <ul>
@@ -125,32 +125,32 @@ export default function MyPage() {
             </ul>
           </ul>
         </div>
-        <div className={styles.content}>
-          <ul className={styles.list_con}>
-            <li className={styles.main}>
-              <div className={styles.user}>
-                <div className={styles.left_con}>
-                  <div className={styles.symbol}>
+        <div className="content">
+          <ul className="list_con">
+            <li className="main">
+              <div className="user">
+                <div className="left_con">
+                  <div className="symbol">
                     <img
                       src={process.env.PUBLIC_URL + "/images/icon.svg"}
                       alt=""
                     />
                   </div>
-                  <div className={styles.text}>
+                  <div className="text">
                     <div>
                       <h3>박준기님은</h3>
                       <h3>
                         <span>WELCOME</span> 등급입니다.
                       </h3>
                     </div>
-                    <div className={styles.link}>
+                    <div className="link">
                       <a href="">개인정보 수정</a>
                       <a href="">지난등급조회</a>
                     </div>
                   </div>
                 </div>
-                <ul className={styles.right_con}>
-                  <li className={styles.point}>
+                <ul className="right_con">
+                  <li className="point">
                     <h4>100 p</h4>
                   </li>
                   <li>
@@ -167,13 +167,13 @@ export default function MyPage() {
                   </li>
                 </ul>
               </div>
-              <div className={styles.rank}>
-                <div className={styles.line}>
-                  <div className={styles.percent}>
-                    <div className={styles.color}></div>
+              <div className="rank">
+                <div className="line">
+                  <div className="percent">
+                    <div className="color"></div>
                   </div>
-                  <ul className={styles.dot}>
-                    <li className={styles.on}>
+                  <ul className="dot">
+                    <li className="on">
                       <p>WELCOME</p>
                     </li>
                     <li>
@@ -191,8 +191,8 @@ export default function MyPage() {
                   </ul>
                 </div>
               </div>
-              <div className={styles.sub}>
-                <div className={styles.left_con}>
+              <div className="sub">
+                <div className="left_con">
                   <ul>
                     <li>
                       <img
@@ -228,50 +228,50 @@ export default function MyPage() {
                     </li>
                   </ul>
                 </div>
-                <div className={styles.right_con}>
+                <div className="right_con">
                   <p>가입된 멤버십이 없습니다.</p>
                 </div>
               </div>
             </li>
-            <li className={styles.container_1}>
-              <div className={styles.left_con}>
-                <h5 className={styles.title}>선호관람정보</h5>
-                <div className={styles.box}>
-                  <div className={styles.group}>
-                    <h6 className={styles.name}>
+            <li className="container_1">
+              <div className="left_con">
+                <h5 className="title">선호관람정보</h5>
+                <div className="box">
+                  <div className="group">
+                    <h6 className="name">
                       내 선호극장
                       <img
                         src={process.env.PUBLIC_URL + "/images/icon_plus.svg"}
                         alt=""
                       />
                     </h6>
-                    <ul className={styles.item}>
+                    <ul className="item">
                       <li>인천아아</li>
                       <li>아아</li>
                     </ul>
                   </div>
-                  <div className={styles.group}>
-                    <h6 className={styles.name}>
+                  <div className="group">
+                    <h6 className="name">
                       내 선호극장
                       <img
                         src={process.env.PUBLIC_URL + "/images/icon_plus.svg"}
                         alt=""
                       />
                     </h6>
-                    <ul className={styles.item}>
+                    <ul className="item">
                       <li>인천아아</li>
                       <li>아아</li>
                     </ul>
                   </div>
-                  <div className={styles.group}>
-                    <h6 className={styles.name}>
+                  <div className="group">
+                    <h6 className="name">
                       내 선호극장
                       <img
                         src={process.env.PUBLIC_URL + "/images/icon_plus.svg"}
                         alt=""
                       />
                     </h6>
-                    <ul className={styles.item}>
+                    <ul className="item">
                       <li>인천아아</li>
                       <li>아아</li> <li>인천아아</li> <li>인천아아</li>{" "}
                       <li>인천아아</li>
@@ -279,11 +279,11 @@ export default function MyPage() {
                   </div>
                 </div>
               </div>
-              <div className={styles.right_con}>
-                <h5 className={styles.title}>나의 무비스토리</h5>
-                <div className={styles.box}>
-                  <div className={styles.category}>
-                    <ul className={styles.item}>
+              <div className="right_con">
+                <h5 className="title">나의 무비스토리</h5>
+                <div className="box">
+                  <div className="category">
+                    <ul className="item">
                       <li>
                         <h4>0</h4>
                         <p>본 영화</p>
@@ -302,9 +302,9 @@ export default function MyPage() {
                       </li>
                     </ul>
                   </div>
-                  <div className={styles.category}>
-                    <h6 className={styles.name}>최근 본 영화</h6>
-                    <ul className={styles.list}>
+                  <div className="category">
+                    <h6 className="name">최근 본 영화</h6>
+                    <ul className="list">
                       <li>
                         <img
                           src={
@@ -328,17 +328,17 @@ export default function MyPage() {
                 </div>
               </div>
             </li>
-            <li className={styles.container_2}>
-              <h5 className={styles.title}>나의 예매내역</h5>
-              <div className={styles.box}></div>
+            <li className="container_2">
+              <h5 className="title">나의 예매내역</h5>
+              <div className="box"></div>
             </li>
-            <li className={styles.container_2}>
-              <h5 className={styles.title}>선호관람정보</h5>
-              <div className={styles.box}></div>
+            <li className="container_2">
+              <h5 className="title">선호관람정보</h5>
+              <div className="box"></div>
             </li>
-            <li className={styles.container_1}>
-              <div className={styles.left_con}></div>
-              <div className={styles.right_con}></div>
+            <li className="container_1">
+              <div className="left_con"></div>
+              <div className="right_con"></div>
             </li>
           </ul>
         </div>

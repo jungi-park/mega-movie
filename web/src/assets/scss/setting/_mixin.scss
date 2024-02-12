@@ -17,6 +17,14 @@ $left: "-left";
 $right: "-right";
 $bottom: "-bottom";
 
-@mixin line($direction: "", $weight: 1, $color: $color-text-wd) {
+@mixin line($direction: "", $weight: 1, $color: $text-white) {
   border#{$direction}: solid #{$weight}px #{$color}; // solid 오타 수정
+}
+
+@mixin ellipsis($line: 1) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical;
 }
