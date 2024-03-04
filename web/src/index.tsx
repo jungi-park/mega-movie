@@ -14,6 +14,7 @@ import OauthSignIn from "./pages/OauthSignIn";
 import MyPage from "./pages/MyPage";
 import Ticketing from "./pages/Ticketing";
 import Movie from "./pages/Movie";
+import MovieInfo from "./pages/MovieInfo";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -30,6 +31,7 @@ root.render(
         <Route path="/signin" element={<SignIn></SignIn>}></Route>
         <Route path="/mypage" element={<MyPage></MyPage>}></Route>
         <Route path="/movie" element={<Movie></Movie>}></Route>
+        <Route path="/movieinfo" element={<MovieInfo></MovieInfo>}></Route>
         <Route
           path="/oauth/signin"
           element={<OauthSignIn></OauthSignIn>}

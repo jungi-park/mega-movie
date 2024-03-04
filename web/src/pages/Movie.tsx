@@ -13,10 +13,10 @@ const MovieList: React.FC = () => {
         <MovieComponent
           name={movie.name}
           genre={movie.genre}
-          img={movie.img}
+          poster={movie.poster}
           rank={movie.rank}
-          rate={movie.rate}
-          star={movie.star}
+          ratio={movie.ratio}
+          rating={movie.rating}
         />
       ))}
     </div>
@@ -26,17 +26,14 @@ const MovieList: React.FC = () => {
 const MovieComponent: React.FC<{
   name: string;
   genre: string;
-  img: string;
+  poster: string;
   rank: number;
-  rate: string;
-  star: string;
-}> = ({ name, genre, img, rank, rate, star }) => (
+  ratio: string;
+  rating: string;
+}> = ({ name, genre, poster, rank, ratio, rating }) => (
   <div className="movie-card">
     <div className="area-img">
-      <img
-        src={process.env.PUBLIC_URL + `/images/img_poster_${img}.jpg`}
-        alt=""
-      />
+      <img src={`/images/img_poster_${poster}.jpg`} alt="" />
     </div>
 
     <div className="area-text">
@@ -54,7 +51,7 @@ const MovieComponent: React.FC<{
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
             <path d="M9.99991 14.3915L15.1498 17.4999L13.7832 11.6416L18.3331 7.69995L12.3416 7.19162L9.99991 1.66666L7.65826 7.19162L1.66663 7.69995L6.2166 11.6416L4.84994 17.4999L9.99991 14.3915Z" />
           </svg>
-          <span>{star}</span>
+          <span>{rating}</span>
         </div>
       </div>
     </div>
@@ -69,9 +66,9 @@ const MovieComponent: React.FC<{
   </div>
 );
 
-const Movies = () => {
+const Movie = () => {
   return (
-    <main>
+    <div className="wrapper movie">
       <Navigation></Navigation>
       <div className="greeting">
         <div className="title-main">
@@ -81,34 +78,30 @@ const Movies = () => {
             <span>영</span>
             <span>화</span>
           </div>
-          <div className="sub">
-            <span>실시간 박스오피스</span>
-          </div>
         </div>
       </div>
-      <div className="movies-con">
+      <div className="container">
         <div className="layout">
           <div className="list-filter">
             <ul className="list">
               <li className="selected">
-                <span>All</span>
+                <span className="font-big">All</span>
               </li>
               <li>
-                <span>박스오피스</span>
+                <span className="font-big">박스오피스</span>
               </li>
               <li>
-                <span>상영예정작</span>
+                <span className="font-big">상영예정작</span>
               </li>
               <li>
-                <span>필름소사이어티</span>
+                <span className="font-big">필름소사이어티</span>
               </li>
               <li>
-                <span>클래식소사이어티</span>
+                <span className="font-big">클래식소사이어티</span>
               </li>
             </ul>
-            <div className="search"></div>
           </div>
-          <div className="search-filter">
+          <div className="list-search">
             <ul className="list">
               <li>
                 <span>All</span>
@@ -128,8 +121,8 @@ const Movies = () => {
           <MovieList></MovieList>
         </div>
       </div>
-    </main>
+    </div>
   );
 };
 
-export default Movies;
+export default Movie;

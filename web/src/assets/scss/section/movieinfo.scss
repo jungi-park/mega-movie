@@ -1,15 +1,51 @@
 @import "../style.scss";
 
-.wrapper.movie {
+.wrapper.movieinfo {
   .greeting {
     @include flex($justify: center);
-    height: 520px;
-    background-color: $primary-variant;
-    .main-title main span {
-      color: $primary-variant;
+    height: 600px;
+    background-color: $bg-black;
+    padding: 100px 0;
+    color: #ffffff;
+
+    .layout {
+      @include flex();
+      column-gap: 60px;
     }
-    .movies-con {
-      padding: 120px 0;
+    .area-img {
+      height: 100%;
+      img {
+        height: 100%;
+      }
+    }
+    .area-text {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      .name {
+        color: $text-white;
+        font-weight: bold;
+        margin-bottom: 32px;
+      }
+      .description {
+        margin-bottom: 40px;
+        .font-big {
+          display: inline-block;
+          color: $text-white;
+          margin-bottom: 16px;
+        }
+        p {
+          color: $text-white-dark;
+          word-break: keep-all;
+        }
+      }
+    }
+    .info {
+      position: absolute;
+      bottom: 100px;
+      @include flex();
+      width: 100%;
     }
   }
 

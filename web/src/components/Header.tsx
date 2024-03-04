@@ -163,7 +163,7 @@ function Nav() {
       body: ["빠른예매", "상영시간표", "더 부티크 프라이빗 예매"],
     },
     {
-      href: "/",
+      href: "movieinfo",
       title: "극장",
       body: ["전체극장", "특별관"],
     },

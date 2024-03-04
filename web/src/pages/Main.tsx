@@ -8,39 +8,29 @@ import { movies } from "../assets/moviesData";
 //style
 import "../assets/scss/section/main.scss";
 
-const MovieList: React.FC = () => {
-  return (
-    <div className="movie-list">
-      {movies.map((movie) => (
-        <MovieComponent
-          name={movie.name}
-          genre={movie.genre}
-          img={movie.img}
-          rank={movie.rank}
-          rate={movie.rate}
-          star={movie.star}
-        />
-      ))}
-    </div>
-  );
-};
-
-const MovieComponent: React.FC<{
+interface MovieProps {
   name: string;
   genre: string;
-  img: string;
+  poster: string;
   rank: number;
-  rate: string;
-  star: string;
-}> = ({ name, genre, img, rank, rate, star }) => (
+  ratio: string;
+  rating: string;
+  catchphrase: string;
+  content: string;
+}
+
+const BoxOfficeComponent: React.FC<MovieProps> = ({
+  name,
+  genre,
+  poster,
+  rank,
+  ratio,
+  rating,
+}) => (
   <div className="movie-card">
     <div className="area-img">
-      <img
-        src={process.env.PUBLIC_URL + `/images/img_poster_${img}.jpg`}
-        alt=""
-      />
+      <img src={`/images/img_poster_${poster}.jpg`} alt="" />
     </div>
-
     <div className="area-text">
       <div className="rank">
         <h3>{rank}</h3>
@@ -56,7 +46,7 @@ const MovieComponent: React.FC<{
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
             <path d="M9.99991 14.3915L15.1498 17.4999L13.7832 11.6416L18.3331 7.69995L12.3416 7.19162L9.99991 1.66666L7.65826 7.19162L1.66663 7.69995L6.2166 11.6416L4.84994 17.4999L9.99991 14.3915Z" />
           </svg>
-          <span>{star}</span>
+          <span>{rating}</span>
         </div>
       </div>
     </div>
@@ -71,26 +61,90 @@ const MovieComponent: React.FC<{
   </div>
 );
 
-// scroll 744px이상 header 숨김
-// const header = document.querySelector('.sticky-header');
-// let lastScroll = 0;
+const BoxOffice: React.FC = () => {
+  const limitedMovies = movies.slice(0, 8);
 
-// window.addEventListener('scroll', () => {
-//   const currentScroll = window.scrollY;
-//   const windowHeight = window.innerHeight;
+  return (
+    <div className="movie-list">
+      {limitedMovies.map((movie, index) => (
+        <BoxOfficeComponent key={index} {...movie} />
+      ))}
+    </div>
+  );
+};
 
-//   if (windowHeight <= 744) {
-//     if (currentScroll > lastScroll) {
-//       header.classList.add('hidden');
-//     } else {
-//       header.classList.remove('hidden');
-//     }
-//   } else {
-//     header.classList.remove('hidden');
-//   }
+const RecommendMovie: React.FC = () => {
+  const recommendedMovie = movies.length > 0 ? movies[0] : null;
 
-//   lastScroll = currentScroll;
-// });
+  return (
+    <div className="content">
+      {recommendedMovie && <RecommendComponent movie={recommendedMovie} />}
+    </div>
+  );
+};
+
+const RecommendComponent: React.FC<{ movie: MovieProps }> = ({ movie }) => (
+  <>
+    <div className="area-img">
+      <img src={`/images/img_poster_${movie.poster}.jpg`} alt="" />
+    </div>
+    <div className="area-text">
+      <div className="name">
+        <h3>{movie.name}</h3>
+      </div>
+      <div className="description">
+        <span className="font-big">{movie.catchphrase}</span>
+        <p>{movie.content}</p>
+      </div>
+      <div className="review">
+        <div className="user">
+          <span className="ico_person"></span>
+          <p>aaaa****</p>
+        </div>
+        <div className="wrap">
+          <div className="text">
+            <p>관람평</p>
+          </div>
+          <div className="point">
+            <span className="font-accent">10</span>
+          </div>
+          <div className="point detail">
+            <p>
+              연출 외<br />
+              +3
+            </p>
+          </div>
+          <div className="comment">
+            <p>너무 재밌어요!!!!</p>
+          </div>
+        </div>
+      </div>
+      <div className="review">
+        <div className="user">
+          <span className="ico_person"></span>
+          <p>aaaa****</p>
+        </div>
+        <div className="wrap">
+          <div className="text">
+            <p>관람평</p>
+          </div>
+          <div className="point">
+            <span className="font-accent">10</span>
+          </div>
+          <div className="point detail">
+            <p>
+              연출 외<br />
+              +3
+            </p>
+          </div>
+          <div className="comment">
+            <p>너무 재밌어요!!!!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </>
+);
 
 function Main() {
   // const url ='http://localhost:8080'
@@ -239,10 +293,9 @@ function Main() {
                   <span>실시간 박스오피스</span>
                 </div>
               </div>
-              <MovieList></MovieList>
-              {/* <h6 className="viewAll">+ 영화 전체보기</h6> */}
+              <BoxOffice></BoxOffice>
             </div>
-          </div>{" "}
+          </div>
           <div className="container recommend-movie-cont">
             <div className="layout">
               <div className="title-main">
@@ -256,70 +309,7 @@ function Main() {
                   <span>내 취향저격 영화</span>
                 </div>
               </div>
-              <div className="content">
-                <div className="area-img">
-                  <img src="/images/img_poster_sleep.jpg" alt="" />
-                </div>
-                <div className="area-text">
-                  <div className="name">
-                    <h3>윙카</h3>
-                  </div>
-                  <div className="description">
-                    <span className="font-big">세상에서 가장 달콤한 여정</span>
-                    <p>
-                      좋은 일은 모두 꿈에서부터 시작된다!
-                      <br /> 마법사이자 초콜릿 메이커 ‘윌리 웡카’의 꿈은디저트의
-                      성지, ‘달콤 백화점’에 자신만의 초콜릿 가게를 여는 것.
-                    </p>
-                  </div>
-                  <div className="review">
-                    <div className="user">
-                      <span className="ico_person"></span>
-                      <p>aaaa****</p>
-                    </div>
-                    <div className="wrap">
-                      <div className="text">
-                        <p>관람평</p>
-                      </div>
-                      <div className="point">
-                        <span className="font-accent">10</span>
-                      </div>
-                      <div className="point detail">
-                        <p>
-                          연출 외<br />
-                          +3
-                        </p>
-                      </div>
-                      <div className="comment">
-                        <p>너무 재밌어요!!!!</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="review">
-                    <div className="user">
-                      <span className="ico_person"></span>
-                      <p>aaaa****</p>
-                    </div>
-                    <div className="wrap">
-                      <div className="text">
-                        <p>관람평</p>
-                      </div>
-                      <div className="point">
-                        <span className="font-accent">10</span>
-                      </div>
-                      <div className="point detail">
-                        <p>
-                          연출 외<br />
-                          +3
-                        </p>
-                      </div>
-                      <div className="comment">
-                        <p>너무 재밌어요!!!!</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <RecommendMovie></RecommendMovie>
             </div>
           </div>
           <div className="container event-cont">
